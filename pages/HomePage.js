@@ -8,49 +8,74 @@ import certificateImg from "../public/assets/image/certificate.png";
 import Header from "../components/HeaderNav/Header";
 import Swiper from "../shared/swiper/Swiper";
 import Link from "next/link";
+import Image from "next/image";
 const items = [
-  <video className='hero__item' width='100%' height='100%' autoPlay muted loop>
-    {/*<source src={video} type='video/mp4' />*/}
+  <video
+      className="hero__item"
+      width="100%"
+      height="100%"
+      autoPlay
+      muted
+      loop
+      playsInline
+  >
+    <source src="/assets/video/hero-vid.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
   </video>,
-  <video className='hero__item' width='100%' height='100%' autoPlay muted loop>
-    {/*<source src={video} type='video/mp4' />*/}
+  <video
+      className="hero__item"
+      width="100%"
+      height="100%"
+      autoPlay
+      muted
+      loop
+      playsInline
+  >
+    <source src="/assets/video/hero-vid.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
   </video>,
-  <video className='hero__item' width='100%' height='100%' autoPlay muted loop>
-    {/*<source src={video} type='video/mp4' />*/}
+  <video
+      className="hero__item"
+      width="100%"
+      height="100%"
+      autoPlay
+      muted
+      loop
+      playsInline
+  >
+    <source src="/assets/video/hero-vid.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
   </video>,
 ];
 const feetolines = [
-  <li className='feetolines__list-item'>
-    <img className='feetolines__item-img' src={profeetsImg} alt='Feeto care' />
-    <div className='feetolines__item-sticker'>
+  <div key={1} className="feetolines__list-item select-none " draggable={false}>
+    <Image className="feetolines__item-img select-none" src={profeetsImg} alt="Feeto care"/>
+    <div className="feetolines__item-sticker">
       <h4 className='feetolines__item-title'>Professional Feet</h4>
       <p className='feetolines__item-category'>Педикюр</p>
     </div>
-  </li>,
-  <li className='feetolines__list-item'>
-    <img className='feetolines__item-img' src={feetocareImg} alt='Feeto care' />
+  </div>,
+  <div key={2} className='feetolines__list-item select-none' draggable={false}>
+    <Image className='feetolines__item-img select-none' src={feetocareImg} alt='Feeto care' />
     <div className='feetolines__item-sticker'>
       <h4 className='feetolines__item-title'>Feeto Care</h4>
       <p className='feetolines__item-category'>Педикюр</p>
     </div>
-  </li>,
-  <li className='feetolines__list-item'>
-    <img className='feetolines__item-img' src={karttoolsImg} alt='Feeto care' />
+  </div>,
+  <div key={3} className='feetolines__list-item select-none' draggable={false}>
+    <Image className='feetolines__item-img select-none' src={karttoolsImg} alt='Feeto care' />
     <div className='feetolines__item-sticker'>
       <h4 className='feetolines__item-title'>Сопутствующие материалы</h4>
       <p className='feetolines__item-category'>KART</p>
     </div>
-  </li>,
-  <li className='feetolines__list-item'>
-    <img className='feetolines__item-img' src={feetocareImg} alt='Feeto care' />
+  </div>,
+  <div key={4} className='feetolines__list-item select-none' draggable={false}>
+    <Image className='feetolines__item-img select-none' src={feetocareImg} alt='Feeto care' />
     <div className='feetolines__item-sticker'>
       <h4 className='feetolines__item-title'>Feeto Care</h4>
       <p className='feetolines__item-category'>Педикюр</p>
     </div>
-  </li>,
+  </div>,
 ];
 function HomePage() {
   return (
@@ -334,7 +359,7 @@ function HomePage() {
               концентрацией активных веществ, использует редкие и эксклюзивные
               ингредиенты растительного и морского происхождения.
             </p>
-            <Link to='#' classNameName='link'>
+            <Link href='#' classNameName='link'>
               <p>Больше о компании KART</p>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -398,7 +423,7 @@ function HomePage() {
               </svg>
             </Link>
           </div>
-          <img src={our_academyImg} alt='KART academy' className='academy__img' />
+          <Image src={our_academyImg} alt='KART academy' className='academy__img' />
         </div>
       </section>
       <section className='certificate'>
@@ -537,7 +562,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <img
+          <Image
             src={certificateImg}
             alt='KART certificate'
             className='certificate__img'

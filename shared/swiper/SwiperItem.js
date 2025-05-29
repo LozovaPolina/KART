@@ -1,32 +1,25 @@
-function SwiperItem({
-	content,
-	img,
-	widthPercent = `100`,
-	style = {},
-	className = "",
-}) {
-	const liStyle = {
-		width: `${widthPercent}%`,
-		flexShrink: 0,
-		userSelect: "none",
-		WebkitUserSelect: "none",
-		listStyle: "none",
-		...style,
-	};
+import Image from "next/image";
 
-	const imgStyle = {
-		width: "100%",
-		userSelect: "none",
-		WebkitUserSelect: "none",
-		display: "block",
-	};
-
+function SwiperItem({content, img, widthPercent = 100, style = {}, className = ""}) {
+	const widthClass = widthPercent === 100 ? 'w-full' : `!w-[${widthPercent}%]`; // Force width with Tailwind
 	return (
-		<li style={liStyle}>
+		<li
+			className={`flex-shrink-0 select-none list-none ${widthClass} ${className}`}
+			style={style}
+		>
 			{content}
-			{img && <img src={img.src} alt={img.alt || ""} style={imgStyle} />}
+			{img && (
+				<Image
+					src={img.src}
+					alt={img.alt || ""}
+					className="w-full select-none block"
+					draggable={false}
+				/>
+			)}
 		</li>
 	);
 }
 
 export default SwiperItem;
+
+
