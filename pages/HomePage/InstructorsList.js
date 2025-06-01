@@ -7,6 +7,7 @@ import womenImg from "../../public/assets/image/womenImg.png"
 import linkImg from "../../public/assets/svg/link.svg"
 import Swiper from "@/shared/swiper/Swiper";
 import Button from "@/shared/button/Button";
+import Link from "next/link";
 
 function InstructorsItem() {
 	return (
@@ -32,7 +33,10 @@ function InstructorsList() {
 			</div>
 			<Swiper widthPercent={"270px"} controlBlock={false} itemsLength={2} items={[<InstructorsItem key={1} />, <InstructorsItem key={2} />, <InstructorsItem key={3} />, <InstructorsItem key={4} />, <InstructorsItem key={5} />, <InstructorsItem key={5} />,]} />
 			<div className="flex gap-2">
-				<Button>Смотреть всех </Button>
+				<Link href={'/instructors'}>
+					<Button>Смотреть всех </Button>
+				</Link>
+
 				<button className="flex gap-1 text-[#43B549] items-center hover:opacity-50 cursor-pointer">
 					<Image src={linkImg} alt="link" />
 					<p className="text-[15px]">Материалы для скачивания</p>
