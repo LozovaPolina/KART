@@ -5,7 +5,7 @@ import Title from '@/shared/title/Title';
 import { useState } from 'react';
 import InstructorCard from './InstructorCard';
 import Pagination from '@/shared/pagination/Pagination';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 
 const instructors = [
@@ -122,7 +122,7 @@ export default function InstructorsPage() {
       <Title color="green">Сертифицированные инструкторы KART</Title>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-        {pagedInstructors.map((instructor, idx) => (
+        {pagedInstructors?.map((instructor, idx) => (
           <InstructorCard key={idx} instructor={instructor} />
         ))}
       </div>
