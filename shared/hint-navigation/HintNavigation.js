@@ -1,9 +1,23 @@
+import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import React from 'react';
 
-function HintNavigation({ nameFirst, nameSecond }) {
+function HintNavigation({ links }) {
   return (
-    <div className="flex justify-center gap-4 text-[#404040] text-[16px]!"><p>{nameFirst}</p><ChevronRight className='w-[20px]' color='#E3E3E3' /> <p>{nameSecond}</p></div>
+    <nav className="flex items-center mt-8 gap-2 text-[#404040] text-[1rem]">
+      {links.map((link, index) => (
+        <div key={index} className="flex items-center gap-2">
+          <Link
+            href={link.href}
+            className=" transition duration-150"
+          >
+            {link.label}
+          </Link>
+          {index < links.length - 1 && (
+            <ChevronRight className="w-[1.25rem]" color="#E3E3E3" />
+          )}
+        </div>
+      ))}
+    </nav>
   );
 }
 

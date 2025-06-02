@@ -1,6 +1,10 @@
 import ShopCardName from '@/shared/shop/ShopCardName';
-import ShopItem from '@/shared/shop/ShopItem';
+import ShopItem from '@/shared/shop/ProductItem';
 import React from 'react';
+import { products } from '@/shared/shop/ProductList';
+// data/products.ts
+
+
 
 function page() {
   return (
@@ -9,7 +13,9 @@ function page() {
 
       <div className="flex flex-wrap gap-4 justify-center">
 
-        {Array.from({ length: 10 }).map((item, i) => <ShopItem key={i} />)}
+        {products.map(product => (
+          <ShopItem key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );
