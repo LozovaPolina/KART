@@ -39,8 +39,8 @@ const themes = [
 export default function ProductThemeList() {
   return (
     <div className="space-y-12">
-      {themes.map((theme, i) => (
-        <ProductSection key={i} title={theme.title} products={theme.products} />
+      {themes?.map((theme, i) => (
+        <ProductSection key={i} title={theme?.title} products={theme?.products} />
       ))}
     </div>
   );

@@ -1,10 +1,12 @@
+"use client";
+
 import React from 'react';
 
-import Instructors from '@/pages/Instructors/Instructors';
+import InstructorsClient from '@/pages/Instructors/InstructorClient';
 function page() {
   return (
     <>
-      <Instructors />
+      <InstructorsClient />
     </>
   );
 }
