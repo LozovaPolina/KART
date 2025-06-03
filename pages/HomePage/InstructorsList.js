@@ -17,7 +17,7 @@ function InstructorsItem() {
 					<h4 className="text-[20px]">Алена Шутова</h4>
 					<h5 className="text-[11px]">Ведущий инструктор KART</h5>
 				</div>
-				<CircleLink />
+				<CircleLink href="/instructors" />
 			</div>
 
 			<Image className="rounded-xl w-full object-cover" src={womenImg} alt="women image" />

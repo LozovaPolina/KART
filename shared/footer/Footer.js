@@ -6,10 +6,10 @@ import { MapPinHouse, PhoneIncoming, CalendarClockIcon } from 'lucide-react';
 import FooterNavigation from './FooterNavigation';
 function Footer() {
   return (
-    <footer className='w-full  flex flex-col gap-6 md:gap-0 items-center md:flex-row md:items-start text-white justify-between  bg-[#96B87D] mt-[9.375rem] md:mt-[12.5rem] py-6 px-12 pb-12'>
+    <footer className='w-full  flex flex-col gap-6 md:gap-0 items-center md:flex-row md:items-start text-white justify-between  bg-[#96B87D]! mt-[150px]! md:mt-[200px] py-6 px-12 pb-12'>
       <div className='flex flex-col gap-4 items-center md:items-start'>
         <Image src={footerLogog} alt='logo' />
-        <p className='text-[.9375rem]'>© Все права <br /> защищены KART</p>
+        <p className='text-[15px]'>© Все права <br /> защищены KART</p>
 
         <div className='flex gap-2'>
           <Link href={'/'} className=' flex justify-center items-center rounded-full  w-10 h-10 bg-[#A0C287] shadow-2xl'>
@@ -57,13 +57,13 @@ function Footer() {
 
       </div>
 
-      <div className='flex flex-col  text-[.9375rem] md:items-start items-center text-center md:text-start'>
+      <div className='flex flex-col  text-[15px] md:items-start items-center text-center md:text-start'>
         <div className="flex flex-col gap-4 ">
-          <h5 className='text-white text-[1.5625rem]'>Контакти</h5>
+          <h5 className='text-white text-[25px]'>Контакти</h5>
           <div className="flex flex-col gap-1 items-center md:items-start">
-            <div className='flex gap-2 '><MapPinHouse className='w-[1.25rem]' /> <p>Сахарова, 11, Рішон Ле-Ціон</p></div>
-            <div className='flex gap-2'><PhoneIncoming className='w-[1.25rem]' /> <p>+972 54 262 6027</p></div>
-            <div className='flex gap-2'><CalendarClockIcon className='w-[1.25rem]' /><p>Вс-Чт 9:00-17:00</p></div>
+            <div className='flex gap-2 '><MapPinHouse className='w-[20px]' /> <p>Сахарова, 11, Рішон Ле-Ціон</p></div>
+            <div className='flex gap-2'><PhoneIncoming className='w-[20px]' /> <p>+972 54 262 6027</p></div>
+            <div className='flex gap-2'><CalendarClockIcon className='w-[20px]' /><p>Вс-Чт 9:00-17:00</p></div>
 
           </div>
 
@@ -71,9 +71,9 @@ function Footer() {
         </div>
 
       </div>
-      <div className='flex flex-col  text-[.9375rem] items-center md:items-start'>
+      <div className='flex flex-col  text-[15px] items-center md:items-start'>
         <div className="flex flex-col gap-4 items-center md:items-start">
-          <h5 className='text-white text-[1.5625rem]'>Линии</h5>
+          <h5 className='text-white text-[25px]'>Линии</h5>
           <div className="flex flex-col gap-1 items-center md:items-start">
             <p>Professional Feet</p>
             <p>Feeto Care</p>

@@ -56,7 +56,7 @@ const FlagItem = ({ imageSrc, countryName, onClick }) => {
       onTouchStart={() => handleHover(countryName)}  // For mobile devices
       onTouchEnd={handleLeave}                      // For mobile devices
       onClick={onClick}
-      className="max-w-[150px] min-w-[70px]  w-full relative min-h-[80px] p-[10px] gap-[10px] rounded-[10px] bg-white shadow cursor-pointer hover:shadow-lg transition-all flex flex-col items-center justify-center"
+      className="max-w-[150px] min-w-[70px]  w-full relative min-h-[80px] p-[10px] gap-[10px] rounded-[10px] bg-[#F3F3F3] shadow cursor-pointer hover:shadow-lg transition-all flex flex-col items-center justify-center"
     >
       <Image
         src={imageSrc}

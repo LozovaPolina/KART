@@ -7,8 +7,8 @@ function ShopItem({ product }) {
   return (
     <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow'>
       <Image
-        className='w-full object-cover rounded-2xl'
-        src={product.image}
+        className='w-full object-cover shadow rounded-2xl'
+        src={productImg}
         alt={product.title}
         width={340}
         height={200}

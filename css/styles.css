@@ -197,7 +197,7 @@ input {
 .feetolines .feetolines__list-item {
   position: relative;
   flex-shrink: 0;
-  width: 464px;
+  width: 440px;
   height: 385px;
   user-select: none;
   border-radius: 20px;
@@ -470,20 +470,6 @@ input {
 
 
 
-.certificate img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  flex: 1 1 300px;
-  /* flexible but with minimum basis */
-  order: 2;
-  object-fit: contain;
-  /* ensure proper aspect */
-  min-width: 250px;
-  padding-top: 50px;
-  /* prevent image from becoming too small */
-}
-
 @media (max-width: 1000px) {
   .certificate .wrap {
     gap: 5%;
@@ -500,17 +486,7 @@ input {
     padding-bottom: 100px;
   }
 
-  .certificate img {
-    padding-top: 0;
-    width: 100%;
-    max-width: 100%;
-    /* explicitly limit */
-    margin-bottom: 20px;
-    order: 0;
-    /* image goes above text */
-    min-width: auto;
-    /* remove min-width restriction */
-  }
+
 
   .certificate .certificate__info {
     max-width: 100%;

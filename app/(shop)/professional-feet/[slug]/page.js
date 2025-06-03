@@ -21,13 +21,13 @@ export default function Page({ params }) {
   }
 
   return (
-    <section className="flex flex-col  items-center gap-[44px] w-full ">
+    <section className="flex flex-col  items-center gap-[2.75rem] w-full ">
       <HintNavigation links={[
         { label: 'Главная', href: '/' },
         { label: 'Professional Feet', href: '/professional-feet' },
         { label: 'Описание товара', href: `/professional-feet/${slug}` },
       ]} />
-      <div className="flex gap-3 flex-wrap mb-[40px] h-full lg:flex-nowrap  w-full">
+      <div className="flex gap-3 flex-wrap mb-[2.5rem] h-full lg:flex-nowrap  w-full">
         <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-2xl ">
           <Image
             src={productImage}
@@ -40,7 +40,7 @@ export default function Page({ params }) {
         <div className="flex flex-col gap-4  text-[#404040]">
           <div className=" flex gap-4 items-center">
             <div className="flex flex-col">
-              <h2 className="text-[20px] lg:text-xl font-semibold">{product.fullName}</h2>
+              <h2 className="text-[1.25rem] lg:text-xl font-semibold">{product.fullName}</h2>
               <h3 className="text-lg text-gray-500 mb-4">{product.title}</h3>
             </div>
 
@@ -48,19 +48,19 @@ export default function Page({ params }) {
           </div>
 
 
-          <div className="w-full bg-[#EDEDED] h-[1px]"></div>
+          <div className="w-full bg-[#EDEDED] h-[.0625rem]"></div>
 
 
           <div className="">
-            <p className="text-[13px] lg:text-sm mb-6 text-[#404040]">{product.description}</p>
+            <p className="text-[.8125rem] lg:text-sm mb-6 text-[#404040]">{product.description}</p>
 
           </div>
 
 
-          <div className="w-full bg-[#EDEDED] h-[1px]"></div>
+          <div className="w-full bg-[#EDEDED] h-[.0625rem]"></div>
 
           <div className="flex justify-between items-center">
-            <div className="text-[#A0C287] text-[16px] lg:text-xl font-semibold mb-4">{formatCurrencyRightLocalized(product.price)} </div>
+            <div className="text-[#A0C287] text-[1rem] lg:text-xl font-semibold mb-4">{formatCurrencyRightLocalized(product.price)} </div>
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center  rounded px-2 py-1">
                 <button >
@@ -71,7 +71,7 @@ export default function Page({ params }) {
                   <Plus className="w-8 h-8 p-2 cursor-pointer text-[#848484]" />
                 </button>
               </div>
-              <button className="flex items-center gap-2 shadow w-[70px] cursor-pointer text-[15px] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
+              <button className="flex items-center gap-2 shadow w-[5.375rem] md:w-[130px] cursor-pointer text-[.9375rem] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
                 <ShoppingCart className="w-4 h-4" />
                 В корзину
               </button>
@@ -108,7 +108,7 @@ export default function Page({ params }) {
         </div>
       </div>
 
-      <Swiper controlBlock={false} itemsLength={Math.round(products.length / 4)} widthPercent={'342px'} items={products.map(product => (
+      <Swiper controlBlock={false} itemsLength={Math.round(products.length / 4)} widthPercent={'21.375rem'} items={products.map(product => (
         <ShopItem key={product.id} product={product} />
       ))} />
 

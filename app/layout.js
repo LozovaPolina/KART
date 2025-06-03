@@ -24,11 +24,14 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen flex flex-col ${geistSans.variable} ${geistMono.variable} bg-[#F5F5F5CC]">
         <Header />
 
-        <main className="flex-grow container">
+        <main className="flex-grow container pt-[160px]! ">
           {children}
         </main>
+        <div className="container">
 
-        <Footer />
+          <Footer />
+        </div>
+
       </body>
     </html>
   );
