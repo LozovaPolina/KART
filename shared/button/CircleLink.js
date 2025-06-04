@@ -2,7 +2,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react'; // Use the top-right arrow icon
 
-function CircleLink({ href = '#', bgColor = 'white', className = '', border = false }) {
+function CircleLink({ href = '#', bgColor = 'white', className = '', border = false, arrowColor }) {
   const isWhite = bgColor === 'white';
 
   const circleStyle = `rounded-full hover:shadow w-10 h-10 hover:opacity-70 flex items-center justify-center transition-colors duration-200 ${isWhite ? 'bg-white' : 'bg-[#A0C287]'
@@ -12,7 +12,7 @@ function CircleLink({ href = '#', bgColor = 'white', className = '', border = fa
 
   return (
     <a href={href} className={`${circleStyle} ${className} ${border ? 'border border-[#CBCBCB]' : ''}`}>
-      <ArrowUpRight size={20} className={arrowStyle} />
+      <ArrowUpRight size={20} color={arrowColor} className={arrowStyle} />
     </a>
   );
 }

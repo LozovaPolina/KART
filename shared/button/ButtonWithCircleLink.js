@@ -10,14 +10,15 @@ export function ButtonWithCircleLink({
   buttonClassName = '',
   onClick,
   circleClassName = '',
-  buttonProps = {}, // extra props to pass to button
+  buttonProps = {},
+  arrowColor,// extra props to pass to button
 }) {
   return (
     <div className="flex gap-4 items-center">
       <Button className={buttonClassName}  {...buttonProps} onClick={onClick}>
         {buttonText}
       </Button>
-      <CircleLink href={href} bgColor={circleBg} className={circleClassName} />
+      <CircleLink arrowColor={arrowColor} href={href} bgColor={circleBg} className={circleClassName} />
     </div>
   );
 }

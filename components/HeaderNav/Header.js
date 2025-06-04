@@ -3,12 +3,13 @@ import logotype from "../../public/assets/svg/logotype.svg"; // Adjust the path 
 import ProductLinks from "./ProductsLinks";
 import Link from "next/link";
 import Image from "next/image";
+import { Search } from "lucide-react";
 
 
 
 export default function Header() {
   return (
-    <header>
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-md">
       <div className="max-w-[1450px] mx-auto px-[15px]">
         <div className="flex justify-between items-start flex-wrap gap-y-4 pt-[25px] pb-[15px]">
           {/* Left header item */}
@@ -26,26 +27,14 @@ export default function Header() {
           <div className="hidden xl:block max-w-[328px] w-full">
             <form method="GET" action="/" className="w-full">
               <div
-                className="flex items-center gap-5 px-[10px] py-[10px] bg-[#f5f5f5] rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.15)] border border-gray-300">
+                className="flex items-center gap-5 px-[10px] py-[10px] bg-[#f5f5f5] rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.15)] "
+              >
                 <input
                   type="text"
                   placeholder="Ищите то, что вас интересует"
                   className="flex-grow border-none text-base bg-transparent placeholder-gray-400 focus:outline-none"
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                >
-                  <path
-                    d="M19.0439 19L16.3217 16.2778M15.9328 10.4444C15.9328 11.1594..."
-                    stroke="#49454F"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <Search color="#49454F" />
               </div>
             </form>
           </div>
@@ -100,7 +89,7 @@ export default function Header() {
               />
             </svg>
 
-            {/* Menu toggler (visible on small screens) */}
+            {/* Mobile Menu Toggler */}
             <svg
               className="w-[25px] h-[25px] cursor-pointer block xl:hidden"
               xmlns="http://www.w3.org/2000/svg"
@@ -124,5 +113,6 @@ export default function Header() {
         <ProductLinks />
       </div>
     </header>
+
   );
 }

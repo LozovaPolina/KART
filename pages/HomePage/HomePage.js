@@ -1,5 +1,6 @@
 // import video from "../public/assets/video/hero-vid.mp4";
 import profeetsImg from "../../public/assets/image/profeets.png";
+import magnifyingGlasImg from "../../public/assets/image/male_hand_holding_magnifying_glas.png";
 import feetocareImg from "../../public/assets/image/feetocare.png";
 import karttoolsImg from "../../public/assets/image/karttools.png";
 import kartProfessionalImg from "../../public/assets/image/kart-professional.png";
@@ -12,6 +13,15 @@ import FlagList from "./FlagList";
 import BlogList from "./BlogLst";
 import OrderСonditionsList from "./OrderСonditionsList";
 import { ButtonWithCircleLink } from "@/shared/button/ButtonWithCircleLink";
+import Title from "@/shared/title/Title";
+import Text from "@/shared/text/Text";
+import catalogListIcon from "../../public/assets/svg/catalogList.svg"
+import listCardIcon from "../../public/assets/svg/listCard.svg"
+import pdfIcon from "../../public/assets/svg/pdfIcon.svg"
+import priceListIcon from "../../public/assets/svg/priceList.svg"
+import videoIcon from "../../public/assets/svg/videoIcon.svg"
+import protocolcon from "../../public/assets/svg/protocolcon.svg"
+import { BadgePercent, FileText, ShoppingBag } from "lucide-react";
 const items = [
   <video
     className="w-full h-full rounded-[20px]"
@@ -48,32 +58,25 @@ const items = [
   </video>,
 ];
 const feetolines = [
-  <div key={1} className="feetolines__list-item select-none " draggable={false}>
+  <div key={1} className="feetolines__list-item  select-none " draggable={false}>
     <Image className="feetolines__item-img select-none" src={profeetsImg} alt="Feeto care" />
     <div className="feetolines__item-sticker">
       <h4 className='feetolines__item-title'>Professional Feet</h4>
       <p className='feetolines__item-category'>Педикюр</p>
     </div>
   </div>,
-  <div key={2} className='feetolines__list-item select-none' draggable={false}>
+  <div key={2} className='feetolines__list-item select-none ' draggable={false}>
     <Image className='feetolines__item-img select-none' src={feetocareImg} alt='Feeto care' />
     <div className='feetolines__item-sticker'>
       <h4 className='feetolines__item-title'>Feeto Care</h4>
       <p className='feetolines__item-category'>Педикюр</p>
     </div>
   </div>,
-  <div key={3} className='feetolines__list-item select-none' draggable={false}>
+  <div key={3} className='feetolines__list-item select-none ' draggable={false}>
     <Image className='feetolines__item-img select-none' src={karttoolsImg} alt='Feeto care' />
     <div className='feetolines__item-sticker'>
       <h4 className='feetolines__item-title'>Сопутствующие материалы</h4>
       <p className='feetolines__item-category'>KART</p>
-    </div>
-  </div>,
-  <div key={4} className='feetolines__list-item select-none' draggable={false}>
-    <Image className='feetolines__item-img select-none' src={feetocareImg} alt='Feeto care' />
-    <div className='feetolines__item-sticker'>
-      <h4 className='feetolines__item-title'>Feeto Care</h4>
-      <p className='feetolines__item-category'>Педикюр</p>
     </div>
   </div>,
 ];
@@ -94,7 +97,7 @@ function HomePage() {
         <div className='wrap marquee-container container'>
           <h2 className='advantages__title'>
             Преимущества
-            <span className='advantages__title--highlight'>препаратов KART</span>
+            <span className='advantages__title--highlight'> препаратов KART</span>
           </h2>
           <div className='advantages__list marquee'>
             <div className='advantages__item'>
@@ -331,8 +334,8 @@ function HomePage() {
           <Swiper
             items={feetolines}
             className={"feetolines__list"}
-            itemsLength={2}
-            widthPercent={"464px"}
+            itemsLength={1}
+            widthPercent={"430px"}
             controlBlock={false}
           ></Swiper>
           {/* <div className="wrap container">
@@ -360,26 +363,30 @@ function HomePage() {
               ингредиенты растительного и морского происхождения.
             </p>
             <ButtonWithCircleLink buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
-            {/* <Link href='#' className='link'>
-              <p>Больше о компании KART</p>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='14'
-                height='13'
-                viewBox='0 0 14 13'
-                fill='none'
-              >
-                <path
-                  d='M0.792893 11.2929C0.402369 11.6834 0.402369 12.3166 0.792893 12.7071C1.18342 13.0976 1.81658 13.0976 2.20711 12.7071L0.792893 11.2929ZM13.5 1C13.5 0.447715 13.0523 2.00008e-07 12.5 -5.28728e-08L3.5 7.47917e-07C2.94771 4.10743e-07 2.5 0.447716 2.5 1C2.5 1.55228 2.94772 2 3.5 2L11.5 2L11.5 10C11.5 10.5523 11.9477 11 12.5 11C13.0523 11 13.5 10.5523 13.5 10L13.5 1ZM1.5 12L2.20711 12.7071L13.2071 1.70711L12.5 1L11.7929 0.292894L0.792893 11.2929L1.5 12Z'
-                  fill='white'
-                />
-              </svg>
-            </Link> */}
+
           </div>
           <Image
             src={kartProfessionalImg}
             alt='KART Professional'
             className='post__img'
+          />
+        </div>
+      </section>
+      <section className="flex-col md:flex-row flex gap-4 mb-24 justify-center items-center">
+
+        <Image className="w-full md:w-[60%]" src={magnifyingGlasImg} alt="magnifyingGlasImg" />
+        <div className="w-full md:w-[40%] flex flex-col gap-4 justify-between ">
+          <Title>KART - БОЛЬШЕ ЧЕМ ПЕДИКЮР!</Title>
+          <div className="p-6 bg-[#F5F5F5] min-h-[237px] shadow rounded-2xl">
+            <Text>Педикюр KART представляет собой инновационную методику, основанную на научно обоснованных принципах косметологии
+              и дерматологии.Ключевым аспектом является косметологический подход, который включает в себя систему методов и принципов, направленных на улучшение состояния кожи и ногтей с помощью специализированных косметических средств и процедур.</Text>
+          </div>
+          <ButtonWithCircleLink
+            href={'/'}
+            arrowColor='#81D742'
+            circleClassName='bg-gradient-to-b   bg-[#FFFFFF] from-black/10 to-[#FFFFFF]'
+            buttonText='Детальнее'
+            buttonClassName='w-[90%] text-[#81D742]! bg-[#FFFFFF] bg-gradient-to-b from-black/10 to-[#FFFFFF]'
           />
         </div>
       </section>
@@ -411,156 +418,63 @@ function HomePage() {
             <ButtonWithCircleLink buttonClassName="w-[90%]" buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
 
           </div>
-          {/* <div className="rounded-2xl p-3 h-full"> */}
           <Image src={our_academyImg} alt='KART academy' className='w-full xl:max-w-[600px] lg:max-w-[400px] rounded-2xl object-cover' />
-          {/* </div> */}
 
         </div>
       </section>
-      <section className='certificate'>
-        <div className='wrap container'>
-          <div className='certificate__info'>
-            <h2 className='certificate__info-title'>
+
+      <div className="flex flex-col gap-24">
+        <section className='certificate'>
+          <div className='flex gap-8 items-center justify-center flex-col md:flex-row'>
+            <Image
+              src={certificateImg}
+              alt='KART certificate'
+              className='object-fill w-full md:w-1/2 h-full'
+            />
+            <div className='w-full md:w-1/2 flex flex-col gap-4'>
+              {/* <h2 className='certificate__info-title'>
               КАКИЕ ПРЕИМУЩЕСТВА ПРЕДОСТАВЛЯЕТ
               <br />
               <span className='certificate__title--highlight'>СЕРТИФИКАТ KART</span>
-            </h2>
-            <p className='certificate__info-subtitle'>
-              Сертификат KART предоставляется после прохождения обучения по
-              педикюру и открывает доступ к профессиональной продукции.
-            </p>
-            <div className='certificate__list'>
-              <div className='certificate__list-item'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='25'
-                  height='26'
-                  viewBox='0 0 25 26'
-                  fill='none'
-                >
-                  <path
-                    d='M7.81237 8.83333L7.98737 6.73541C8.08165 5.60346 8.59791 4.54828 9.43376 3.77915C10.2696 3.01003 11.364 2.58313 12.4999 2.58313C13.6357 2.58313 14.7301 3.01003 15.566 3.77915C16.4018 4.54828 16.9181 5.60346 17.0124 6.73541L17.1874 8.83333M3.18945 16.326L3.56966 14.1687C4.01966 11.6187 4.24362 10.3437 5.13425 9.58853C6.02487 8.83333 7.30404 8.83333 9.86133 8.83333H15.1384C17.6957 8.83333 18.9749 8.83333 19.8655 9.58853C20.7561 10.3437 20.9801 11.6187 21.4301 14.1687L21.8103 16.326C22.4332 19.8552 22.7436 21.6198 21.7863 22.7792C20.828 23.9375 19.0572 23.9375 15.5186 23.9375H9.48112C5.94154 23.9375 4.17175 23.9375 3.21341 22.7781C2.25508 21.6187 2.56758 19.8552 3.18945 16.326Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M15.625 11.9583C15.4896 13.4302 14.1312 14.5625 12.5 14.5625C10.8687 14.5625 9.51042 13.4302 9.375 11.9583'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-                <p className='certificate__info-subtitle'>
-                  Покупка всех профессиональных продуктов KART
-                </p>
+            </h2> */}
+              <div className="flex flex-col gap-2">
+                <Title > КАКИЕ ПРЕИМУЩЕСТВА ПРЕДОСТАВЛЯЕТ </Title>
+                <Title color="green" > СЕРТИФИКАТ KART </Title>
+
               </div>
-              <div className='certificate__list-item'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='25'
-                  height='26'
-                  viewBox='0 0 25 26'
-                  fill='none'
-                >
-                  <path
-                    d='M11.7104 3.77216C11.9279 3.52921 12.1942 3.33487 12.492 3.20182C12.7897 3.06877 13.1121 3 13.4382 3C13.7643 3 14.0868 3.06877 14.3845 3.20182C14.6822 3.33487 14.9485 3.52921 15.1661 3.77216L15.9778 4.67898C16.2098 4.93815 16.4971 5.14182 16.8185 5.2749C17.1399 5.40799 17.487 5.46708 17.8343 5.44781L19.0519 5.38055C19.3776 5.3626 19.7034 5.41354 20.0081 5.53005C20.3127 5.64656 20.5894 5.82602 20.8199 6.05671C21.0505 6.2874 21.2299 6.56413 21.3462 6.86884C21.4626 7.17354 21.5134 7.49936 21.4953 7.82503L21.428 9.04147C21.4089 9.38858 21.4681 9.73554 21.6012 10.0567C21.7343 10.3779 21.9378 10.665 22.1968 10.8969L23.1037 11.7086C23.3468 11.9261 23.5413 12.1925 23.6745 12.4903C23.8076 12.7882 23.8765 13.1108 23.8765 13.437C23.8765 13.7633 23.8076 14.0858 23.6745 14.3837C23.5413 14.6815 23.3468 14.9479 23.1037 15.1654L22.1968 15.9771C21.9377 16.2091 21.734 16.4965 21.6009 16.8178C21.4678 17.1392 21.4087 17.4864 21.428 17.8337L21.4953 19.0513C21.5132 19.377 21.4623 19.7028 21.3458 20.0074C21.2293 20.3121 21.0498 20.5887 20.8191 20.8193C20.5884 21.0499 20.3117 21.2292 20.007 21.3456C19.7023 21.4619 19.3765 21.5127 19.0508 21.4946L17.8343 21.4274C17.4872 21.4083 17.1403 21.4674 16.8191 21.6005C16.498 21.7336 16.2108 21.9372 15.979 22.1962L15.1672 23.103C14.9497 23.3461 14.6833 23.5407 14.3855 23.6738C14.0876 23.807 13.7651 23.8758 13.4388 23.8758C13.1126 23.8758 12.79 23.807 12.4922 23.6738C12.1943 23.5407 11.9279 23.3461 11.7104 23.103L10.8987 22.1962C10.6667 21.937 10.3794 21.7333 10.058 21.6003C9.73661 21.4672 9.38942 21.4081 9.04211 21.4274L7.82452 21.4946C7.49884 21.5126 7.17304 21.4616 6.8684 21.3451C6.56375 21.2286 6.2871 21.0491 6.05652 20.8185C5.82594 20.5878 5.64661 20.311 5.53024 20.0063C5.41388 19.7016 5.36309 19.3758 5.3812 19.0501L5.44845 17.8337C5.46755 17.4866 5.40837 17.1396 5.27529 16.8185C5.14221 16.4973 4.93864 16.2102 4.67963 15.9783L3.7728 15.1666C3.52967 14.949 3.33516 14.6827 3.202 14.3848C3.06883 14.087 3 13.7644 3 13.4382C3 13.1119 3.06883 12.7893 3.202 12.4915C3.33516 12.1937 3.52967 11.9273 3.7728 11.7098L4.67963 10.898C4.9388 10.666 5.14246 10.3787 5.27555 10.0573C5.40863 9.73596 5.46773 9.38877 5.44845 9.04147L5.3812 7.82387C5.36341 7.49829 5.41448 7.17262 5.53107 6.86811C5.64766 6.5636 5.82714 6.2871 6.05781 6.05665C6.28848 5.82619 6.56516 5.64697 6.86978 5.53067C7.17439 5.41437 7.50011 5.36362 7.82567 5.38171L9.04211 5.44897C9.38923 5.46806 9.73619 5.40888 10.0573 5.2758C10.3785 5.14273 10.6656 4.93915 10.8975 4.68014L11.7104 3.77216Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                  />
-                  <path
-                    d='M10.5396 10.5385H10.5511V10.5501H10.5396V10.5385ZM16.3376 16.3366H16.3492V16.3482H16.3376V16.3366Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M16.9172 9.95874L9.95947 16.9165'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-                <p className='certificate__info-subtitle'>
-                  Постоянная скидка 40% на средства для педикюра
-                </p>
+              <div className="flex  flex-col gap-4">
+
+                <Text >Политикой нашей компании предусмотрена продажа профессиональных препаратов только мастерам, которые прошли обучение и овладели нашей методикой проведения процедур педикюра KART, так как мы должны быть уверены, что вы не навредите своему клиенту и правильно будете использовать нашу продукцию.</Text>
+                <Text >После прохождения любого из наших курсов, вы получите сертификат KART который даст вам возможность приобрести продукты из любой категории, а также предоставит вам постоянную скидку 40%, чтобы вы могли получать стабильный и достойный доход от продажи средств для домашнего ухода своим клиентам.</Text>
               </div>
+
+
+              <Text className="font-bold!">Основные преимущества:</Text>
+              <ul className="flex justify-between">
+                <li className="flex gap-2 items-center"><BadgePercent color='#96B87D' /><Text>Постоянная скидка 40%</Text></li>
+                <li className="flex  gap-2 items-center"><ShoppingBag color='#96B87D' /><Text>Приобретение любых продуктов</Text></li>
+              </ul>
+              <Text className="font-bold!">Доступ к полезным материалам:</Text>
+              <div className="flex gap-[26%]">
+
+                <ul className="flex justify-between flex-col gap-2">
+                  <li className="flex gap-2 items-center"><FileText color='#96B87D' /><Text>Постеры в формате PDF и JPEG</Text></li>
+                  <li className="flex  gap-2 items-center"><Image className="w-[25px] h-[25px]" src={listCardIcon} width={25} height={25} alt=" list icon" /><Text>Карточки для анамнеза</Text></li>
+                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={priceListIcon} width={25} height={25} alt="price list icon" /><Text>Прайс-листы для клиентов</Text></li>
+
+                </ul>
+                <ul className="flex justify-between flex-col gap-2">
+                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={videoIcon} width={25} height={25} alt="video icon" /><Text>Видео для соцсетей</Text></li>
+                  <li className="flex  gap-2 items-center"><Image className="w-[25px] h-[25px]" src={protocolcon} width={25} height={25} alt="protocol" /><Text>Протоколы</Text></li>
+                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={catalogListIcon} width={25} height={25} alt="catalog List Icon" /><Text>Каталоги</Text></li>
+
+                </ul>
+              </div>
+
             </div>
-            <p className='certificate__info-subtitle'>
-              Доступ к полезным материалам:
-            </p>
-            <div className='certificate__list'>
-              <div className='certificate__list-item'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='25'
-                  height='26'
-                  viewBox='0 0 25 26'
-                  fill='none'
-                >
-                  <path
-                    d='M7.81237 8.83333L7.98737 6.73541C8.08165 5.60346 8.59791 4.54828 9.43376 3.77915C10.2696 3.01003 11.364 2.58313 12.4999 2.58313C13.6357 2.58313 14.7301 3.01003 15.566 3.77915C16.4018 4.54828 16.9181 5.60346 17.0124 6.73541L17.1874 8.83333M3.18945 16.326L3.56966 14.1687C4.01966 11.6187 4.24362 10.3437 5.13425 9.58853C6.02487 8.83333 7.30404 8.83333 9.86133 8.83333H15.1384C17.6957 8.83333 18.9749 8.83333 19.8655 9.58853C20.7561 10.3437 20.9801 11.6187 21.4301 14.1687L21.8103 16.326C22.4332 19.8552 22.7436 21.6198 21.7863 22.7792C20.828 23.9375 19.0572 23.9375 15.5186 23.9375H9.48112C5.94154 23.9375 4.17175 23.9375 3.21341 22.7781C2.25508 21.6187 2.56758 19.8552 3.18945 16.326Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M15.625 11.9583C15.4896 13.4302 14.1312 14.5625 12.5 14.5625C10.8687 14.5625 9.51042 13.4302 9.375 11.9583'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-                <p className='certificate__info-subtitle'>
-                  Покупка всех профессиональных продуктов KART
-                </p>
-              </div>
-              <div className='certificate__list-item'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='25'
-                  height='26'
-                  viewBox='0 0 25 26'
-                  fill='none'
-                >
-                  <path
-                    d='M11.7104 3.77216C11.9279 3.52921 12.1942 3.33487 12.492 3.20182C12.7897 3.06877 13.1121 3 13.4382 3C13.7643 3 14.0868 3.06877 14.3845 3.20182C14.6822 3.33487 14.9485 3.52921 15.1661 3.77216L15.9778 4.67898C16.2098 4.93815 16.4971 5.14182 16.8185 5.2749C17.1399 5.40799 17.487 5.46708 17.8343 5.44781L19.0519 5.38055C19.3776 5.3626 19.7034 5.41354 20.0081 5.53005C20.3127 5.64656 20.5894 5.82602 20.8199 6.05671C21.0505 6.2874 21.2299 6.56413 21.3462 6.86884C21.4626 7.17354 21.5134 7.49936 21.4953 7.82503L21.428 9.04147C21.4089 9.38858 21.4681 9.73554 21.6012 10.0567C21.7343 10.3779 21.9378 10.665 22.1968 10.8969L23.1037 11.7086C23.3468 11.9261 23.5413 12.1925 23.6745 12.4903C23.8076 12.7882 23.8765 13.1108 23.8765 13.437C23.8765 13.7633 23.8076 14.0858 23.6745 14.3837C23.5413 14.6815 23.3468 14.9479 23.1037 15.1654L22.1968 15.9771C21.9377 16.2091 21.734 16.4965 21.6009 16.8178C21.4678 17.1392 21.4087 17.4864 21.428 17.8337L21.4953 19.0513C21.5132 19.377 21.4623 19.7028 21.3458 20.0074C21.2293 20.3121 21.0498 20.5887 20.8191 20.8193C20.5884 21.0499 20.3117 21.2292 20.007 21.3456C19.7023 21.4619 19.3765 21.5127 19.0508 21.4946L17.8343 21.4274C17.4872 21.4083 17.1403 21.4674 16.8191 21.6005C16.498 21.7336 16.2108 21.9372 15.979 22.1962L15.1672 23.103C14.9497 23.3461 14.6833 23.5407 14.3855 23.6738C14.0876 23.807 13.7651 23.8758 13.4388 23.8758C13.1126 23.8758 12.79 23.807 12.4922 23.6738C12.1943 23.5407 11.9279 23.3461 11.7104 23.103L10.8987 22.1962C10.6667 21.937 10.3794 21.7333 10.058 21.6003C9.73661 21.4672 9.38942 21.4081 9.04211 21.4274L7.82452 21.4946C7.49884 21.5126 7.17304 21.4616 6.8684 21.3451C6.56375 21.2286 6.2871 21.0491 6.05652 20.8185C5.82594 20.5878 5.64661 20.311 5.53024 20.0063C5.41388 19.7016 5.36309 19.3758 5.3812 19.0501L5.44845 17.8337C5.46755 17.4866 5.40837 17.1396 5.27529 16.8185C5.14221 16.4973 4.93864 16.2102 4.67963 15.9783L3.7728 15.1666C3.52967 14.949 3.33516 14.6827 3.202 14.3848C3.06883 14.087 3 13.7644 3 13.4382C3 13.1119 3.06883 12.7893 3.202 12.4915C3.33516 12.1937 3.52967 11.9273 3.7728 11.7098L4.67963 10.898C4.9388 10.666 5.14246 10.3787 5.27555 10.0573C5.40863 9.73596 5.46773 9.38877 5.44845 9.04147L5.3812 7.82387C5.36341 7.49829 5.41448 7.17262 5.53107 6.86811C5.64766 6.5636 5.82714 6.2871 6.05781 6.05665C6.28848 5.82619 6.56516 5.64697 6.86978 5.53067C7.17439 5.41437 7.50011 5.36362 7.82567 5.38171L9.04211 5.44897C9.38923 5.46806 9.73619 5.40888 10.0573 5.2758C10.3785 5.14273 10.6656 4.93915 10.8975 4.68014L11.7104 3.77216Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                  />
-                  <path
-                    d='M10.5396 10.5385H10.5511V10.5501H10.5396V10.5385ZM16.3376 16.3366H16.3492V16.3482H16.3376V16.3366Z'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M16.9172 9.95874L9.95947 16.9165'
-                    stroke='#96B87D'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-                <p className='certificate__info-subtitle'>
-                  Постоянная скидка 40% на средства для педикюра
-                </p>
-              </div>
-            </div>
+
           </div>
-          <Image
-            src={certificateImg}
-            alt='KART certificate'
-            className='certificate__img'
-          />
-        </div>
-      </section>
-      <div className="flex flex-col gap-24">
+        </section>
         <InstructorsList />
         <FlagList />
         <BlogList />

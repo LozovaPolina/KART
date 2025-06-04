@@ -25,7 +25,7 @@ export default function ProductLinks() {
                     <Link
                         key={link.label}
                         href={link.href}
-                        className={`whitespace-nowrap font-normal py-[10px] ${isActive ? "text-[#96B87D] font-semibold" : "text-[#404040]"
+                        className={`whitespace-nowrap text-[18px] font-medium  text-bl py-[10px] ${isActive ? "text-[#97B18A] " : "text-[#404040]"
                             }`}
                     >
                         {link.label}
