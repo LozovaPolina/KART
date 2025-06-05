@@ -13,7 +13,7 @@ export default function Header() {
       <div className="max-w-[1450px] mx-auto px-[15px]">
         <div className="flex justify-between items-start flex-wrap gap-y-4 pt-[25px] pb-[15px]">
           {/* Left header item */}
-          <div className="flex items-center flex-wrap gap-[30px]">
+          <Link href={'/'} className="flex items-center flex-wrap gap-[30px]">
             <Image
               className="w-[88px] h-[30px] min-w-[88px]"
               src={logotype}
@@ -21,7 +21,7 @@ export default function Header() {
               priority
             />
             <HeaderNav className="hidden xl:flex items-center gap-[40px]" />
-          </div>
+          </Link>
 
           {/* Search form */}
           <div className="hidden xl:block max-w-[328px] w-full">
