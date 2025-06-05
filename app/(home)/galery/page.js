@@ -1,9 +1,10 @@
+import GaleryPage from '@/pages/GaleryPage';
 import React from 'react';
 
-function page(props) {
+function page() {
   return (
     <div>
-
+      <GaleryPage />
     </div>
   );
 }

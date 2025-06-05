@@ -5,9 +5,9 @@ import { ButtonWithCircleLink } from '../button/ButtonWithCircleLink';
 import { formatCurrencyRightLocalized } from '@/util/currencyFormater';
 function ShopItem({ product }) {
   return (
-    <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow'>
+    <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
       <Image
-        className='w-full object-cover shadow rounded-2xl'
+        className='w-full object-cover shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl'
         src={productImg}
         alt={product.title}
         width={340}
