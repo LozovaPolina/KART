@@ -17,7 +17,7 @@ function HeaderNav() {
     const pathname = usePathname();
 
     return (
-        <div className="hidden text-[15px] xl:flex items-center gap-10">
+        <div className="hidden text-[15px] xl:flex items-center gap-8 ">
             {links.map((link) => {
                 const isActive = pathname === link.href;
 

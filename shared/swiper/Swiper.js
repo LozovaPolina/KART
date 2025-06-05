@@ -10,7 +10,13 @@ const TIME_TO_SWIPE_SLIDE = 5000;
 
 
 
-export default function Swiper({ items, className, itemsLength = items.length, widthPercent = 100, styleItem = {}, controlBlock = true, }) {
+export default function Swiper({ items,
+  className,
+  itemsLength = items.length,
+  widthPercent = 100,
+  styleItem = {},
+  controlBlock = true,
+  autoScroll = true, }) {
   const startXRef = useRef(0);
   const curOffsetXRef = useRef(0);
   const minOffsetXRef = useRef(0);
@@ -112,15 +118,16 @@ export default function Swiper({ items, className, itemsLength = items.length, w
   useEffect(() => setIsClient(true), []);
 
   useEffect(() => {
-    if (!isClient) return;
+    if (!isClient || !autoScroll) return;
+
     if (!isSwiping && !isHovering) {
       startAutoSwipe();
     } else {
       stopAutoSwipe();
     }
-    return () => stopAutoSwipe();
-  }, [isSwiping, isHovering, curIndex, isClient]);
 
+    return () => stopAutoSwipe();
+  }, [isSwiping, isHovering, curIndex, isClient, autoScroll]);
   return (
     <div
       className={`w-full overflow-hidden max-w-full select-none touch-pan-y relative ${className ?? ""}`}

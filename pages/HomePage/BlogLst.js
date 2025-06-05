@@ -90,7 +90,7 @@ function Card({ textContent, imageSrc, text }) {
 function BlogList() {
   return (
     <div className='p-1'>
-      <Swiper controlBlock={false} itemsLength={2} widthPercent={'21.375rem'} items={blogContent.map((item, i) => <Card key={i} {...item}></Card>)} />
+      <Swiper controlBlock={false} autoScroll={false} itemsLength={2} widthPercent={'21.375rem'} items={blogContent.map((item, i) => <Card key={i} {...item}></Card>)} />
     </div>
   );
 }

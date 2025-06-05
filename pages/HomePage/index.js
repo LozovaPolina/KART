@@ -22,9 +22,10 @@ import priceListIcon from "../../public/assets/svg/priceList.svg"
 import videoIcon from "../../public/assets/svg/videoIcon.svg"
 import protocolcon from "../../public/assets/svg/protocolcon.svg"
 import { BadgePercent, FileText, ShoppingBag } from "lucide-react";
+import Link from "next/link";
 const items = [
   <video
-    className="w-full h-full rounded-[20px]"
+    className="w-full h-full rounded-[1.25rem]"
     autoPlay
     muted
     loop
@@ -35,7 +36,7 @@ const items = [
     Your browser does not support the video tag.
   </video>,
   <video
-    className="w-full h-full rounded-[20px]"
+    className="w-full h-full rounded-[1.25rem]"
     autoPlay
     muted
     loop
@@ -46,7 +47,7 @@ const items = [
     Your browser does not support the video tag.
   </video>,
   <video
-    className="w-full h-full rounded-[20px]"
+    className="w-full h-full rounded-[1.25rem]"
     autoPlay
     muted
     loop
@@ -81,6 +82,7 @@ const feetolines = [
   </div>,
 ];
 function HomePage() {
+
   return (
     <div className='page'>
 
@@ -335,7 +337,7 @@ function HomePage() {
             items={feetolines}
             className={"feetolines__list"}
             itemsLength={1}
-            widthPercent={"430px"}
+            widthPercent={"26.875rem"}
             controlBlock={false}
           ></Swiper>
           {/* <div className="wrap container">
@@ -362,7 +364,10 @@ function HomePage() {
               концентрацией активных веществ, использует редкие и эксклюзивные
               ингредиенты растительного и морского происхождения.
             </p>
-            <ButtonWithCircleLink buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
+            <Link href="/about">
+              <ButtonWithCircleLink buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
+            </Link>
+
 
           </div>
           <Image
@@ -377,17 +382,20 @@ function HomePage() {
         <Image className="w-full md:w-[60%]" src={magnifyingGlasImg} alt="magnifyingGlasImg" />
         <div className="w-full md:w-[40%] flex flex-col gap-4 justify-between ">
           <Title>KART - БОЛЬШЕ ЧЕМ ПЕДИКЮР!</Title>
-          <div className="p-6 bg-[#F5F5F5] min-h-[237px] shadow rounded-2xl">
+          <div className="p-6 bg-[#F5F5F5] min-h-[14.8125rem] shadow rounded-2xl">
             <Text>Педикюр KART представляет собой инновационную методику, основанную на научно обоснованных принципах косметологии
               и дерматологии.Ключевым аспектом является косметологический подход, который включает в себя систему методов и принципов, направленных на улучшение состояния кожи и ногтей с помощью специализированных косметических средств и процедур.</Text>
           </div>
-          <ButtonWithCircleLink
-            href={'/'}
-            arrowColor='#81D742'
-            circleClassName='bg-gradient-to-b   bg-[#FFFFFF] from-black/10 to-[#FFFFFF]'
-            buttonText='Детальнее'
-            buttonClassName='w-[90%] text-[#81D742]! bg-[#FFFFFF] bg-gradient-to-b from-black/10 to-[#FFFFFF]'
-          />
+          <Link href="/about">
+            <ButtonWithCircleLink
+              href={'/about'}
+              arrowColor='#81D742'
+              circleClassName='bg-gradient-to-b   bg-[#FFFFFF] from-black/10 to-[#FFFFFF]'
+              buttonText='Детальнее'
+              buttonClassName='w-[90%] text-[#81D742]! bg-[#FFFFFF] bg-gradient-to-b from-black/10 to-[#FFFFFF]'
+            />
+          </Link>
+
         </div>
       </section>
       <section className='academy'>
@@ -415,10 +423,13 @@ function HomePage() {
                 процедур от KART, основанных на косметологическом подходе
               </p>
             </div>
-            <ButtonWithCircleLink buttonClassName="w-[90%]" buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
+            <Link href="/about">
+              <ButtonWithCircleLink href="/about" buttonClassName="w-[90%]" buttonText='Больше о компании KART' circleBg='green'  > </ButtonWithCircleLink>
+            </Link>
+
 
           </div>
-          <Image src={our_academyImg} alt='KART academy' className='w-full xl:max-w-[600px] lg:max-w-[400px] rounded-2xl object-cover' />
+          <Image src={our_academyImg} alt='KART academy' className='w-full xl:max-w-[37.5rem] lg:max-w-[25rem] rounded-2xl object-cover' />
 
         </div>
       </section>
@@ -459,14 +470,14 @@ function HomePage() {
 
                 <ul className="flex justify-between flex-col gap-2">
                   <li className="flex gap-2 items-center"><FileText color='#96B87D' /><Text>Постеры в формате PDF и JPEG</Text></li>
-                  <li className="flex  gap-2 items-center"><Image className="w-[25px] h-[25px]" src={listCardIcon} width={25} height={25} alt=" list icon" /><Text>Карточки для анамнеза</Text></li>
-                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={priceListIcon} width={25} height={25} alt="price list icon" /><Text>Прайс-листы для клиентов</Text></li>
+                  <li className="flex  gap-2 items-center"><Image className="w-[1.5625rem] h-[1.5625rem]" src={listCardIcon} width={25} height={25} alt=" list icon" /><Text>Карточки для анамнеза</Text></li>
+                  <li className="flex gap-2 items-center"><Image className="w-[1.5625rem] h-[1.5625rem]" src={priceListIcon} width={25} height={25} alt="price list icon" /><Text>Прайс-листы для клиентов</Text></li>
 
                 </ul>
                 <ul className="flex justify-between flex-col gap-2">
-                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={videoIcon} width={25} height={25} alt="video icon" /><Text>Видео для соцсетей</Text></li>
-                  <li className="flex  gap-2 items-center"><Image className="w-[25px] h-[25px]" src={protocolcon} width={25} height={25} alt="protocol" /><Text>Протоколы</Text></li>
-                  <li className="flex gap-2 items-center"><Image className="w-[25px] h-[25px]" src={catalogListIcon} width={25} height={25} alt="catalog List Icon" /><Text>Каталоги</Text></li>
+                  <li className="flex gap-2 items-center"><Image className="w-[1.5625rem] h-[1.5625rem]" src={videoIcon} width={25} height={25} alt="video icon" /><Text>Видео для соцсетей</Text></li>
+                  <li className="flex  gap-2 items-center"><Image className="w-[1.5625rem] h-[1.5625rem]" src={protocolcon} width={25} height={25} alt="protocol" /><Text>Протоколы</Text></li>
+                  <li className="flex gap-2 items-center"><Image className="w-[1.5625rem] h-[1.5625rem]" src={catalogListIcon} width={25} height={25} alt="catalog List Icon" /><Text>Каталоги</Text></li>
 
                 </ul>
               </div>
