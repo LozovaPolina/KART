@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const links = [
-    { href: "/", label: "Главная" },
     { href: "/about", label: "О компании" },
     { href: "/faq", label: "FAQ" },
     { href: "/contacts", label: "Контакты" },
@@ -17,7 +16,7 @@ function HeaderNav() {
     const pathname = usePathname();
 
     return (
-        <div className="hidden text-[15px] xl:flex items-center gap-10">
+        <div className="hidden text-[15px] xl:flex items-center gap-8 ">
             {links.map((link) => {
                 const isActive = pathname === link.href;
 

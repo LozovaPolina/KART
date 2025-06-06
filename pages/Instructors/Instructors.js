@@ -103,6 +103,46 @@ const instructors = [
       { type: 'globe', url: 'https://website.com' }
     ],
   },
+  {
+    name: "Лидия Пушко",
+    role: "",
+    location: "Румыния, Бухарест",
+    image: "/images/instructors/pushko.jpg",
+    socials: [
+      { type: 'instagram', url: 'https://instagram.com/...' },
+      { type: 'mail', url: 'mailto:someone@mail.com' },
+    ],
+  },
+  {
+    name: "Лидия Пушко",
+    role: "",
+    location: "Румыния, Бухарест",
+    image: "/images/instructors/pushko.jpg",
+    socials: [
+      { type: 'instagram', url: 'https://instagram.com/...' },
+      { type: 'mail', url: 'mailto:someone@mail.com' },
+    ],
+  },
+  {
+    name: "Лидия Пушко",
+    role: "",
+    location: "Румыния, Бухарест",
+    image: "/images/instructors/pushko.jpg",
+    socials: [
+      { type: 'instagram', url: 'https://instagram.com/...' },
+      { type: 'mail', url: 'mailto:someone@mail.com' },
+    ],
+  },
+  {
+    name: "Лидия Пушко",
+    role: "",
+    location: "Румыния, Бухарест",
+    image: "/images/instructors/pushko.jpg",
+    socials: [
+      { type: 'instagram', url: 'https://instagram.com/...' },
+      { type: 'mail', url: 'mailto:someone@mail.com' },
+    ],
+  },
 ];
 
 export default function InstructorsPage() {
