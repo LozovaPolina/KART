@@ -3,7 +3,7 @@ import logotype from "../../public/assets/svg/logotype.svg"; // Adjust the path 
 import ProductLinks from "./ProductsLinks";
 import Link from "next/link";
 import Image from "next/image";
-import { Search } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 
 
 
@@ -20,8 +20,9 @@ export default function Header() {
               alt="KART Podology"
               priority
             />
-            <HeaderNav className="hidden xl:flex items-center gap-[40px]" />
           </Link>
+          <HeaderNav className="hidden xl:flex items-center gap-[40px]" />
+
 
           {/* Search form */}
           <div className="hidden xl:block max-w-[328px] w-full">
@@ -60,7 +61,7 @@ export default function Header() {
                 />
               </svg>
             </div>
-
+            <Link href={'/cart'}><ShoppingBag /></Link>
             {/* Education button */}
             <Link
               href="#"

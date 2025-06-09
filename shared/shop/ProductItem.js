@@ -1,9 +1,14 @@
+
+"use client"
 import React from 'react';
 import productImg from '../../public/assets/image/product.png'
 import Image from 'next/image';
 import { ButtonWithCircleLink } from '../button/ButtonWithCircleLink';
-import { formatCurrencyRightLocalized } from '@/util/currencyFormater';
+import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/reducer/cartSlice';
 function ShopItem({ product }) {
+  const dispatch = useDispatch()
   return (
     <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
       <Image
@@ -25,6 +30,7 @@ function ShopItem({ product }) {
         </div>
       </div>
       <ButtonWithCircleLink
+        onClick={() => dispatch(addToCart({ id: product.id }))}
         href={`/professional-feet/${product.slug}`}
         circleClassName='bg-gradient-to-b from-black/10 to-[#49BA4A]'
         buttonText='В корзину'

@@ -1,0 +1,39 @@
+
+"use client"
+import { useSelector } from 'react-redux';
+import Button from '../../shared/button/Button';
+import { selectCartItems } from '../../redux/reducer/cartSlice';
+import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
+
+
+function OrderSummary() {
+  const products = useSelector(selectCartItems);
+  const deliveryFee = 35;
+  const total = products.reduce((acc, p) => acc + p.price * p.quantity, 0) + deliveryFee;
+
+  return (
+
+    <div className='flex flex-col gap-2'>
+      <h3 className="p-2 text-lg font-semibold rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">Сумма заказов</h3>
+      <div className="p-4 space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl shadow-md h-fit">
+
+        <div className="flex justify-between text-sm text-[#848484]">
+          <span>Доставка:</span>
+          <span className='text-[#444444] text-[20px]'>{formatCurrencyRightLocalized(deliveryFee)}</span>
+        </div>
+        <div className="border-b-1 border-[#848484]"></div>
+        <div className="flex justify-between text-[#848484] font-bold text-lg">
+          <span>Итого:</span>
+          <span className='text-[#444444] text-[20px]'>€{formatCurrencyRightLocalized(total)}</span>
+        </div>
+        <Button className="w-full bg-[#81D742] hover:bg-green-600 text-white">
+          Оформить заказ
+        </Button>
+      </div>
+
+    </div>
+
+  );
+}
+
+export default OrderSummary;

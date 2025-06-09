@@ -1,13 +1,13 @@
-import Text from '@/shared/text/Text';
-import Title from '@/shared/title/Title';
+import Text from '../../shared/text/Text';
+import Title from '../../shared/title/Title';
 import Image from 'next/image';
 import React from 'react';
 import blogIMG from '../../public/assets/image/blog/blog-inst-boxes.png'
 import blogFootIMG from '../../public/assets/image/blog/blog-inst-foot.png'
 import blogMaterialsIMG from '../../public/assets/image/blog/blog-inst-materials.png'
-import Swiper from '@/shared/swiper/Swiper';
-import Button from '@/shared/button/Button';
-import CircleLink from '@/shared/button/CircleLink';
+import Swiper from '../../shared/swiper/Swiper';
+import Button from '../../shared/button/Button';
+import CircleLink from '../../shared/button/CircleLink';
 import Link from 'next/link';
 
 

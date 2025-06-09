@@ -114,7 +114,7 @@ export default function FlagList() {
             imageSrc={item.src}
             countryName={item.name}
 
-            onClick={() => router.push(`/dealers/${item.name.toLowerCase()}`)}
+            onClick={() => router.push(`/dealers`)}
           />
         ))}
       </div>
