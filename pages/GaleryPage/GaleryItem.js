@@ -1,5 +1,5 @@
 
-import { ButtonWithCircleLink } from '@/shared/button/ButtonWithCircleLink';
+import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

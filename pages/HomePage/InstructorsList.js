@@ -1,12 +1,12 @@
-import Title from "../../shared/title/Title";
-import Text from "../../shared/text/Text";
+import Title from "../../shared/ui/title/Title";
+import Text from "../../shared/ui/text/Text";
 import React from "react";
-import CircleLink from "../../shared/button/CircleLink";
+import CircleLink from "../../shared/ui/button/CircleLink";
 import Image from "next/image";
 import womenImg from "../../public/assets/image/womenImg.png"
 import linkImg from "../../public/assets/svg/link.svg"
 import Swiper from "../../shared/swiper/Swiper";
-import Button from "../../shared/button/Button";
+import Button from "../../shared/ui/button/Button";
 import Link from "next/link";
 
 function InstructorsItem() {

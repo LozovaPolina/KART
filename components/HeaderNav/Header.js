@@ -4,6 +4,7 @@ import ProductLinks from "./ProductsLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag } from "lucide-react";
+import ProfileIcon from "./ProfIleIcon";
 
 
 
@@ -71,25 +72,8 @@ export default function Header() {
             </Link>
 
             {/* Profile icon */}
-            <svg
-              className="w-[31px] h-[30px] hidden xl:block"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 31 30"
-              fill="none"
-            >
-              <path
-                d="M5.0874 22.5C5.0874 21.1739..."
-                stroke="#262626"
-                strokeWidth="2"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M15.0874 12.5C17.1585 12.5..."
-                stroke="#262626"
-                strokeWidth="2"
-              />
-            </svg>
 
+            <ProfileIcon />
             {/* Mobile Menu Toggler */}
             <svg
               className="w-[25px] h-[25px] cursor-pointer block xl:hidden"

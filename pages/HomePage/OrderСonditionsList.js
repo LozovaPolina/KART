@@ -4,8 +4,8 @@ import React from 'react';
 import swiperImg from "../../public/assets/image/swiperImg.png";
 import handsImg from "../../public/assets/svg/hands.svg";
 import Image from 'next/image';
-import Title from '../../shared/title/Title';
-import { ButtonWithCircleLink } from '../../shared/button/ButtonWithCircleLink';
+import Title from '../../shared/ui/title/Title';
+import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 
 const orderConditions = [
   "Минимальный заказ 200€ (232$) + 35€ доставка",

@@ -1,7 +1,7 @@
 "use client"
 
 import HintNavigation from '@/shared/hint-navigation/HintNavigation';
-import Title from '@/shared/title/Title';
+import Title from '@/shared/ui/title/Title';
 import { useState } from 'react';
 import InstructorCard from './InstructorCard';
 import Pagination from '@/shared/pagination/Pagination';

@@ -1,4 +1,4 @@
-import Button from "@/shared/button/Button";
+import Button from "../../shared/ui/button/Button";
 import Image from "next/image";
 import productImg from '../../public/assets/image/product.png'
 import { ShoppingCart } from "lucide-react";

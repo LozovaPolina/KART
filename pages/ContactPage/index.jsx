@@ -1,8 +1,8 @@
 import React from "react";
 
 import { MapPin, Phone, Send } from "lucide-react";
-import { ButtonWithCircleLink } from "@/shared/button/ButtonWithCircleLink";
-import HintNavigation from "@/shared/hint-navigation/HintNavigation";
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
+import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 
 export default function ContactPage() {
   return (

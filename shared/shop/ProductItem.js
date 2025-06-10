@@ -3,7 +3,7 @@
 import React from 'react';
 import productImg from '../../public/assets/image/product.png'
 import Image from 'next/image';
-import { ButtonWithCircleLink } from '../button/ButtonWithCircleLink';
+import { ButtonWithCircleLink } from '../ui/button/ButtonWithCircleLink';
 import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/reducer/cartSlice';

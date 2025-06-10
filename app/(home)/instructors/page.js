@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import InstructorsClient from '@/pages/Instructors/InstructorClient';
+import InstructorsClient from '../../../pages/Instructors/InstructorClient';
 function page() {
   return (
     <>

@@ -1,7 +1,6 @@
-import HintNavigation from '@/shared/hint-navigation/HintNavigation';
-import Title from '@/shared/title/Title';
+import HintNavigation from '../../shared/hint-navigation/HintNavigation';
+import Title from '../../shared/ui/title/Title';
 import React from 'react';
-import GaleryItem from './GaleryItem';
 import GalerySection from './GalerySection';
 
 function GaleryPage() {

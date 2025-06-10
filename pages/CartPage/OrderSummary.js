@@ -1,7 +1,7 @@
 
 "use client"
 import { useSelector } from 'react-redux';
-import Button from '../../shared/button/Button';
+import Button from '../../shared/ui/button/Button';
 import { selectCartItems } from '../../redux/reducer/cartSlice';
 import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
 
@@ -15,7 +15,7 @@ function OrderSummary() {
 
     <div className='flex flex-col gap-2'>
       <h3 className="p-2 text-lg font-semibold rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">Сумма заказов</h3>
-      <div className="p-4 space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl shadow-md h-fit">
+      <div className="p-4 space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl h-fit">
 
         <div className="flex justify-between text-sm text-[#848484]">
           <span>Доставка:</span>

@@ -1,5 +1,5 @@
 
-import CircleLink from '@/shared/button/CircleLink';
+import CircleLink from '../../shared/ui/button/CircleLink';
 import { ArrowUpRightFromSquare, Globe, Instagram, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

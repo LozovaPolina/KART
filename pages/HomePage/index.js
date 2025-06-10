@@ -12,9 +12,9 @@ import InstructorsList from "./InstructorsList";
 import FlagList from "./FlagList";
 import BlogList from "./BlogLst";
 import OrderСonditionsList from "./OrderСonditionsList";
-import { ButtonWithCircleLink } from "../../shared/button/ButtonWithCircleLink";
-import Title from "../../shared/title/Title";
-import Text from "../../shared/text/Text";
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
+import Title from "../../shared/ui/title/Title";
+import Text from "../../shared/ui/text/Text";
 import catalogListIcon from "../../public/assets/svg/catalogList.svg"
 import listCardIcon from "../../public/assets/svg/listCard.svg"
 import pdfIcon from "../../public/assets/svg/pdfIcon.svg"
