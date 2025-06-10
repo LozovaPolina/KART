@@ -1,7 +1,6 @@
-
+"use client"
 import ProductList from "./ProductList";
 import OrderSummary from "./OrderSummary";
-
 
 export default function CartPage() {
   return (

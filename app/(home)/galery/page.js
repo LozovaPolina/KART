@@ -1,4 +1,4 @@
-import GaleryPage from '../../../pages/GaleryPage';
+import GaleryPage from '../../../appPages/GaleryPage';
 import React from 'react';
 
 function page() {

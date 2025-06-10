@@ -6,13 +6,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function ProductList() {
-  const cartItems = useSelector(selectCartItems)
+  const cartItems = useSelector(selectCartItems) || []
   const dispatch = useDispatch()
 
   return (
 
     <>
-      {cartItems?.map((product) => (
+      {cartItems && cartItems?.map((product) => (
         <div key={product.id} className=" rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-4">
           {/* Desktop layout */}
           <div className="hidden md:grid grid-cols-[2fr_1.5fr_0.5fr] items-center text-[#848484]">

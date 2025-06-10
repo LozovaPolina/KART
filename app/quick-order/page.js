@@ -1,4 +1,4 @@
-import ProductThemeList from '../../pages/quick-order/ProductList';
+import ProductThemeList from '../../appPages/quick-order/ProductList';
 import React from 'react';
 
 function page() {

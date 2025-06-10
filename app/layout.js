@@ -23,8 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col ${geistSans.variable} ${geistMono.variable} bg-[#F5F5F5CC]">
-        <div id="modal" />
+
         <AppProvider >
+          <div id="modal" />
           <Header />
 
           <main className="flex-grow container pt-[160px]! ">

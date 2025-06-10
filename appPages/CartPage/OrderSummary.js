@@ -1,5 +1,5 @@
-
 "use client"
+
 import { useSelector } from 'react-redux';
 import Button from '../../shared/ui/button/Button';
 import { selectCartItems } from '../../redux/reducer/cartSlice';
@@ -7,9 +7,9 @@ import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
 
 
 function OrderSummary() {
-  const products = useSelector(selectCartItems);
+  const cartItems = useSelector(selectCartItems) || []
   const deliveryFee = 35;
-  const total = products.reduce((acc, p) => acc + p.price * p.quantity, 0) + deliveryFee;
+  const total = cartItems?.reduce((acc, p) => acc + p.price * p.quantity, 0) + deliveryFee || 0;
 
   return (
 
@@ -24,7 +24,7 @@ function OrderSummary() {
         <div className="border-b-1 border-[#848484]"></div>
         <div className="flex justify-between text-[#848484] font-bold text-lg">
           <span>Итого:</span>
-          <span className='text-[#444444] text-[20px]'>€{formatCurrencyRightLocalized(total)}</span>
+          <span className='text-[#444444] text-[20px]'>{formatCurrencyRightLocalized(total)}</span>
         </div>
         <Button className="w-full bg-[#81D742] hover:bg-green-600 text-white">
           Оформить заказ

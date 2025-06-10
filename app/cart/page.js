@@ -1,7 +1,7 @@
 import React from "react";
 // import { Card, CardContent } from "@/components/ui/card";
 
-import CartPage from "../../pages/CartPage/index.js";
+import CartPage from "../../appPages/CartPage/index.js";
 
 
 
