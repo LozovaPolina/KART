@@ -34,8 +34,8 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <section className='bg-[#F5F5F5] p-6 rounded-xl text-[16px]! shadow-[0px_2px_10px_rgba(0,0,0,0.1)] mb-10 flex flex-col gap-6'>
-          <Text>
+        <section className='bg-[#F5F5F5] p-6 rounded-xl  text-[16px]! shadow-[0px_2px_10px_rgba(0,0,0,0.1)] mb-10 flex flex-col gap-6'>
+          <Text className='leading-normal'>
             Израильская компания KART Cosmetics Ltd, широко известна на мировом
             рынке с 1993 года, как разработчик и производитель косметической
             продукции для косметологов, мастеров педикюра и маникюра. Опыт и
@@ -43,7 +43,7 @@ export default function AboutPage() {
             заявить, что KART предлагает наилучшие, современные решения для
             специалистов в области косметологии и педикюра.
           </Text>
-          <Text>
+          <Text className='leading-normal'>
             Компания KART является признанным экспортером во многих странах
             мира, зарекомендовавшая себя, как успешная, надежная и динамично
             развивающаяся компания. Компании строго следует своим принципам и
@@ -118,7 +118,7 @@ export default function AboutPage() {
         </section>
 
         <section className=' p-6 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
-          <Text className='text-[1rem]! '>
+          <Text className='text-[1rem]! leading-normal '>
             Компания KART уделяет большое внимание обучению специалистов.
             Семинары, мастер-классы, тематические курсы, лекции при участии
             известных специалистов и подологов — помогают освоить методики

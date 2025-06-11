@@ -182,8 +182,8 @@ export default function Page({ params }) {
 
         <div className="flex flex-col gap-4  text-[#404040]">
           <div className=" flex gap-4 items-center">
-            <div className="flex flex-col">
-              <h2 className="text-[20px] lg:text-xl font-semibold">{product.fullName}</h2>
+            <div className="flex flex-col justify-center">
+              <h2 className="text-[20px] lg:text-xl ">{product.fullName}</h2>
               <h3 className="text-lg text-gray-500 mb-4">{product.title}</h3>
             </div>
 
@@ -203,7 +203,7 @@ export default function Page({ params }) {
           <div className="w-full bg-[#EDEDED] h-[1px]"></div>
 
           <div className="flex justify-between items-center">
-            <div className="text-[#A0C287] text-[16px] lg:text-xl font-semibold mb-4">{formatCurrencyRightLocalized(product.price)} </div>
+            <div className="text-[#A0C287] text-[16px] lg:text-xl  mb-4">{formatCurrencyRightLocalized(product.price)} </div>
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center  rounded px-2 py-1">
                 <button >
@@ -224,13 +224,13 @@ export default function Page({ params }) {
 
           <div className="border-b flex gap-4 border-gray-200 mb-4 ">
             <button
-              className={` py-2 text-sm ${tab === 'usage' ? 'border-b-2 text-[#404040] border-[#404040] font-semibold' : 'text-gray-500'}`}
+              className={` py-2 text-sm ${tab === 'usage' ? 'border-b-2 text-[#404040] border-[#404040] ' : 'text-gray-500'}`}
               onClick={() => setTab('usage')}
             >
               Способ применения
             </button>
             <button
-              className={` py-2 text-sm ${tab === 'ingredients' ? 'border-b-2 text-[#404040] border-[#404040] font-semibold' : 'text-gray-500'}`}
+              className={` py-2 text-sm ${tab === 'ingredients' ? 'border-b-2 text-[#404040] border-[#404040] ' : 'text-gray-500'}`}
               onClick={() => setTab('ingredients')}
             >
               Список ингредиентов

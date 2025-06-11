@@ -26,7 +26,7 @@ function CardFooter({ text, children }) {
         children
       ) : (
         <>
-          <span className="text-sm font-medium max-w-[15rem]">{text}</span>
+          <span className="text-sm  max-w-[15rem]">{text}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

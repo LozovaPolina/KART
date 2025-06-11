@@ -14,7 +14,7 @@ function OrderSummary() {
   return (
 
     <div className='flex flex-col gap-2'>
-      <h3 className="p-2 text-lg font-semibold rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">Сумма заказов</h3>
+      <h3 className="p-2 text-lg font-semibold rounded-xl text-[#848484] shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">Сумма заказов</h3>
       <div className="p-4 space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl h-fit">
 
         <div className="flex justify-between text-sm text-[#848484]">

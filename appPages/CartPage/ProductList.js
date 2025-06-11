@@ -22,7 +22,7 @@ function ProductList() {
 
 
               <div>
-                <div className="font-medium text-black">{product.title}</div>
+                <div className=" text-black">{product.title}</div>
                 {/* <div className="text-sm mt-1">€{product.price.toFixed(2)}</div> */}
               </div>
             </div>
@@ -49,7 +49,7 @@ function ProductList() {
 
             {/* Total + Remove */}
             <div className="flex items-center justify-end gap-2">
-              <span className="font-medium text-black">
+              <span className=" text-black">
                 {formatCurrencyRightLocalized(product.price * product.quantity)
                 }
               </span>
@@ -62,7 +62,7 @@ function ProductList() {
             <div className="flex justify-between items-center gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-12 h-16  rounded" />
-                <div className="font-medium text-black">{product.title}</div>
+                <div className=" text-black">{product.title}</div>
               </div>
 
 
@@ -86,7 +86,7 @@ function ProductList() {
               </div>
 
               <div className="flex gap-1 justify-between items-center">
-                <span className="text-black font-medium">
+                <span className="text-black ">
                   Итого: {formatCurrencyRightLocalized((product.price * product.quantity))}
                 </span>
 
