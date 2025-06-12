@@ -38,7 +38,7 @@ const Modal = forwardRef(function Modal({ children }, ref) {
       className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative"
+        className="bg-[#F5F5F5]  rounded-xl p-4 w-full max-w-md relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
