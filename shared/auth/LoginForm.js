@@ -4,22 +4,33 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../../redux/reducer/authSlice'; // adjust if needed
 import Title from '../ui/title/Title';
-import Text from '../ui/text/Text';
-import Button from '../ui/button/Button';
+
+import { useInput } from '../../util/useInput';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [localError, setLocalError] = useState('');
+
+  const {
+    value: nameValue,
+    handleInputChange: handleNameChange,
+    handleInputBlur: handleNameBlur,
+  } = useInput("", (value) => value.trim() !== "");
+
+
+  const {
+    value: passwordValue,
+    handleInputChange: handlePasswordChange,
+    handleInputBlur: handlePasswordBlur,
+  } = useInput("", (value) => value.length >= 5);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLocalError('');
 
-    if (!username.trim() || password.length < 5) {
+    if (!nameValue.trim() || passwordValue.length < 5) {
       setLocalError('Введите корректные данные');
       return;
     }
@@ -31,29 +42,54 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 space-y-4">
       <Title className="text-center">Вход</Title>
 
-      <input
-        type="text"
-        placeholder="Имя пользователя"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="w-full p-2 border rounded"
-      />
+      <div className="relative w-full mt-4">
+        <input
+          type="text"
+          name="name"
+          value={nameValue}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
+          className="w-full p-2 pt-5 border border-[#E2E2E2] rounded outline-none focus:border-[#272727]"
+        />
+        <label
+          htmlFor="name"
+          className="absolute left-2 top-0 -translate-y-1/2 px-1 bg-[#F5F5F5] text-sm text-[#272727]"
+        >
+          Имя
+        </label>
+      </div>
 
-      <input
-        type="password"
-        placeholder="Пароль"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full p-2 border rounded"
-      />
+      <div className="relative w-full mt-4">
+        <input
+          type="password"
+          name="password"
+          value={passwordValue}
+          onChange={handlePasswordChange}
+          onBlur={handlePasswordBlur}
+          className="w-full p-2 pt-5 border border-[#E2E2E2] rounded outline-none focus:border-[#272727]"
+        />
+        <label
+          htmlFor="password"
+          className="absolute left-2 top-0 -translate-y-1/2 px-1 bg-[#F5F5F5] text-sm text-[#272727]"
+        >
+          Пароль
+        </label>
+      </div>
 
       {localError && <p className="text-red-500 text-sm">{localError}</p>}
       {error && <p className="text-red-500 text-sm">{error}</p>}
       {isLoggedIn && <p className="text-green-500 text-sm">Успешный вход!</p>}
+      <div className="flex gap-4">
 
-      <Button type="submit" disabled={loading} className="w-full bg-[#49BA4A] text-white py-2 rounded">
-        {loading ? 'Загрузка...' : 'Войти'}
-      </Button>
+        <button type="submit" disabled={loading} className="w-full bg-[#49BA4A] text-white rounded py-2 ">
+          {loading ? 'Загрузка...' : 'Войти'}
+        </button>
+        <button type="submit" disabled={loading} className="w-full  border border-[#49BA4A] text-[#49BA4A] py-2  rounded">
+          Нет аккаунта?
+        </button>
+
+      </div>
+
     </form>
   );
 };

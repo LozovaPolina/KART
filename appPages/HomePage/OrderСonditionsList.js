@@ -6,6 +6,7 @@ import handsImg from "../../public/assets/svg/hands.svg";
 import Image from 'next/image';
 import Title from '../../shared/ui/title/Title';
 import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
+import Link from 'next/link';
 
 const orderConditions = [
   "Минимальный заказ 200€ (232$) + 35€ доставка",
@@ -38,8 +39,10 @@ function OrderСonditionsList() {
             {item}
           </li>))}
         </ul>
+        <Link href='/conditions'>
+          <ButtonWithCircleLink buttonText='Детальнее' circleBg='green'   > </ButtonWithCircleLink>
+        </Link>
 
-        <ButtonWithCircleLink buttonText='Детальнее' circleBg='green'  > </ButtonWithCircleLink>
 
       </div>
 

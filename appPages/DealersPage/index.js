@@ -98,7 +98,7 @@ export default function DealersPage() {
 
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-flag-img  h-fit p-8 rounded-xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-flag-img h-fit p-8 rounded-xl">
         {dealers.map((dealer, index) => (
           <div key={index} className="flex flex-col gap-2 ">
             <div
@@ -112,7 +112,7 @@ export default function DealersPage() {
                   <Image src={ukraineImg} alt="flag" className="rounded-lg max-w-[110px] max-h-[80px] w-full h-full object-cover" />
                   <div className="flex flex-col w-full   ">
                     <h4 className="w-full max-w-[142px] ">{dealer.country}</h4>
-                    <p className="w-full max-w-[142px] ">{dealer.company}</p>
+                    <p className="w-full max-w-[150px] truncate">{dealer.company}</p>
                     <Link
                       href={dealer.website}
                       target="_blank"
@@ -155,11 +155,11 @@ export default function DealersPage() {
         ))}
 
       </div>
-      <div className="text-center mt-8">
+      <Link className="text-center mt-8" href={'/criteria'}>
         <Button className="bg-[#A0C287] hover:shadow text-white py-2 px-4 rounded-full text-sm">
           Как стать Дилером KART
         </Button>
-      </div>
+      </Link>
       <MapLocation />
     </div>
   );
