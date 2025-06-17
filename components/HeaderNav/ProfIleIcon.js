@@ -1,16 +1,18 @@
 'use client';
 
 import { User } from 'lucide-react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import AuthGuard from '../../shared/auth/AuthGuard';
 
 function ProfileIcon() {
-  // const router = useRouter();
-  return (
-    <AuthGuard onAuthorized={() => console.log('Liked!')}>
+  const router = useRouter();
 
-      <User color='#262626' />
-    </AuthGuard>
+  return (
+    // <AuthGuard onClickIfAuthorized={() => router.push('/profile')}>
+    <button onClick={() => router.push('/profile')} className="p-2 rounded-full hover:bg-gray-100 transition" aria-label="Go to Profile">
+      <User color="#262626" />
+    </button>
+    // {/* </AuthGuard> */}
   );
 }
 

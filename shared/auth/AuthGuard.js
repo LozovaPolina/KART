@@ -51,29 +51,19 @@ export default function AuthGuard({ children, onClickIfAuthorized }) {
     <>
       <Modal ref={modalRef}>
         <div className="p-4 space-y-4">
-          {authMode === "login" ? <LoginForm /> : <RegisterForm />}
+          {authMode === "login" ? <LoginForm toggleAuthMode={toggleAuthMode} /> : <RegisterForm toggleAuthMode={toggleAuthMode} />}
           <p className="text-sm text-center">
-            {authMode === "login" ? (
-              <>
-                Не зарегистрированы?{" "}
-                <button
-                  className="text-blue-600 underline"
-                  onClick={toggleAuthMode}
-                >
-                  Зарегистрируйтесь здесь
-                </button>
-              </>
-            ) : (
+            {authMode !== "login" &&
               <>
                 Уже есь аккаунт?{" "}
                 <button
-                  className="text-blue-600 underline"
+                  className="text-[#49BA4A] underline cursor-pointer"
                   onClick={toggleAuthMode}
                 >
                   Войти
                 </button>
               </>
-            )}
+            }
           </p>
         </div>
       </Modal>

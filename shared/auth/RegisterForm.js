@@ -8,7 +8,7 @@ import Title from '../ui/title/Title';
 import Text from '../ui/text/Text';
 import Button from '../ui/button/Button';
 import Link from 'next/link';
-import { useInput } from '../../util/useInput';
+import { useInput } from '../../hooks/useInput';
 // import { registerUserAction } from '@/redux/slices/auth/authSlice';
 
 
@@ -38,20 +38,12 @@ const RegisterForm = () => {
     handleInputBlur: handlePasswordBlur,
   } = useInput("", (value) => value.length >= 5);
 
-  const {
-    value: confirmPasswordValue,
-    handleInputChange: handleConfirmPasswordChange,
-    handleInputBlur: handleConfirmPasswordBlur,
-  } = useInput("", () => true);
-
-  // Other controlled inputs
   const [form, setForm] = useState({
     country: "",
     role: "",
     passedKartCourse: '',
   });
 
-  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
 
 
@@ -72,59 +64,43 @@ const RegisterForm = () => {
     e.preventDefault();
     setError("");
 
-    if (true) {
-      if (nameValue.trim() === "") {
-        setError("Введите имя");
-        return;
-      }
-      if (!/\S+@\S+\.\S+/.test(emailValue)) {
-        setError("Введите корректный email");
-        return;
-      }
-      if (passwordValue.length < 5) {
-        setError("Пароль должен быть минимум 5 символов");
-        return;
-      }
-
-      if (form.country.trim() === "") {
-        setError("Выберите страну");
-        return;
-      }
-      if (form.role.trim() === "") {
-        setError("Выберите роль");
-        return;
-      }
-      if (form.passedKartCourse.trim() === "") {
-        setError("Выберите проходили ли Вы курс");
-        return;
-      }
-
-
-      dispatch(
-        registerUserAction({
-          username: nameValue,
-          email: emailValue,
-          password: passwordValue,
-          password_confirm: confirmPasswordValue,
-        })
-      );
-    } else {
-      if (nameValue.trim() === "") {
-        setError("Введите имя");
-        return;
-      }
-      if (passwordValue.length < 5) {
-        setError("Пароль должен быть минимум 5 символов");
-        return;
-      }
-
-      dispatch(
-        loginUserAction({
-          username: nameValue,
-          password: passwordValue,
-        })
-      );
+    if (nameValue.trim() === "") {
+      setError("Введите имя");
+      return;
     }
+    if (!/\S+@\S+\.\S+/.test(emailValue)) {
+      setError("Введите корректный email");
+      return;
+    }
+    if (passwordValue.length < 5) {
+      setError("Пароль должен быть минимум 5 символов");
+      return;
+    }
+
+    if (form.country.trim() === "") {
+      setError("Выберите страну");
+      return;
+    }
+    if (form.role.trim() === "") {
+      setError("Выберите роль");
+      return;
+    }
+    if (form.passedKartCourse.trim() === "") {
+      setError("Выберите проходили ли Вы курс");
+      return;
+    }
+
+
+    dispatch(
+      registerUserAction({
+        username: nameValue,
+        email: emailValue,
+        password: passwordValue,
+
+        role: form.role,
+        passedKartCourse: form.passedKartCourse,
+      })
+    );
   };
 
   return (
