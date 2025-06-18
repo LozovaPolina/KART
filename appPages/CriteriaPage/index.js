@@ -91,8 +91,11 @@ function CriteriaPage() {
         </div>
       ))}
     </div>
-    <ButtonWithCircleLink href='/' buttonText='Отправить запрос' buttonClassName='bg-[#81D742]' />
+    <Link href='/dilers-form'>
 
+
+      <ButtonWithCircleLink buttonText='Отправить запрос' buttonClassName='bg-[#81D742]' />
+    </Link>
   </section>
 };
 

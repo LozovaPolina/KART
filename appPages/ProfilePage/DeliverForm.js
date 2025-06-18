@@ -1,6 +1,7 @@
 "use client"
 
 import { useInput } from '../../hooks/useInput';
+import Button from '../../shared/ui/button/Button';
 import Field from '../../shared/ui/Field/Feild';
 import React, { useState } from 'react';
 const countryCodes = [
@@ -278,12 +279,12 @@ function DeliverForm() {
       </div>
 
       {error && <p className="text-red-500">{error}</p>}
-      <button
+      <Button
         type="submit"
-        className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
+        className="bg-[#49BA4A]"
       >
         Сохранить
-      </button>
+      </Button>
     </form >
   );
 }
