@@ -7,12 +7,18 @@ import { ButtonWithCircleLink } from '../ui/button/ButtonWithCircleLink';
 import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/reducer/cartSlice';
+import { useFormattedPrice } from '../../hooks/useFormattedPrice';
 function ShopItem({ product }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  // Use your hook here to format prices with current currency and rates
+  const formattedPrice = useFormattedPrice(product.price);
+  const formattedDiscountedPrice = useFormattedPrice(product.discountedPrice);
+
   return (
     <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
       <Image
-        className='w-full object-cover  rounded-2xl'
+        className='w-full object-cover rounded-2xl'
         src={productImg}
         alt={product.title}
         width={340}
@@ -22,11 +28,11 @@ function ShopItem({ product }) {
         <div className="flex justify-between">
           <p className='text-[#3C5E23]'>{product.title}</p>
 
-          <p className="text-[15px] text-[#82A469] line-through">{formatCurrencyRightLocalized(product.price)}</p>
+          <p className="text-[15px] text-[#82A469] line-through">{formattedPrice}</p>
         </div>
         <div className="flex text-[#3C5E23] justify-between">
           <p className='text-[13px]'>Код: {product.id}</p>
-          <div className='text-[20px]'>{formatCurrencyRightLocalized(product.discountedPrice)}</div>
+          <div className='text-[20px]'>{formattedDiscountedPrice}</div>
         </div>
       </div>
       <ButtonWithCircleLink

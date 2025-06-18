@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, ShoppingBag } from "lucide-react";
 import ProfileIcon from "./ProfIleIcon";
+import CurrencySelector from "../../shared/currency-selector/CurrencySelector";
 
 
 
@@ -62,6 +63,7 @@ export default function Header() {
                 />
               </svg>
             </div>
+            <CurrencySelector />
             <Link href={'/cart'}><ShoppingBag /></Link>
             {/* Education button */}
             <Link

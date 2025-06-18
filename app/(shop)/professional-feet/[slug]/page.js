@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import productImage from '../../../../public/assets/image/product.png'
 import Swiper from '../../../../shared/swiper/Swiper';
 import ShopItem from '../../../../shared/shop/ProductItem';
+import { useFormattedPrice } from '../../../../hooks/useFormattedPrice';
 
 const products = [
   {
@@ -158,7 +159,8 @@ export default function Page({ params }) {
   console.log(slug)
   const [tab, setTab] = useState('usage');
   const product = products.find((p) => p.slug === slug);
-
+  const formattedPrice = useFormattedPrice(product?.price);
+  const formattedDiscountedPrice = useFormattedPrice(product?.discountedPrice);
   if (!product) {
     return <div>Product not found</div>;
   }
@@ -203,7 +205,7 @@ export default function Page({ params }) {
           <div className="w-full bg-[#EDEDED] h-[1px]"></div>
 
           <div className="flex justify-between items-center">
-            <div className="text-[#A0C287] text-[16px] lg:text-xl  mb-4">{formatCurrencyRightLocalized(product.price)} </div>
+            <div className="text-[#A0C287] text-[16px] lg:text-xl  mb-4">{formattedDiscountedPrice} </div>
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center  rounded px-2 py-1">
                 <button >
