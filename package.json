@@ -11,14 +11,19 @@
     "deploy": "gh-pages -d .next -m \"Deploy React app to GitHub Pages\" -r https://github.com/Evggeennniy/KART"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.6",
     "clsx": "^2.1.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",

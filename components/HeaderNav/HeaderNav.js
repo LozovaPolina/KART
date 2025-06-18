@@ -24,7 +24,7 @@ function HeaderNav() {
                     <Link key={link.href} href={link.href} className="relative group">
                         <p
                             className={clsx(
-                                "text-base font-medium cursor-pointer transition-colors",
+                                "text-base  cursor-pointer transition-colors",
                                 isActive ? "text-[#000000]" : "text-[#404040] hover:text-gray-900"
                             )}
                         >
