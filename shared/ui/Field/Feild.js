@@ -21,7 +21,7 @@ export default function Field({
         onBlur={onBlur}
         placeholder={placeholder}
         className={clsx(
-          "w-full p-2 pt-3 border-2 rounded outline-none transition",
+          "w-full p-2 pt-3 border-1 rounded outline-none transition",
           error ? "border-red-500" : "border-[#E2E2E2] focus:border-[#272727]"
         )}
       />

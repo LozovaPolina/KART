@@ -131,8 +131,8 @@ function DeliverForm() {
   };
 
   return (
-    <form className="space-y-4 h-[503px] hide-scrollbar" onSubmit={handleSubmit}>
-      <div className="bg-[#F5F5F5] rounded-xl p-6 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+    <form className="flex flex-col gap-2 " onSubmit={handleSubmit}>
+      <div className="bg-[#F5F5F5] md:h-[503px] hide-scrollbar p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
 
         <h3 className="text-lg font-semibold">Контактные данные</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
@@ -144,6 +144,7 @@ function DeliverForm() {
             onBlur={handleSurnameBlur}
             error={surnameError}
             name="surname"
+            className="col-span-2 md:col-span-1"
           />
 
           <Field
@@ -153,6 +154,7 @@ function DeliverForm() {
             onBlur={handleNameBlur}
             error={nameError}
             name="name"
+            className="col-span-2 md:col-span-1"
           />
 
           <Field
@@ -190,7 +192,8 @@ function DeliverForm() {
             onBlur={handleAdressBlur}
             error={adressError}
             name="adress"
-            className=""
+            className="col-span-2 md:col-span-1"
+
           />
           <Field
             label="Номер дома, квартиры*"
@@ -199,7 +202,7 @@ function DeliverForm() {
             onBlur={handleHouseBlur}
             error={houseError}
             name="adress"
-            className=""
+            className="col-span-2 md:col-span-1"
           />
           <Field
             label="Почтовый индекс *"
@@ -281,7 +284,7 @@ function DeliverForm() {
       {error && <p className="text-red-500">{error}</p>}
       <Button
         type="submit"
-        className="bg-[#49BA4A]"
+        className="bg-[#49BA4A] w-fit"
       >
         Сохранить
       </Button>

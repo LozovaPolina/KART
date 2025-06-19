@@ -37,9 +37,9 @@ export default function ProfilePage() {
           { label: "Профиль", href: "/profile" },
         ]}
       />
-      <div className="flex  p-6 gap-8 bg-[#F5F5F5] w-full">
+      <div className="flex flex-wrap gap-8   rounded-xl  bg-[#F5F5F5] w-full">
 
-        <aside className="w-64 bg-[#F5F5F5] rounded-xl py-6 shadow-sm flex flex-col gap-1">
+        <aside className="w-full md:w-64  shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  bg-[#F5F5F5] rounded-xl py-6  flex flex-col gap-1">
           <h2 className="text-lg font-semibold mb-2 text-[#1e1e1e] px-6">ПРОФИЛЬ</h2>
 
           <ul className="space-y-2 flex flex-col gap-1">
@@ -94,7 +94,7 @@ export default function ProfilePage() {
 
 
         {/* Content */}
-        <section className="flex-1   h-fit ">
+        <section className="flex-1    h-fit ">
           {activeTab === 'personal' && <PersonalInfoForm />}
           {activeTab === 'orders' && <OrderList></OrderList>}
           {activeTab === 'videos' && <div>Видео</div>}

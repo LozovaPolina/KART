@@ -6,7 +6,7 @@ import Field from "../../shared/ui/Field/Feild";
 import Button from "../../shared/ui/button/Button";
 import { useInput } from "../../hooks/useInput";
 import { MultiSelect } from "./MultiSelect";
-import RadioGroup from "./RadioGroup";
+import RadioGroup from "../../shared/ui/radio-group/RadioGroup";
 import TextAreaField from "./TextAreaField";
 const mainActivityArray = ["Маркетинг", "Разработка", "Дизайн", "Продажи"];
 const promotionChannelsArray = [

@@ -8,16 +8,17 @@ import Title from '../ui/title/Title';
 import { useInput } from '../../hooks/useInput';
 import Text from '../ui/text/Text';
 import { Check, LogIn } from 'lucide-react';
+import Field from '../ui/Field/Feild';
 
 const LoginForm = ({ toggleAuthMode }) => {
   const dispatch = useDispatch();
   const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
-  const [localError, setLocalError] = useState()
   const [checkBox, setCheckBox] = useState(false)
   const {
     value: nameValue,
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
+    hasError: nameError
   } = useInput("", (value) => value.trim() !== "");
 
 
@@ -25,6 +26,7 @@ const LoginForm = ({ toggleAuthMode }) => {
     value: passwordValue,
     handleInputChange: handlePasswordChange,
     handleInputBlur: handlePasswordBlur,
+    hasError: passwordError
   } = useInput("", (value) => value.length >= 5);
   function handleCheckboxChange() {
     setCheckBox(p => !p)
@@ -32,10 +34,8 @@ const LoginForm = ({ toggleAuthMode }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLocalError('');
 
     if (!nameValue.trim() || passwordValue.length < 5) {
-      setLocalError('Введите корректные данные');
       return;
     }
 
@@ -51,42 +51,26 @@ const LoginForm = ({ toggleAuthMode }) => {
         <Text className='text-[#4A4A4A]! text-center'>Чтобы продолжить, пожалуйста, войдите или создайте аккаунт.</Text>
 
       </div>
+      <Field
+        label="Имя"
+        value={nameValue}
+        onChange={handleNameChange}
+        onBlur={handleNameBlur}
+        error={nameError}
+        name="name"
+      />
+      <Field
+        label="Пароль"
+        value={passwordValue}
+        onChange={handlePasswordChange}
+        onBlur={handlePasswordBlur}
+        error={passwordError}
+        name="password"
+      />
 
-      <div className="relative w-full mt-4">
-        <input
-          type="text"
-          name="name"
-          value={nameValue}
-          onChange={handleNameChange}
-          onBlur={handleNameBlur}
-          className="w-full p-2 pt-5 border-2 border-[#E2E2E2] rounded outline-none focus:border-[#272727]"
-        />
-        <label
-          htmlFor="name"
-          className="absolute left-2 top-0 -translate-y-1/2 px-1 bg-[#F5F5F5] text-sm text-[#272727]"
-        >
-          Имя
-        </label>
-      </div>
 
-      <div className="relative w-full mt-4">
-        <input
-          type="password"
-          name="password"
-          value={passwordValue}
-          onChange={handlePasswordChange}
-          onBlur={handlePasswordBlur}
-          className="w-full p-2 pt-3 border-2 border-[#E2E2E2] rounded outline-none focus:border-[#272727]"
-        />
-        <label
-          htmlFor="password"
-          className="absolute left-2 top-0 -translate-y-1/2 px-1 bg-[#F5F5F5] text-sm text-[#272727]"
-        >
-          Пароль
-        </label>
-      </div>
 
-      {localError && <p className="text-red-500 text-sm">{localError}</p>}
+      {/* {localError && <p className="text-red-500 text-sm">{localError}</p>} */}
       {error && <p className="text-red-500 text-sm">{error}</p>}
       {isLoggedIn && <p className="text-green-500 text-sm">Успешный вход!</p>}
       <div className="flex gap-4">

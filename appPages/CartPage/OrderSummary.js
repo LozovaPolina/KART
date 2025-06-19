@@ -9,7 +9,7 @@ import { useFormattedPrice } from '../../hooks/useFormattedPrice';
 function OrderSummary() {
   const cartItems = useSelector(selectCartItems) || []
   const deliveryFee = 35;
-  const total = cartItems?.reduce((acc, p) => acc + p.price * p.quantity, 0) + deliveryFee || 0;
+  const total = cartItems?.reduce((acc, p) => acc + p.discountedPrice * p.quantity, 0) + deliveryFee || 0;
 
   return (
 

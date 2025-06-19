@@ -12,7 +12,8 @@ import { useDispatch } from "react-redux";
 export default function ProductItem({ product }) {
   const formattedDiscountedPrice = useFormattedPrice(+product.discountedPrice);
   const formattedPrice = useFormattedPrice(product.price);
-  const formattedTotal = useFormattedPrice(product.price * product.quantity);
+  const formattedTotal = useFormattedPrice(+product.discountedPrice * product.quantity);
+  console.log(product.discountedPrice, product.quantity)
   const dispatch = useDispatch();
 
   return (
@@ -31,9 +32,9 @@ export default function ProductItem({ product }) {
         <div className='flex items-center justify-center gap-2'>
           <div className='flex gap-1'>
             <div className='text-[15px] line-through'>
-              {formattedDiscountedPrice}
+              {formattedPrice}
             </div>
-            <div className='text-[15px]'>{formattedPrice}</div>
+            <div className='text-[15px]'>{formattedDiscountedPrice}</div>
           </div>
           <div className='p-1 shadow flex gap-[6px] items-center justify-center rounded-2xl'>
             <button

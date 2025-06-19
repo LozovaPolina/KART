@@ -11,7 +11,7 @@ export function useInput(defaultValue, validationFn) {
     setInputState({
       value: e.target.value,
       didBlur: false,
-      wasValidOnBlur: true, // assume valid until next blur
+      wasValidOnBlur: true,
     });
   }
 
