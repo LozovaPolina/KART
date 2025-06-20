@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import TextAreaField from '../../shared/ui/field/TextAreaField';
+import TextAreaField from '../../shared/ui/Field/TextAreaField';
 import Field from '../../shared/ui/Field/Field';
 // import { MultiSelect } from '@/shared/multi-select/MultiSelect';
 import RadioGroup from '../../shared/ui/RadioGroup/RadioGroup';

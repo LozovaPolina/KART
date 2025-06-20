@@ -7,7 +7,7 @@ import Button from "../../shared/ui/button/Button";
 import { useInput } from "../../hooks/useInput";
 import { MultiSelect } from "../../shared/ui/MultiSelect/MultiSelect";
 import RadioGroup from "../../shared/ui/RadioGroup/RadioGroup";
-import TextAreaField from "../../shared/ui/field/TextAreaField";
+import TextAreaField from "../../shared/ui/Field/TextAreaField";
 import Title from "../../shared/ui/title/Title";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import FormSection from "../../shared/ui/FormSection/FormSection";
