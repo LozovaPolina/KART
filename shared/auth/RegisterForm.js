@@ -9,7 +9,7 @@ import Text from '../ui/text/Text';
 import Button from '../ui/button/Button';
 import Link from 'next/link';
 import { useInput } from '../../hooks/useInput';
-import Field from '../ui/Field/Feild';
+import Field from '../ui/field/Feild';
 import RadioGroup from '../ui/radio-group/RadioGroup';
 // import { registerUserAction } from '@/redux/slices/auth/authSlice';
 
@@ -115,7 +115,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 max-h-[760px] hide-scrollbar space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto h-full hide-scrollbar   flex flex-col gap-4">
       <Title className='text-center'>Регистрация</Title>
       <Text className='text-[#4A4A4A]! text-center'>Заполните регистрационную форму для получения лучшего предложения</Text>
 

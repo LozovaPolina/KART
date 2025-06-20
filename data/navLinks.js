@@ -3,9 +3,10 @@ export const navLinks = [
     label: "О компании",
     dropdown: [
       { href: "/conditions", label: "Условия для мастеров" },
-      { href: "/instructors", label: "Как стать инструктором" },
+      { href: "/instructors", label: "Инструкторы" },
       { href: "/about", label: "О компании" },
       { href: "/criteria-diler", label: "Как стать дилером" },
+      { href: "/criteria-instructor", label: "Как стать инструктором" },
       { href: "/profile", label: "Материалы для скачивания" },
     ],
   },

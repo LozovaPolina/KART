@@ -8,7 +8,7 @@ import Title from '../ui/title/Title';
 import { useInput } from '../../hooks/useInput';
 import Text from '../ui/text/Text';
 import { Check, LogIn } from 'lucide-react';
-import Field from '../ui/Field/Feild';
+import Field from '../ui/field/Feild';
 
 const LoginForm = ({ toggleAuthMode }) => {
   const dispatch = useDispatch();

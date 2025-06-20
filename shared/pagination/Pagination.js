@@ -15,12 +15,9 @@ export default function Pagination({ totalPages }) {
     router.push(`?${params.toString()}`);
   };
 
-  useEffect(() => {
-    // scroll to top or load data if needed
-  }, [currentPage]);
 
   return (
-    <div className="flex justify-center mt-6 gap-2">
+    <div className="flex justify-center gap-2">
       {Array.from({ length: totalPages }, (_, i) => (
         <button
           key={i}

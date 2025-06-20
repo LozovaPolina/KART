@@ -1,4 +1,3 @@
-// app/(home)/instructors/page.js
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 

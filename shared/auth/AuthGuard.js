@@ -50,7 +50,7 @@ export default function AuthGuard({ children, onClickIfAuthorized }) {
   return (
     <>
       <Modal ref={modalRef}>
-        <div className="p-4 space-y-4 ">
+        <div className="p-4   ">
           {authMode === "login" ? <LoginForm toggleAuthMode={toggleAuthMode} /> : <RegisterForm toggleAuthMode={toggleAuthMode} />}
           <p className="text-sm text-center">
             {authMode !== "login" &&

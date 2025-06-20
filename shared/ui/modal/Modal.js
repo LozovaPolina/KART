@@ -35,10 +35,10 @@ const Modal = forwardRef(function Modal({ children }, ref) {
     <div
       ref={backdropRef}
       onClick={handleClickOutside}
-      className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 h-full"
     >
       <div
-        className="bg-[#F5F5F5]  rounded-xl p-4 w-full max-w-md relative"
+        className="bg-[#F5F5F5] rounded-xl p-4 w-full max-w-md max-h-[90vh] overflow-y-auto hide-scrollbar relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button

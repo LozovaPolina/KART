@@ -1,4 +1,4 @@
-import CriteriaPage from '../../../appPages/CriteriaPage';
+import CriteriaPage from '../../../appPages/CriteriaDilersPage';
 import React from 'react';
 
 function page(props) {

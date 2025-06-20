@@ -3,7 +3,7 @@
 
 import { useInput } from "../../hooks/useInput";
 import Button from "../../shared/ui/button/Button";
-import Field from "../../shared/ui/Field/Feild";
+import Field from "../../shared/ui/field/Feild";
 import { useState } from "react";
 
 export default function PersonalInfoForm() {

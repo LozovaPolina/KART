@@ -2,15 +2,10 @@
 
 import { useInput } from '../../hooks/useInput';
 import Button from '../../shared/ui/button/Button';
-import Field from '../../shared/ui/Field/Feild';
+import Field from '../../shared/ui/field/Feild';
 import React, { useState } from 'react';
-const countryCodes = [
-  { code: "+90", label: "🇹🇷 TR" },
-  { code: "+380", label: "🇺🇦 UA" },
-  { code: "+7", label: "🇷🇺 RU" },
-  { code: "+48", label: "🇵🇱 PL" },
-  { code: "+1", label: "🇺🇸 US" },
-];
+import PhoneInput from "../../shared/ui/phone-input/PhoneInput"
+
 function DeliverForm() {
   const [error, setError] = useState()
   const {
@@ -222,8 +217,8 @@ function DeliverForm() {
             name="email"
             className="col-span-2"
           />
-
-          <div className="w-full col-span-2">
+          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles={'w-full md:w-[48%]'} />
+          {/* <div >
             <div className="flex gap-2 relative w-[115px">
               <label htmlFor="countryCode" className="text-sm text-[#272727] bg-[#F5F5F5]  mb-1 absolute left-4 -top-2">
                 Код страны
@@ -256,7 +251,7 @@ function DeliverForm() {
             {phoneError && (
               <p className="text-red-500 text-sm mt-1">Введите корректный номер</p>
             )}
-          </div>
+          </div> */}
 
           <Field
             label="Почтовый индекс *"
