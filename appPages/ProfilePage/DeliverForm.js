@@ -2,9 +2,9 @@
 
 import { useInput } from '../../hooks/useInput';
 import Button from '../../shared/ui/button/Button';
-import Field from '../../shared/ui/field/Feild';
+import Field from '../../shared/ui/Field/Field';
 import React, { useState } from 'react';
-import PhoneInput from "../../shared/ui/phone-input/PhoneInput"
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput"
 
 function DeliverForm() {
   const [error, setError] = useState()

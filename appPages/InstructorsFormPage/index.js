@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import TextAreaField from '../../shared/ui/field/TextAreaField';
-import Field from '../../shared/ui/field/Feild';
+import Field from '../../shared/ui/Field/Field';
 // import { MultiSelect } from '@/shared/multi-select/MultiSelect';
-import RadioGroup from '../../shared/ui/radio-group/RadioGroup';
+import RadioGroup from '../../shared/ui/RadioGroup/RadioGroup';
 // import HintNavigation from '@/shared/hint-navigation/HintNavigation';
 // import Title from '../../shared/ui/title/Title';
 import { useInput } from '../../hooks/useInput';
@@ -12,8 +12,8 @@ import Button from '../../shared/ui/button/Button';
 import HintNavigation from '../../shared/hint-navigation/HintNavigation';
 import Title from '../../shared/ui/title/Title';
 import Text from '../../shared/ui/text/Text';
-import FormSection from '../../shared/ui/form-section/FormSection';
-import PhoneInput from '../../shared/ui/phone-input/PhoneInput';
+import FormSection from '../../shared/ui/FormSection/FormSection';
+import PhoneInput from '../../shared/ui/PhoneInput/PhoneInput';
 
 
 
