@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-import { criterisDilers } from "../../data/criteris-dilers"
+import { criterisDilers } from "../../data/criterisDilers"
 import Title from '../../shared/ui/title/Title';
 
 function CriteriaPage() {

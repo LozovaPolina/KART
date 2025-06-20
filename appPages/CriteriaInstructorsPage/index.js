@@ -1,7 +1,7 @@
 import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 import Link from 'next/link';
 import React from 'react';
-import { criterisInstructors } from "../../data/criteria-instructors"
+import { criterisInstructors } from "../../data/criteriaInstructors"
 function CriteriaInstructorsPage() {
   return <section className='flex flex-col gap-10 items-center'>
     <div className="flex flex-wrap justify-center sm:gap-x-6 gap-y-12 sm:gap-y-18 h-fit p-8 rounded-xl">
