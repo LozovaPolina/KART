@@ -4,14 +4,14 @@ import React from 'react';
 import productImg from '../../public/assets/image/product.png'
 import Image from 'next/image';
 import { ButtonWithCircleLink } from '../ui/button/ButtonWithCircleLink';
-import { formatCurrencyRightLocalized } from '../../util/currencyFormater';
+
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/reducer/cartSlice';
 import { useFormattedPrice } from '../../hooks/useFormattedPrice';
 function ShopItem({ product }) {
   const dispatch = useDispatch();
 
-  // Use your hook here to format prices with current currency and rates
+
   const formattedPrice = useFormattedPrice(product.price);
   const formattedDiscountedPrice = useFormattedPrice(product.discountedPrice);
 

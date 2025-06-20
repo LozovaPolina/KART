@@ -1,7 +1,7 @@
 import { Fira_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "../shared/footer/Footer";
-import Header from "../components/HeaderNav/Header";
+import Header from "../shared/nav-section/Header";
 import AppProvider from "../shared/app-provider/AppProvide";
 
 
@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
           <div id="modal" />
           <Header />
 
-          <main className="flex-grow container pt-[160px]! ">
+          <main className="flex-grow container pt-[90px]! xl:pt-[160px]! ">
             {children}
           </main>
-          <div className="container">
+          {/* <div className="container"> */}
 
-            <Footer />
-          </div>
+          <Footer />
+          {/* </div> */}
         </AppProvider>
       </body>
     </html>

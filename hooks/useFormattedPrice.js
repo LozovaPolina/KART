@@ -6,11 +6,7 @@ export function useFormattedPrice(amountEUR) {
   const selectedCurrency = useSelector(selectCurrency);
   const exchangeRates = useSelector(selectExchangeRates);
 
-
-
   const rateTo = exchangeRates[selectedCurrency];
-
-
 
   const convertedAmount = amountEUR * (rateTo || 1);
 

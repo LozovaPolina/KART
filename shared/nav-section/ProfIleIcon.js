@@ -2,7 +2,7 @@
 
 import { User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import AuthGuard from '../../shared/auth/AuthGuard';
+import AuthGuard from '../auth/AuthGuard';
 
 function ProfileIcon() {
   const router = useRouter();

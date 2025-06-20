@@ -3,7 +3,7 @@
 
 import { useInput } from "../../hooks/useInput";
 import Button from "../../shared/ui/button/Button";
-import Field from "../../shared/ui/Field/Feild";
+import Field from "../../shared/ui/field/Feild";
 import { useState } from "react";
 
 export default function PersonalInfoForm() {
@@ -77,80 +77,82 @@ export default function PersonalInfoForm() {
   };
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <div className="bg-[#F5F5F5] rounded-xl p-6 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+    <form className="space-y-4   " onSubmit={handleSubmit}>
 
-        <h3 className="text-lg font-semibold">Контактные данные</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
 
-          {/* Фамилия */}
-          <Field
-            label="Фамилия"
-            value={surnameValue}
-            onChange={handleSurnameChange}
-            onBlur={handleSurnameBlur}
-            error={surnameError}
-            name="surname"
-          />
 
-          {/* Имя */}
-          <Field
-            label="Имя"
-            value={nameValue}
-            onChange={handleNameChange}
-            onBlur={handleNameBlur}
-            error={nameError}
-            name="name"
-          />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  ">
+        <h3 className="text-lg font-semibold col-span-2">Контактные данные</h3>
+        {/* Фамилия */}
+        <Field
+          label="Фамилия"
+          value={surnameValue}
+          onChange={handleSurnameChange}
+          onBlur={handleSurnameBlur}
+          error={surnameError}
+          name="surname"
+          className="col-span-2 md:col-span-1"
+        />
 
-          {/* Никнейм */}
-          <Field
-            label="Отображаемое имя*"
-            value={nicknameValue}
-            onChange={handleNicknameChange}
-            onBlur={handleNicknameBlur}
-            error={nicknameError}
-            name="nickname"
-            className="col-span-2"
-          />
+        {/* Имя */}
+        <Field
+          label="Имя"
+          value={nameValue}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
+          error={nameError}
+          name="name"
+          className="col-span-2 md:col-span-1"
+        />
 
-          {/* Телефон */}
-          <Field
-            label="Телефон"
-            value={phoneValue}
-            onChange={handlePhoneChange}
-            onBlur={handlePhoneBlur}
-            error={phoneError}
-            name="phone"
-            className="col-span-2"
-            placeholder="+905555555555"
-          />
+        {/* Никнейм */}
+        <Field
+          label="Отображаемое имя*"
+          value={nicknameValue}
+          onChange={handleNicknameChange}
+          onBlur={handleNicknameBlur}
+          error={nicknameError}
+          name="nickname"
+          className="col-span-2"
+        />
 
-          {/* Email */}
-          <Field
-            label="Email"
-            value={emailValue}
-            onChange={handleEmailChange}
-            onBlur={handleEmailBlur}
-            error={emailError}
-            name="email"
-            className="col-span-2"
-          />
+        {/* Телефон */}
+        <Field
+          label="Телефон"
+          value={phoneValue}
+          onChange={handlePhoneChange}
+          onBlur={handlePhoneBlur}
+          error={phoneError}
+          name="phone"
+          className="col-span-2"
+          placeholder="+905555555555"
+        />
 
-          {/* Пароль */}
-          <Field
-            label="Пароль"
-            type="password"
-            value={passwordValue}
-            onChange={handlePasswordChange}
-            onBlur={handlePasswordBlur}
-            error={passwordError}
-            name="password"
-            className="col-span-2"
-          />
-        </div>
+        {/* Email */}
+        <Field
+          label="Email"
+          value={emailValue}
+          onChange={handleEmailChange}
+          onBlur={handleEmailBlur}
+          error={emailError}
+          name="email"
+          className="col-span-2"
+        />
 
+        {/* Пароль */}
+        <Field
+          label="Пароль"
+          type="password"
+          value={passwordValue}
+          onChange={handlePasswordChange}
+          onBlur={handlePasswordBlur}
+          error={passwordError}
+          name="password"
+          className="col-span-2"
+        />
       </div>
+
+
 
       {error && <p className="text-red-500">{error}</p>}
       <Button

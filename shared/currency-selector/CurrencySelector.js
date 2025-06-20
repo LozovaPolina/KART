@@ -16,7 +16,7 @@ export default function CurrencySelector() {
     dispatch(fetchExchangeRates());
   }, [dispatch]);
   return (
-    <select value={selectedCurrency} onChange={handleChange} className="p-1 border rounded">
+    <select value={selectedCurrency} onChange={handleChange} className="p-1 text-[#323232] bg-white  ">
       <option value="EUR">EUR (€)</option>
       <option value="USD">USD ($)</option>
       <option value="UAH">UAH (₴)</option>
