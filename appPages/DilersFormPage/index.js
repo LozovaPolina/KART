@@ -264,7 +264,7 @@ export default function DilersFormPage() {
         onSubmit={handleSubmit}
       >
         <div className="bg-[#F5F5F5] rounded-xl p-6 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-          <Title>Общая информация</Title>
+          <Title className="mb-4">Общая информация</Title>
           <div className="flex flex-wrap gap-4 sm:gap-6">
             <Field
               label="Название компании / ИП:"

@@ -52,7 +52,7 @@ export default function OrderList() {
 
   const combinedOrders = [
     {
-      date: new Date().toLocaleDateString("ru-RU"), // или 'Сегодня'
+      date: new Date().toLocaleDateString("ru-RU"),
       status: "Ожидает оплаты",
       orderNumber: "Корзина",
       total: cartItems?.reduce((acc, p) => acc + p.price * p.quantity, 0) || 0,

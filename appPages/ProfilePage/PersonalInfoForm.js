@@ -77,11 +77,12 @@ export default function PersonalInfoForm() {
   };
 
   return (
-    <form className="space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-4 rounded-xl" onSubmit={handleSubmit}>
+    <form className="space-y-4   " onSubmit={handleSubmit}>
 
 
-      <h3 className="text-lg font-semibold">Контактные данные</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  ">
+        <h3 className="text-lg font-semibold col-span-2">Контактные данные</h3>
         {/* Фамилия */}
         <Field
           label="Фамилия"

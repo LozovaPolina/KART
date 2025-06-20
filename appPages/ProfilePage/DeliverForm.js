@@ -129,7 +129,7 @@ function DeliverForm() {
     <form className="flex flex-col gap-2 " onSubmit={handleSubmit}>
       <div className="bg-[#F5F5F5] md:h-[503px] hide-scrollbar p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
 
-        <h3 className="text-lg font-semibold">Контактные данные</h3>
+        <h3 className="text-lg font-semibold ">Контактные данные</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
 
           <Field
@@ -217,7 +217,7 @@ function DeliverForm() {
             name="email"
             className="col-span-2"
           />
-          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles={'w-full md:w-[48%]'} />
+          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles={"col-span-2"} />
           {/* <div >
             <div className="flex gap-2 relative w-[115px">
               <label htmlFor="countryCode" className="text-sm text-[#272727] bg-[#F5F5F5]  mb-1 absolute left-4 -top-2">
