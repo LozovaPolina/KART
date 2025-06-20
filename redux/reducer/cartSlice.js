@@ -1,0 +1,195 @@
+
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  cartItems: [],
+  items: [
+    {
+      id: '7031',
+      slug: 'active-nail-cure-kit',
+      title: 'Active Nail Cure Kit',
+      fullName: 'Active Nail Cure Kit Professional Edition',
+      description: 'Комплексный набор для эффективного ухода и лечения ногтей в домашних условиях. Помогает укрепить и восстановить ногтевую пластину.',
+      usage: 'Наносите на очищенные ногти два раза в день, избегая попадания на кожу. Рекомендуется курсом 2-4 недели.',
+      ingredients: [
+        'Витамин E',
+        'Алоэ Вера',
+        'Пантенол',
+        'Экстракт ромашки',
+        'Глицерин',
+      ],
+      image: '/images/active-nail-kit.jpg',
+      price: 3200,
+      discountedPrice: 2500,
+      quantity: 0,
+    },
+    {
+      id: '7032',
+      slug: 'hydration-foot-cream',
+      title: 'Hydration Foot Cream',
+      fullName: 'Hydration Foot Cream with Natural Extracts',
+      description: 'Увлажняющий крем для ног с натуральными экстрактами мяты и масла ши, который помогает смягчить и освежить кожу стоп.',
+      usage: 'Наносить на чистую кожу ног легкими массирующими движениями перед сном для максимального увлажнения.',
+      ingredients: [
+        'Масло ши',
+        'Экстракт мяты',
+        'Витамин B5',
+        'Гиалуроновая кислота',
+      ],
+      image: '/images/hydration-foot-cream.jpg',
+      price: 1800,
+      discountedPrice: 1350,
+      quantity: 0,
+    },
+    {
+      id: '7033',
+      slug: 'pro-pedicure-tools',
+      title: 'Pro Pedicure Tools Set',
+      fullName: 'Pro Pedicure Tools Set - Complete Kit',
+      description: 'Профессиональный набор инструментов для педикюра, изготовленный из нержавеющей стали. Включает все необходимые инструменты для ухода за ногами.',
+      usage: 'Используйте инструменты согласно инструкции, после каждого применения обязательно дезинфицируйте для поддержания гигиены.',
+      ingredients: [
+        'Нержавеющая сталь',
+        'Силиконовые ручки',
+      ],
+      image: '/images/pedicure-tools.jpg',
+      price: 4200,
+      discountedPrice: 3700,
+      quantity: 0,
+    },
+    {
+      id: '7034',
+      slug: 'organic-heel-balm',
+      title: 'Organic Heel Balm',
+      fullName: 'Organic Heel Balm with Healing Properties',
+      description: 'Органический бальзам для пяток с восстанавливающим и смягчающим эффектом. Помогает избавиться от трещин и сухости кожи.',
+      usage: 'Наносить на чистые пятки 1-2 раза в день, массируя до полного впитывания.',
+      ingredients: [
+        'Масло кокоса',
+        'Воск пчелиный',
+        'Масло лаванды',
+        'Витамин F',
+      ],
+      image: '/images/heel-balm.jpg',
+      price: 1500,
+      discountedPrice: 1200,
+      quantity: 0,
+    },
+    {
+      id: '7035',
+      slug: 'lavender-foot-soak',
+      title: 'Lavender Foot Soak',
+      fullName: 'Lavender Foot Soak Relaxing Formula',
+      description: 'Расслабляющая ванночка для ног с лавандовым маслом, снимает усталость и успокаивает кожу после долгого дня.',
+      usage: 'Растворите 2-3 столовые ложки ванночки в теплой воде и держите ноги в растворе 15-20 минут.',
+      ingredients: [
+        'Лавандовое масло',
+        'Экстракт ромашки',
+        'Соль Эпсома',
+        'Масло жожоба',
+      ],
+      image: '/images/lavender-foot-soak.jpg',
+      price: 2100,
+      discountedPrice: 1700,
+      quantity: 0,
+    },
+    {
+      id: '7036',
+      slug: 'toe-separator-kit',
+      title: 'Revitalizing Toe Separator Kit',
+      fullName: 'Revitalizing Toe Separator Kit',
+      description: 'Набор для разделения пальцев ног с гелевыми вкладышами для коррекции и профилактики деформаций, улучшения кровообращения.',
+      usage: 'Используйте ежедневно по 1-2 часа или по рекомендации врача для профилактики и коррекции.',
+      ingredients: [
+        'Гель силиконовый',
+        'Мягкий пластик',
+      ],
+      image: '/images/toe-separator-kit.jpg',
+      price: 1100,
+      discountedPrice: 900,
+      quantity: 0,
+    },
+    {
+      id: '7037',
+      slug: 'cooling-mint-gel',
+      title: 'Cooling Mint Gel',
+      fullName: 'Cooling Mint Gel for Foot Refreshment',
+      description: 'Охлаждающий гель с мятным ароматом для облегчения усталости и снятия отечности ног после долгого дня.',
+      usage: 'Наносите гель на ноги легкими массажными движениями по мере необходимости.',
+      ingredients: [
+        'Экстракт мяты',
+        'Аллантоин',
+        'Глицерин',
+        'Ментол',
+      ],
+      image: '/images/cooling-mint-gel.jpg',
+      price: 1300,
+      discountedPrice: 1050,
+      quantity: 0,
+    },
+    {
+      id: '7038',
+      slug: 'deep-repair-heel-socks',
+      title: 'Deep Repair Heel Socks',
+      fullName: 'Deep Repair Heel Socks with Moisturizing Gel',
+      description: 'Носки с гелевым слоем для интенсивного увлажнения и восстановления кожи пяток во время сна.',
+      usage: 'Надевайте носки на ночь после нанесения увлажняющего крема для ног.',
+      ingredients: [
+        'Гелевый увлажняющий слой',
+        'Хлопковая ткань',
+        'Витамин E',
+        'Экстракт алоэ',
+      ],
+      image: '/images/deep-repair-heel-socks.jpg',
+      price: 2500,
+      discountedPrice: 1990,
+      quantity: 0,
+    },
+  ],
+  isSettingsOpen: false,
+};
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart(state, action) {
+      const { id } = action.payload;
+      const itemIndex = state.cartItems.findIndex(item => item.id === id);
+
+      if (itemIndex >= 0) {
+        state.cartItems[itemIndex].quantity++;
+      } else {
+        const item = state.items.find(item => item.id === id);
+        // В идеале — item нужно передавать из action.payload, а не искать в state.items
+        const newItem = { ...item, quantity: 1 };
+        state.cartItems.push(newItem);
+      }
+    },
+
+    removeFromCart(state, action) {
+      const itemIndex = state.cartItems.findIndex(item => item.id === action.payload.id);
+
+      if (itemIndex >= 0) {
+        if (state.cartItems[itemIndex].quantity === 1) {
+          state.cartItems.splice(itemIndex, 1);
+        } else {
+          state.cartItems[itemIndex].quantity--;
+        }
+      }
+    },
+    deleteFromCart(state, action) {
+      state.cartItems = state.cartItems.filter(item => item.id !== action.payload.id);
+    }
+  },
+});
+
+export const { addToCart, removeFromCart, deleteFromCart } = cartSlice.actions;
+
+export const selectCartItems = (state) => state.cart.cartItems;
+export const selectCartQuantity = (state) =>
+  state.cart.cartItems.reduce((total, item) => total + item.quantity, 0);
+export const selectIsSettingsOpen = (state) => state.cart.isSettingsOpen;
+
+export default cartSlice.reducer;

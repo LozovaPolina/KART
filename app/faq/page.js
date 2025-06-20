@@ -1,11 +1,8 @@
-import React from 'react';
 
-function page(props) {
+import FAQpage from "../../appPages/FAQPage"
+
+export default function page() {
   return (
-    <div>
-
-    </div>
+    <FAQpage />
   );
 }
-
-export default page;

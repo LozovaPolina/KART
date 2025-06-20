@@ -2,13 +2,14 @@
 @import "../css/styles.css";
 
 
-
+body {
+	font-family: var(--font-fira-sans), sans-serif;
+}
 
 .container {
 	max-width: 1450px;
 	margin: 0 auto;
 	padding: 0 15px;
-	background: #F5F5F5CC;
 }
 
 .bg-flag-img {
@@ -17,4 +18,29 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+dialog::backdrop {
+	background: transparent;
+}
+
+dialog[open] {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+.hide-scrollbar {
+	overflow-y: auto;
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* IE/Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	display: none;
+	/* Chrome/Safari */
 }

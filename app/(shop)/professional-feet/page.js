@@ -1,10 +1,10 @@
-import ShopCardName from '@/shared/shop/ShopCardName';
-import ShopItem from '@/shared/shop/ProductItem';
+import ShopCardName from '../../../shared/shop/ShopCardName';
+import ShopItem from '../../../shared/shop/ProductItem';
 import React from 'react';
-import { products } from '@/shared/shop/ProductList';
-// data/products.ts
 
 
+
+import { products } from '../../../data/products'
 
 function page() {
   return (

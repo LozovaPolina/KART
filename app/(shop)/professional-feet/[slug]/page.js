@@ -1,21 +1,21 @@
 "use client"
-import HintNavigation from '@/shared/hint-navigation/HintNavigation';
-import { products } from '@/shared/shop/ProductList';
-import { formatCurrencyRightLocalized } from '@/util/currencyFormater';
+import HintNavigation from '../../../../shared/hint-navigation/HintNavigation';
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import productImage from '../../../../public/assets/image/product.png'
-import Swiper from '@/shared/swiper/Swiper';
-import ShopItem from '@/shared/shop/ProductItem';
+import Swiper from '../../../../shared/swiper/Swiper';
+import ShopItem from '../../../../shared/shop/ProductItem';
+import { useFormattedPrice } from '../../../../hooks/useFormattedPrice';
 
+import { products } from '../../../../data/products'
 
 export default function Page({ params }) {
   const { slug } = React.use(params);
-  console.log(slug)
   const [tab, setTab] = useState('usage');
   const product = products.find((p) => p.slug === slug);
 
+  const formattedDiscountedPrice = useFormattedPrice(product?.discountedPrice);
   if (!product) {
     return <div>Product not found</div>;
   }
@@ -39,8 +39,8 @@ export default function Page({ params }) {
 
         <div className="flex flex-col gap-4  text-[#404040]">
           <div className=" flex gap-4 items-center">
-            <div className="flex flex-col">
-              <h2 className="text-[20px] lg:text-xl font-semibold">{product.fullName}</h2>
+            <div className="flex flex-col justify-center">
+              <h2 className="text-[20px] lg:text-xl ">{product.fullName}</h2>
               <h3 className="text-lg text-gray-500 mb-4">{product.title}</h3>
             </div>
 
@@ -60,7 +60,7 @@ export default function Page({ params }) {
           <div className="w-full bg-[#EDEDED] h-[1px]"></div>
 
           <div className="flex justify-between items-center">
-            <div className="text-[#A0C287] text-[16px] lg:text-xl font-semibold mb-4">{formatCurrencyRightLocalized(product.price)} </div>
+            <div className="text-[#A0C287] text-[16px] lg:text-xl  mb-4">{formattedDiscountedPrice} </div>
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center  rounded px-2 py-1">
                 <button >
@@ -71,7 +71,7 @@ export default function Page({ params }) {
                   <Plus className="w-8 h-8 p-2 cursor-pointer text-[#848484]" />
                 </button>
               </div>
-              <button className="flex items-center gap-2 shadow w-[70px] cursor-pointer text-[15px] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
+              <button className="flex items-center gap-2 shadow w-[86px] md:w-[8.125rem] cursor-pointer text-[15px] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
                 <ShoppingCart className="w-4 h-4" />
                 В корзину
               </button>
@@ -81,13 +81,13 @@ export default function Page({ params }) {
 
           <div className="border-b flex gap-4 border-gray-200 mb-4 ">
             <button
-              className={` py-2 text-sm ${tab === 'usage' ? 'border-b-2 text-[#404040] border-[#404040] font-semibold' : 'text-gray-500'}`}
+              className={` py-2 text-sm ${tab === 'usage' ? 'border-b-2 text-[#404040] border-[#404040] ' : 'text-gray-500'}`}
               onClick={() => setTab('usage')}
             >
               Способ применения
             </button>
             <button
-              className={` py-2 text-sm ${tab === 'ingredients' ? 'border-b-2 text-[#404040] border-[#404040] font-semibold' : 'text-gray-500'}`}
+              className={` py-2 text-sm ${tab === 'ingredients' ? 'border-b-2 text-[#404040] border-[#404040] ' : 'text-gray-500'}`}
               onClick={() => setTab('ingredients')}
             >
               Список ингредиентов
