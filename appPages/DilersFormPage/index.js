@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 
-import Field from "../../shared/ui/field/Feild";
+import Field from "../../shared/ui/Field/Field";
 import Button from "../../shared/ui/button/Button";
 import { useInput } from "../../hooks/useInput";
-import { MultiSelect } from "../../shared/ui/multi-select/MultiSelect";
-import RadioGroup from "../../shared/ui/radio-group/RadioGroup";
-import TextAreaField from "../../shared/ui/field/TextAreaField";
+import { MultiSelect } from "../../shared/ui/MultiSelect/MultiSelect";
+import RadioGroup from "../../shared/ui/RadioGroup/RadioGroup";
 import Title from "../../shared/ui/title/Title";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
-import FormSection from "../../shared/ui/form-section/FormSection";
+import FormSection from "../../shared/ui/FormSection/FormSection";
+import TextAreaField from "../../shared/ui/Field/TextAreaField";
 const mainActivityArray = ["Маркетинг", "Разработка", "Дизайн", "Продажи"];
 const promotionChannelsArray = [
   "Instagram",

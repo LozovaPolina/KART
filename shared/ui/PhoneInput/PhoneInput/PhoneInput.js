@@ -25,7 +25,7 @@ export default function PhoneInput({ phoneNumber, handlePhoneNumberChange, handl
       >
         {countryCodes.map((c) => (
           <option key={c.code} value={c.code} className='w-[115px]  flex gap-2' >
-            <span>{c.label} </span>  <span>{c.code} </span>
+            {c.label}  {c.code}
           </option>
         ))}
       </select>

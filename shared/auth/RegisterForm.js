@@ -9,8 +9,8 @@ import Text from '../ui/text/Text';
 import Button from '../ui/button/Button';
 import Link from 'next/link';
 import { useInput } from '../../hooks/useInput';
-import Field from '../ui/field/Feild';
-import RadioGroup from '../ui/radio-group/RadioGroup';
+import Field from '../ui/Field/Field';
+import RadioGroup from '../ui/RadioGroup/RadioGroup';
 // import { registerUserAction } from '@/redux/slices/auth/authSlice';
 
 

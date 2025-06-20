@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
 
-import { flagsData, dealersData } from "../../data/flagsDilers"
+import { dealersData } from "../../data/flagsDilers"
 
 
 const FlagItem = ({ imageSrc, countryName, onClick }) => {
