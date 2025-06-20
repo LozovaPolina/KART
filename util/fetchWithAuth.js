@@ -33,9 +33,11 @@ const fetchWithAuth = async (url, options = {}, updateTokens, forceLogout) => {
     credentials: 'include', // VERY IMPORTANT: send cookies automatically
   };
 
+  // First attempt with current cookies
   let response = await fetch(url, fetchOptions);
   if (response.status !== 401) return response;
 
+  // If 401 and already refreshing, wait for the new token and retry
   if (isRefreshing) {
     return new Promise((resolve, reject) => {
       subscribeTokenRefresh(async () => {
