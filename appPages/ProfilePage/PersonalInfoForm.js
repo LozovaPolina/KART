@@ -1,54 +1,56 @@
-"use client"
+'use client';
 
-
-import { useInput } from "../../hooks/useInput";
-import Button from "../../shared/ui/button/Button";
-import Field from "../../shared/ui/Field/Field";
-import { useState } from "react";
+import { useInput } from '../../hooks/useInput';
+import Button from '../../shared/ui/button/Button';
+import Field from '../../shared/ui/Field/Field';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function PersonalInfoForm() {
-  const [error, setError] = useState()
+  const t = useTranslations('PersonalInfoForm');
+  const [error, setError] = useState();
+
   const {
     value: nameValue,
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError,
-  } = useInput("", (v) => v.trim().length > 1);
+  } = useInput('', (v) => v.trim().length > 1);
 
   const {
     value: surnameValue,
     handleInputChange: handleSurnameChange,
     handleInputBlur: handleSurnameBlur,
     hasError: surnameError,
-  } = useInput("", (v) => v.trim().length > 1);
+  } = useInput('', (v) => v.trim().length > 1);
 
   const {
     value: nicknameValue,
     handleInputChange: handleNicknameChange,
     handleInputBlur: handleNicknameBlur,
     hasError: nicknameError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
 
   const {
     value: phoneValue,
     handleInputChange: handlePhoneChange,
     handleInputBlur: handlePhoneBlur,
     hasError: phoneError,
-  } = useInput("", (v) => /^\d{10,}$/.test(v.replace(/\D/g, "")));
+  } = useInput('', (v) => /^\d{10,}$/.test(v.replace(/\D/g, '')));
 
   const {
     value: emailValue,
     handleInputChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     hasError: emailError,
-  } = useInput("", (v) => /\S+@\S+\.\S+/.test(v));
+  } = useInput('', (v) => /\S+@\S+\.\S+/.test(v));
 
   const {
     value: passwordValue,
     handleInputChange: handlePasswordChange,
     handleInputBlur: handlePasswordBlur,
     hasError: passwordError,
-  } = useInput("", (v) => v.length >= 5);
+  } = useInput('', (v) => v.length >= 5);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,11 +63,10 @@ export default function PersonalInfoForm() {
       passwordError || !passwordValue.trim() ||
       phoneError || !phoneValue.trim()
     ) {
-      setError("Пожалуйста, заполните все поля корректно.");
+      setError(t('error'));
       return;
     }
 
-    // Отправка формы
     console.log({
       name: nameValue,
       surname: surnameValue,
@@ -77,15 +78,12 @@ export default function PersonalInfoForm() {
   };
 
   return (
-    <form className="space-y-4   " onSubmit={handleSubmit}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+        <h3 className="text-lg font-semibold col-span-2">{t('title')}</h3>
 
-
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  ">
-        <h3 className="text-lg font-semibold col-span-2">Контактные данные</h3>
-        {/* Фамилия */}
         <Field
-          label="Фамилия"
+          label={t('surname')}
           value={surnameValue}
           onChange={handleSurnameChange}
           onBlur={handleSurnameBlur}
@@ -94,9 +92,8 @@ export default function PersonalInfoForm() {
           className="col-span-2 md:col-span-1"
         />
 
-        {/* Имя */}
         <Field
-          label="Имя"
+          label={t('name')}
           value={nameValue}
           onChange={handleNameChange}
           onBlur={handleNameBlur}
@@ -105,9 +102,8 @@ export default function PersonalInfoForm() {
           className="col-span-2 md:col-span-1"
         />
 
-        {/* Никнейм */}
         <Field
-          label="Отображаемое имя*"
+          label={t('nickname')}
           value={nicknameValue}
           onChange={handleNicknameChange}
           onBlur={handleNicknameBlur}
@@ -116,9 +112,8 @@ export default function PersonalInfoForm() {
           className="col-span-2"
         />
 
-        {/* Телефон */}
         <Field
-          label="Телефон"
+          label={t('phone')}
           value={phoneValue}
           onChange={handlePhoneChange}
           onBlur={handlePhoneBlur}
@@ -128,9 +123,8 @@ export default function PersonalInfoForm() {
           placeholder="+905555555555"
         />
 
-        {/* Email */}
         <Field
-          label="Email"
+          label={t('email')}
           value={emailValue}
           onChange={handleEmailChange}
           onBlur={handleEmailBlur}
@@ -139,9 +133,8 @@ export default function PersonalInfoForm() {
           className="col-span-2"
         />
 
-        {/* Пароль */}
         <Field
-          label="Пароль"
+          label={t('password')}
           type="password"
           value={passwordValue}
           onChange={handlePasswordChange}
@@ -152,16 +145,12 @@ export default function PersonalInfoForm() {
         />
       </div>
 
-
-
       {error && <p className="text-red-500">{error}</p>}
-      <Button
-        type="submit"
-        className="bg-[#49BA4A] "
-      >
-        Сохранить
+      <Button type="submit" className="bg-[#49BA4A]">
+        {t('save')}
       </Button>
     </form>
   );
 }
+
 

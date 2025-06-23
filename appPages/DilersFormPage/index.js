@@ -11,25 +11,35 @@ import TextAreaField from "../../shared/ui/Field/TextAreaField";
 import Title from "../../shared/ui/title/Title";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import FormSection from "../../shared/ui/FormSection/FormSection";
-const mainActivityArray = ["Маркетинг", "Разработка", "Дизайн", "Продажи"];
-const promotionChannelsArray = [
-  "Instagram",
-  "TikTok",
-  "Telegram",
-  "Сайт",
-  "Контекстная реклама",
-  "Оффлайн мероприятия",
-  "Рекомендации / Сарафанное радио",
-];
+import { useTranslations } from "next-intl";
 
-const distributionMethodsArray = [
-  "Продажа в оффлайн-точке",
-  "Через маркетплейсы",
-  "Через соцсети",
-  "Оптовая торговля",
-  "Выставки / мероприятия",
-];
+
 export default function DilersFormPage() {
+  const t = useTranslations("DilersFormPage");
+  const mainActivityArray = [
+    t("mainActivity.marketing"),
+    t("mainActivity.development"),
+    t("mainActivity.design"),
+    t("mainActivity.sales"),
+  ];
+
+  const promotionChannelsArray = [
+    t("promotionChannels.instagram"),
+    t("promotionChannels.tiktok"),
+    t("promotionChannels.telegram"),
+    t("promotionChannels.website"),
+    t("promotionChannels.contextAds"),
+    t("promotionChannels.offlineEvents"),
+    t("promotionChannels.recommendations"),
+  ];
+
+  const distributionMethodsArray = [
+    t("distributionMethods.offlineSales"),
+    t("distributionMethods.marketplaces"),
+    t("distributionMethods.socialNetworks"),
+    t("distributionMethods.wholesale"),
+    t("distributionMethods.events"),
+  ];
   const [error, setError] = useState(null);
   const [socials, setSocials] = useState([]);
   const [currentInput, setCurrentInput] = useState("");
@@ -183,7 +193,7 @@ export default function DilersFormPage() {
     const hasRadioErrors = radioRequired.some((val) => val.trim() === "");
 
     if (hasTextErrors || hasRadioErrors || required.some((val) => !val.trim())) {
-      setError("Пожалуйста, заполните все обязательные поля правильно.");
+      setError(t("errors.fillAllRequired"));
       return;
     }
 
@@ -248,26 +258,25 @@ export default function DilersFormPage() {
 
 
   return (
-
     <section className="flex flex-col gap-6">
       <div className='flex justify-center'>
         <HintNavigation
           links={[
-            { label: "Главная", href: "/" },
-            { label: "Форма дилерства", href: "/dilers-form" },
+            { label: t("navigation.home"), href: "/" },
+            { label: t("navigation.form"), href: "/dilers-form" },
           ]}
         />
       </div>
-      <Title color="green" className="text-center">Форма для запроса статуса Дилера</Title>
+      <Title color="green" className="text-center">{t("title")}</Title>
       <form
         className="flex flex-col gap-4 max-w-[830px] mx-auto w-full"
         onSubmit={handleSubmit}
       >
         <div className="bg-[#F5F5F5] rounded-xl p-6 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-          <Title className="mb-4">Общая информация</Title>
+          <Title className="mb-4">{t("sections.generalInfo")}</Title>
           <div className="flex flex-wrap gap-4 sm:gap-6">
             <Field
-              label="Название компании / ИП:"
+              label={t("fields.companyName")}
               value={nameCompanyValue}
               onChange={handleNameCompanyChange}
               onBlur={handleNameCompanyBlur}
@@ -275,9 +284,8 @@ export default function DilersFormPage() {
               name="company"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Адрес"
+              label={t("fields.address")}
               value={adressValue}
               onChange={handleAdressChange}
               onBlur={handleAdressBlur}
@@ -285,9 +293,8 @@ export default function DilersFormPage() {
               name="adress"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Контактное лицо (Имя и фамилия):"
+              label={t("fields.contactPerson")}
               value={contactNameValue}
               onChange={handleContactNameChange}
               onBlur={handleContactNameBlur}
@@ -295,9 +302,8 @@ export default function DilersFormPage() {
               name="contact"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Должность:"
+              label={t("fields.jobTitle")}
               value={jobTitleValue}
               onChange={jobTitleChange}
               onBlur={jobTitleBlur}
@@ -305,9 +311,8 @@ export default function DilersFormPage() {
               name="jobTitle"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Телефон"
+              label={t("fields.phone")}
               value={phoneValue}
               onChange={handlePhoneChange}
               onBlur={handlePhoneBlur}
@@ -315,9 +320,8 @@ export default function DilersFormPage() {
               name="phone"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Email"
+              label={t("fields.email")}
               value={emailValue}
               onChange={handleEmailChange}
               onBlur={handleEmailBlur}
@@ -325,9 +329,8 @@ export default function DilersFormPage() {
               name="email"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Сайт:"
+              label={t("fields.website")}
               value={websiteValue}
               onChange={handleWebsiteChange}
               onBlur={handleWebsiteBlur}
@@ -335,9 +338,8 @@ export default function DilersFormPage() {
               name="website"
               className="w-full md:w-[48%]"
             />
-
             <Field
-              label="Инстаграм:"
+              label={t("fields.instagram")}
               value={instagramValue}
               onChange={handleInstagramChange}
               onBlur={handleInstagramBlur}
@@ -362,135 +364,148 @@ export default function DilersFormPage() {
               value={currentInput}
               onChange={(e) => setCurrentInput(e.target.value)}
               onBlur={handleAddSocial}
-              placeholder="+ Добавить Соцсети"
+              placeholder={t("fields.addSocialPlaceholder")}
               className="text-sm text-[#4A4A4A] px-3 py-2 rounded outline-none w-full"
             />
           </div>
         </div>
 
-
-
         <FormSection>
-          <Title>Профиль деятельности</Title>
+          <Title>{t("sections.activityProfile")}</Title>
           <RadioGroup
-            label="Сколько лет вы работаете в сфере педикюра / подологии / косметологии?"
+            label={t("fields.experience")}
             name="experience"
-            options={["Менее 1 года", "1–3 года", "3–5 лет", "Более 5 лет"]}
+            options={[
+              t("options.experience.lessThan1"),
+              t("options.experience.from1To3"),
+              t("options.experience.from3To5"),
+              t("options.experience.moreThan5"),
+            ]}
             value={experience}
             onChange={setExperience}
           />
-
-
           <MultiSelect
-            label="Основное направление деятельности:"
+            label={t("fields.mainActivity")}
             options={mainActivityArray}
             selected={mainActivity}
             setSelected={setMainActivity}
           />
           <RadioGroup
-            label="Наличие лицензии (если требуется в вашем регионе):"
+            label={t("fields.license")}
             name="license"
-            options={["Да", "Нет", "В процессе получения"]}
+            options={[
+              t("options.license.yes"),
+              t("options.license.no"),
+              t("options.license.inProcess"),
+            ]}
             value={license}
             onChange={setLicense}
           />
         </FormSection>
 
-
         <FormSection>
-          <Title>Образовательная деятельность</Title>
+          <Title>{t("sections.education")}</Title>
           <RadioGroup
-            label="Проводите ли вы обучение мастеров?"
+            label={t("fields.training")}
             name="training"
-            options={["Да", "Нет", "Планируем начать"]}
+            options={[
+              t("options.training.yes"),
+              t("options.training.no"),
+              t("options.training.planning"),
+            ]}
             value={training}
             onChange={setTraining}
           />
-
-
           <RadioGroup
-            label="Наличие собственного учебного класса / центра:"
+            label={t("fields.classroom")}
             name="classroom"
-            options={["Да", "Нет"]}
+            options={[t("options.classroom.yes"), t("options.classroom.no")]}
             value={classroom}
             onChange={setClassroom}
           />
-
           <RadioGroup
-            label="Количество посадочных мест в учебном зале:"
+            label={t("fields.seats")}
             name="seats"
-            options={["Нет", "Более 3", "Более 10"]}
+            options={[
+              t("options.seats.none"),
+              t("options.seats.moreThan3"),
+              t("options.seats.moreThan10"),
+            ]}
             value={seats}
             onChange={setSeats}
           />
-
           <RadioGroup
-            label="Есть ли у вас сертифицированные преподаватели?"
+            label={t("fields.teachers")}
             name="teachers"
-            options={["Да", "Нет", "Готовы пройти обучение у KART"]}
+            options={[
+              t("options.teachers.yes"),
+              t("options.teachers.no"),
+              t("options.teachers.readyToTrain"),
+            ]}
             value={teachers}
             onChange={setTeachers}
           />
         </FormSection>
+
         <FormSection>
-          <Title>Коммерческая инфраструктура</Title>
+          <Title>{t("sections.infrastructure")}</Title>
           <RadioGroup
-            label="Наличие физической торговой точки / офиса / шоурума:"
+            label={t("fields.physicalPresence")}
             name="physicalPresence"
-            options={["Да", "Нет"]}
+            options={[t("options.yes"), t("options.no")]}
             value={physicalPresence}
             onChange={setPhysicalPresence}
           />
-
           <MultiSelect
-            label="Способ распространения продукции:"
-            options={distributionMethodsArray}
+            label={t("fields.distributionMethods")}
+            options={distributionMethodsArray
+
+            }
             selected={distributionMethods}
             setSelected={setDistributionMethods}
           />
-
           <RadioGroup
-            label="Имеете ли вы возможность хранить и транспортировать продукцию?"
+            label={t("fields.storageAndDelivery")}
             name="storageAndDelivery"
-            options={["Да", "Нет"]}
+            options={[t("options.yes"), t("options.no")]}
             value={storageAndDelivery}
             onChange={setStorageAndDelivery}
           />
-
-
-
         </FormSection>
 
         <FormSection>
-          <Title>Продвижение и маркетинг</Title>
+          <Title>{t("sections.marketing")}</Title>
           <MultiSelect
-            label="Какие каналы продвижения вы используете?"
+            label={t("fields.promotionChannels")}
             options={promotionChannelsArray}
             selected={promotionChannels}
             setSelected={setPromotionChannels}
           />
           <RadioGroup
-            label="Готовы ли вы использовать фирменные маркетинговые материалы KART и следовать стандартам бренда?"
+            label={t("fields.brandAgreement")}
             name="brandAgreement"
-            options={["Да", "Нет"]}
+            options={[t("options.yes"), t("options.no")]}
             value={brandAgreement}
             onChange={setBrandAgreement}
           />
         </FormSection>
 
         <FormSection>
-          <Title>Регион и масштабы деятельности</Title>
+          <Title>{t("sections.regionAndScale")}</Title>
           <RadioGroup
-            label="Количество активных клиентов в вашей базе (примерно):"
+            label={t("fields.clientBaseSize")}
             name="clientBaseSize"
-            options={["До 50", "50-100", "Более 100", "Более 200"]}
+            options={[
+              t("options.clientBaseSize.upTo50"),
+              t("options.clientBaseSize.between50And100"),
+              t("options.clientBaseSize.moreThan100"),
+              t("options.clientBaseSize.moreThan200"),
+            ]}
             value={clientBaseSize}
             onChange={setClientBaseSize}
           />
-
-
           <Field
-            label="Регион, в котором вы планируете представлять продукцию KART:"
+            label={t("fields.region")}
             value={regionValue}
             onChange={handleRegionChange}
             onBlur={handleRegionBlur}
@@ -499,28 +514,27 @@ export default function DilersFormPage() {
             className="w-full"
           />
         </FormSection>
+
         <FormSection>
-          <Title>Дополнительная информация</Title>
+          <Title>{t("sections.additionalInfo")}</Title>
           <TextAreaField
-            label="Какие бренды вы представляете в настоящее время (если есть)?"
+            label={t("fields.brandsRepresented")}
             value={brandsValue}
             onChange={handleBrandsChange}
             onBlur={handleBrandsBlur}
             error={brandsError}
             name="brands"
           />
-
           <TextAreaField
-            label="Почему вы заинтересованы в сотрудничестве с KART PODOLOGY?"
+            label={t("fields.cooperationInterest")}
             value={interestValue}
             onChange={handleInterestChange}
             onBlur={handleInterestBlur}
             error={interestError}
             name="interest"
           />
-
           <TextAreaField
-            label="Дополнительные комментарии или предложения:"
+            label={t("fields.additionalComments")}
             value={commentsValue}
             onChange={handleCommentsChange}
             onBlur={handleCommentsBlur}
@@ -535,11 +549,10 @@ export default function DilersFormPage() {
           type="submit"
           className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
         >
-          Сохранить
+          {t("buttons.save")}
         </Button>
       </form>
     </section>
-
   );
 }
 

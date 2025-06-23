@@ -50,5 +50,5 @@ export const selectProducts = (state) => state.cart.items;
 export const selectCartQuantity = (state) =>
   state.cart.cartItems.reduce((total, item) => total + item.quantity, 0);
 export const selectIsSettingsOpen = (state) => state.cart.isSettingsOpen;
-export const selectProductsByTheme = (state, theme) => state.cart.items.filter(item => item.category === theme)
+
 export default cartSlice.reducer;

@@ -1,46 +1,47 @@
 'use client';
 
 import { useState } from 'react';
-import { LogOut, User, FileDown, MapPin, CreditCard, Clock, DownloadIcon, ChevronUp, ChevronDown } from 'lucide-react';
+import { LogOut, User, MapPin, Clock, DownloadIcon, ChevronUp } from 'lucide-react';
 import HintNavigation from '../../shared/hint-navigation/HintNavigation';
-import React from 'react';
 import PersonalInfoForm from './PersonalInfoForm';
 import OrderList from './OrderList';
 import DeliverForm from './DeliverForm';
+import { useTranslations } from 'next-intl';
 
-const tabs = [
-  { key: 'personal', label: 'Личные данные', icon: <User size={18} /> },
-  { key: 'orders', label: 'История заказов', icon: <Clock size={18} /> },
-  {
-    key: 'downloads',
-    label: 'Материалы для скачивания',
-    icon: <DownloadIcon />,
-    children: [
-      { key: 'videos', label: 'Видео' },
-      { key: 'materials', label: 'Полезные материалы' },
-      { key: 'posters', label: 'Постеры' },
-    ],
-  },
-  { key: 'shipping', label: 'Адрес доставки', icon: <MapPin size={18} /> },
-];
+const ProfilePage = () => {
+  const t = useTranslations('ProfilePage');
 
-export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('personal');
   const [openDropdown, setOpenDropdown] = useState(null);
 
+  const tabs = [
+    { key: 'personal', label: t('tabs.personal'), icon: <User size={18} /> },
+    { key: 'orders', label: t('tabs.orders'), icon: <Clock size={18} /> },
+    {
+      key: 'downloads',
+      label: t('tabs.downloads.title'),
+      icon: <DownloadIcon />,
+      children: [
+        { key: 'videos', label: t('tabs.downloads.videos') },
+        { key: 'materials', label: t('tabs.downloads.materials') },
+        { key: 'posters', label: t('tabs.downloads.posters') },
+      ],
+    },
+    { key: 'shipping', label: t('tabs.shipping'), icon: <MapPin size={18} /> },
+  ];
 
   return (
-    <div className='flex flex-col items-center gap-8 w-ful'>
+    <div className="flex flex-col items-center gap-8 w-full">
       <HintNavigation
         links={[
-          { label: "Главная", href: "/" },
-          { label: "Профиль", href: "/profile" },
+          { label: t('breadcrumb.home'), href: '/' },
+          { label: t('breadcrumb.profile'), href: '/profile' },
         ]}
       />
-      <div className="flex flex-wrap gap-8   rounded-xl  bg-[#F5F5F5] w-full">
 
-        <aside className="w-full md:w-64  shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  bg-[#F5F5F5] rounded-xl py-6  flex flex-col gap-1">
-          <h2 className="text-lg font-semibold mb-2 text-[#1e1e1e] px-6">ПРОФИЛЬ</h2>
+      <div className="flex flex-wrap gap-8 rounded-xl bg-[#F5F5F5] w-full">
+        <aside className="w-full md:w-64 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] bg-[#F5F5F5] rounded-xl py-6 flex flex-col gap-1">
+          <h2 className="text-lg font-semibold mb-2 text-[#1e1e1e] px-6">{t('title')}</h2>
 
           <ul className="space-y-2 flex flex-col gap-1">
             {tabs.map((tab) => {
@@ -48,7 +49,7 @@ export default function ProfilePage() {
               const isActive = activeTab === tab.key;
 
               return (
-                <li key={tab.key} className='m-0!'>
+                <li key={tab.key}>
                   <button
                     onClick={() => {
                       if (tab.children) {
@@ -58,13 +59,13 @@ export default function ProfilePage() {
                       }
                     }}
                     className={`w-full flex items-center justify-between px-6 py-1 text-left transition 
-                      ${isActive ? 'bg-[#E7EBE5] text-black' : 'text-[#4A4A4A] hover:bg-[#E7EBE5]'}`}
+                    ${isActive ? 'bg-[#E7EBE5] text-black' : 'text-[#4A4A4A] hover:bg-[#E7EBE5]'}`}
                   >
                     <span className="flex items-center gap-3">
                       {tab.icon}
                       {tab.label}
                     </span>
-                    {tab.children && <span className="text-sm">{isOpen ? <ChevronUp /> : <div className='w-6'></div>}</span>}
+                    {tab.children && <span className="text-sm">{isOpen ? <ChevronUp /> : <div className="w-6" />}</span>}
                   </button>
 
                   {tab.children && isOpen && (
@@ -73,8 +74,9 @@ export default function ProfilePage() {
                         <li key={child.key}>
                           <button
                             onClick={() => setActiveTab(child.key)}
-                            className={`w-full pl-12  text-left px-6  py-1  text-sm transition
-                           ${activeTab === child.key ? 'bg-[#E7EBE5] text-black ' : 'text-[#4A4A4A] hover:bg-[#E7EBE5]'}`}>
+                            className={`w-full pl-12 text-left px-6 py-1 text-sm transition 
+                            ${activeTab === child.key ? 'bg-[#E7EBE5] text-black' : 'text-[#4A4A4A] hover:bg-[#E7EBE5]'}`}
+                          >
                             {child.label}
                           </button>
                         </li>
@@ -88,25 +90,22 @@ export default function ProfilePage() {
 
           <button className="flex items-center gap-2 px-6 py-1 mt-auto text-sm text-[#49BA4A] hover:underline">
             <LogOut size={16} />
-            Выйти с аккаунта
+            {t('logout')}
           </button>
         </aside>
 
-
-        {/* Content */}
-        <section className="flex-1    h-fit ">
+        <section className="flex-1 h-fit">
           {activeTab === 'personal' && <PersonalInfoForm />}
-          {activeTab === 'orders' && <OrderList></OrderList>}
-          {activeTab === 'videos' && <div>Видео</div>}
-          {activeTab === 'materials' && <div>Полезные материалы</div>}
-          {activeTab === 'posters' && <div>Постеры</div>}
+          {activeTab === 'orders' && <OrderList />}
+          {activeTab === 'videos' && <div>{t('downloads.videos')}</div>}
+          {activeTab === 'materials' && <div>{t('downloads.materials')}</div>}
+          {activeTab === 'posters' && <div>{t('downloads.posters')}</div>}
           {activeTab === 'shipping' && <DeliverForm />}
         </section>
-
       </div>
     </div>
-
   );
-}
+};
 
+export default ProfilePage;
 

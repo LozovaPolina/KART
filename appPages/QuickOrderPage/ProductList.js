@@ -1,8 +1,4 @@
-
 import ProductSection from "./ProductSection";
-
-
-
 import { categories } from "../../data/categories"
 
 export default function ProductThemeList() {

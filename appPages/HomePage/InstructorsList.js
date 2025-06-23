@@ -8,7 +8,7 @@ import linkImg from "../../public/assets/svg/link.svg"
 import Swiper from "../../shared/swiper/Swiper";
 import Button from "../../shared/ui/button/Button";
 import Link from "next/link";
-
+import { useTranslations } from 'next-intl';
 function InstructorsItem() {
 	return (
 		<div className="max-w-[270px] flex flex-col gap-1 shadow-xl p-2">
@@ -24,27 +24,47 @@ function InstructorsItem() {
 		</div>
 	)
 }
+
+
+
 function InstructorsList() {
+	const t = useTranslations("HomePage");
+
 	return (
 		<section className="flex flex-col gap-6">
 			<div className="flex flex-wrap gap-4 justify-between items-center sm:flex-nowrap">
-				<Title>НАШИ ИНСТРУКТОРЫ</Title>
-				<Text className="  md:max-w-96" >Ознакомьтесь с условиями оформления заказов, графиком работы и возможностями консультаций с нашими инструкторами.</Text>
+				<Title>{t('instructors.title')}</Title>
+				<Text className="md:max-w-96">
+					{t('instructors.description')}
+				</Text>
 			</div>
-			<Swiper widthPercent={"270px"} autoScroll={false} controlBlock={false} itemsLength={2} items={[<InstructorsItem key={1} />, <InstructorsItem key={2} />, <InstructorsItem key={3} />, <InstructorsItem key={4} />, <InstructorsItem key={5} />, <InstructorsItem key={5} />,]} />
+			<Swiper
+				widthPercent={"270px"}
+				autoScroll={false}
+				controlBlock={false}
+				itemsLength={2}
+				items={[
+					<InstructorsItem key={1} />,
+					<InstructorsItem key={2} />,
+					<InstructorsItem key={3} />,
+					<InstructorsItem key={4} />,
+					<InstructorsItem key={5} />,
+					<InstructorsItem key={6} />,
+				]}
+			/>
 			<div className="flex gap-2">
-				<Link href={'/instructors'}>
-					<Button>Смотреть всех </Button>
+				<Link href="/instructors" passHref>
+					<Button>{t('instructors.viewAll')}</Button>
 				</Link>
 
 				<button className="flex gap-1 text-[#43B549] items-center hover:opacity-50 cursor-pointer">
-					<Image src={linkImg} alt="link" />
-					<p className="text-[15px]">Материалы для скачивания</p>
+					<Image src={linkImg} alt={t('instructors.downloadMaterialsAlt')} />
+					<p className="text-[15px]">{t('instructors.downloadMaterials')}</p>
 				</button>
 			</div>
-
 		</section>
 	);
 }
+
 
 export default InstructorsList;

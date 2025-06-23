@@ -72,6 +72,7 @@ export default function ContactPage() {
               ></textarea>
             </div>
             <ButtonWithCircleLink
+              type="submit"
               buttonClassName='w-[90%]'
               buttonText={"Отправить"}
             />

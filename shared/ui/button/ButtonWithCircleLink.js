@@ -1,24 +1,44 @@
-import React from 'react';
+import Link from 'next/link';
 import CircleLink from './CircleLink';
 import Button from './Button';
-import Link from 'next/link';
 
 export function ButtonWithCircleLink({
   buttonText = 'Детальнее',
-  href = '#',
-  circleBg = 'green',
+  href,
+  buttonOnClick,
   buttonClassName = '',
-  onClick,
-  circleClassName = '',
   buttonProps = {},
-  arrowColor,// extra props to pass to button
+  circleBg = 'green',
+  circleClassName = '',
+  circleHref,
+  arrowColor,
 }) {
-  return (
-    <div className="flex gap-4 items-center">
-      <Button className={buttonClassName}  {...buttonProps} onClick={onClick}>
+  const content = (
+    <>
+      <Button
+        className={buttonClassName}
+        onClick={buttonOnClick}
+        {...buttonProps}
+      >
         {buttonText}
       </Button>
-      <CircleLink arrowColor={arrowColor} href={href} bgColor={circleBg} className={circleClassName} />
-    </div>
+      <CircleLink
+        arrowColor={arrowColor}
+        bgColor={circleBg}
+        className={circleClassName}
+        href={href ? undefined : circleHref}
+      />
+
+    </>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="flex gap-4 items-center">
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className="flex gap-4 items-center">{content}</div>;
 }

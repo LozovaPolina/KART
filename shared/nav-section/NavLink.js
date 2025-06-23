@@ -6,9 +6,12 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 function NavLink({ label, href, styles, ...props }) {
-
   const pathname = usePathname();
-  const isActive = pathname === href;
+
+
+  const pathnameWithoutLang = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+
+  const isActive = pathnameWithoutLang === href || pathnameWithoutLang.startsWith(href + '/');
   return (
     <Link
       href={href}

@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "redux/reducer/cartSlice.js", "redux/store/store.js"  ],
+, "redux/reducer/cartSlice.js", "redux/store/store.js", "i18n/routing.js", "i18n/request.js", "i18n/navigation.js", "middleware.js"  ],
   "exclude": [
     "node_modules"
   ]

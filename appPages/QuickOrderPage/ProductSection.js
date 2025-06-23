@@ -1,11 +1,11 @@
 "use client"
 import ProductItem from "./ProductItem"
 import Title from "../../shared/ui/title/Title";
-import { selectProductsByTheme } from "../../redux/reducer/cartSlice";
+import { selectProducts } from "../../redux/reducer/cartSlice";
 import { useSelector } from "react-redux";
 export default function ProductSection({ theme }) {
 
-  const products = useSelector((state) => selectProductsByTheme(state, theme))
+  const products = useSelector(selectProducts).filter(item => item.category === theme)
 
   return (
     <>
@@ -18,9 +18,6 @@ export default function ProductSection({ theme }) {
           <ProductItem key={product.name} product={product} />
         ))}
       </div>
-
     </>
-
-
   );
 }

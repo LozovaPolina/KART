@@ -1,6 +1,9 @@
+
+
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../redux/reducer/cartSlice";
 import CombinedOrders from './CombinedOrders'
+import { useTranslations } from "next-intl";
 const orders = [
   {
     date: "13.03.2025",
@@ -48,23 +51,24 @@ const orders = [
 ];
 
 export default function OrderList() {
+  const t = useTranslations('OrderList');
   const cartItems = useSelector(selectCartItems);
 
   const combinedOrders = [
     {
       date: new Date().toLocaleDateString("ru-RU"),
-      status: "Ожидает оплаты",
-      orderNumber: "Корзина",
+      status: t('status.pending'),
+      orderNumber: t('basket'),
       total: cartItems?.reduce((acc, p) => acc + p.price * p.quantity, 0) || 0,
       items: cartItems,
     },
-    ...orders,
+    ...orders
   ];
+
   return (
     <div className="space-y-6 h-[503px] hide-scrollbar">
       {combinedOrders.map((orderGroup) => (
         <CombinedOrders key={orderGroup.date} orderGroup={orderGroup} />
-
       ))}
     </div>
   );
