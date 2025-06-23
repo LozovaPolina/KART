@@ -1,9 +1,7 @@
 "use client"
-import { useFormattedPrice } from '../../hooks/useFormattedPrice';
-import { selectCartItems, deleteFromCart, addToCart, removeFromCart } from '../../redux/reducer/cartSlice';
-import { Minus, Plus, X } from 'lucide-react';
+import { selectCartItems, } from '../../redux/reducer/cartSlice';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProductItem from './ProductItem'
 function ProductList() {
   const cartItems = useSelector(selectCartItems) || [];
