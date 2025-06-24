@@ -1,26 +1,23 @@
 "use client"
 
 import React, { useState } from 'react';
-import TextAreaField from '../../shared/ui/field/TextAreaField';
-import Field from '../../shared/ui/field/Feild';
-// import { MultiSelect } from '@/shared/multi-select/MultiSelect';
-import RadioGroup from '../../shared/ui/radio-group/RadioGroup';
-// import HintNavigation from '@/shared/hint-navigation/HintNavigation';
-// import Title from '../../shared/ui/title/Title';
+import TextAreaField from '../../shared/ui/Field/TextAreaField';
+import Field from '../../shared/ui/Field/Field';
+import RadioGroup from '../../shared/ui/RadioGroup/RadioGroup';
 import { useInput } from '../../hooks/useInput';
-import Button from '../../shared/ui/button/Button';
 import HintNavigation from '../../shared/hint-navigation/HintNavigation';
 import Title from '../../shared/ui/title/Title';
-import Text from '../../shared/ui/text/Text';
-import FormSection from '../../shared/ui/form-section/FormSection';
-import PhoneInput from '../../shared/ui/phone-input/PhoneInput';
+import FormSection from '../../shared/ui/FormSection/FormSection';
+import PhoneInput from '../../shared/ui/PhoneInput/PhoneInput';
+import { useTranslations } from 'next-intl';
+import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 
 
-
-function InstructorsFormPage() {
+export default function InstructorsFormPage() {
+  const t = useTranslations("InstructorsFormPage");
   const [socials, setSocials] = useState([]);
   const [currentInput, setCurrentInput] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const [countryCode, setCountryCode] = useState("+90");
 
@@ -50,7 +47,6 @@ function InstructorsFormPage() {
     hasError: birthDateError,
   } = useInput("", (v) => {
     if (!v.trim()) return false; // required
-    // Simple date format check (YYYY-MM-DD), adjust if needed
     return /^\d{4}-\d{2}-\d{2}$/.test(v);
   });
 
@@ -68,7 +64,6 @@ function InstructorsFormPage() {
     hasError: emailError,
   } = useInput("", (v) => /\S+@\S+\.\S+/.test(v));
 
-
   const {
     value: phoneNumber,
     handleInputChange: handlePhoneNumberChange,
@@ -82,97 +77,126 @@ function InstructorsFormPage() {
     handleInputBlur: handleWebsiteBlur,
     hasError: websiteError,
   } = useInput("", (v) => {
-    if (!v.trim()) return true; // optional field
-    // Simple URL validation (optional)
+    if (!v.trim()) return true;
     return /^https?:\/\/\S+\.\S+/.test(v);
   });
 
   const [isPedicureMaster, setIsPedicureMaster] = useState(null);
   const [hasMedicalEducation, setHasMedicalEducation] = useState(null);
-
-  const [experienceYears, setExperienceYears] = useState(""); // validate in submit
-
+  const [experienceYears, setExperienceYears] = useState("");
   const {
     value: educationDetail,
     handleInputChange: handleEducationDetail,
     handleInputBlur: handleEducationDetailBlur,
     hasError: educationDetailError,
   } = useInput("", (v) => v.trim() !== "");
-
   const {
     value: currentJob,
     handleInputChange: handleCurrentJob,
     handleInputBlur: handleCurrentJobBlur,
     hasError: currentJobError,
   } = useInput("", (v) => v.trim() !== "");
-
   const {
     value: techniques,
     handleInputChange: handleTechniques,
     handleInputBlur: handleTechniquesBlur,
     hasError: techniquesError,
   } = useInput("", (v) => v.trim() !== "");
-
   const [hasTeachingExperience, setHasTeachingExperience] = useState(null);
-
   const {
     value: teachingDetail,
     handleInputChange: handleTeachingDetail,
     handleInputBlur: handleTeachingDetailBlur,
     hasError: teachingDetailError,
   } = useInput("", (v) => {
-    if (hasTeachingExperience === "Нет" || hasTeachingExperience === null) return true; // not required if no experience
+    if (hasTeachingExperience === t("form.hasTeachingExperienceOptions.no") || hasTeachingExperience === null) return true;
     return v.trim().length > 10;
   });
-
   const [hasClassroom, setHasClassroom] = useState(null);
   const [studentsPerMonth, setStudentsPerMonth] = useState("");
-
   const [knowsKART, setKnowsKART] = useState(null);
   const [usesKARTPeriod, setUsesKARTPeriod] = useState("");
-
   const {
     value: strongSides,
     handleInputChange: handleStrongSides,
     handleInputBlur: handleStrongSidesBlur,
     hasError: strongSidesError,
   } = useInput("", (v) => v.trim() !== "");
-
   const {
     value: audienceExp,
     handleInputChange: handleAudienceExp,
     handleInputBlur: handleAudienceExpBlur,
     hasError: audienceExpError,
   } = useInput("", (v) => v.trim() !== "");
-
   const {
     value: promotionPlatforms,
     handleInputChange: handlePromotionPlatforms,
     handleInputBlur: handlePromotionPlatformsBlur,
     hasError: promotionPlatformsError,
   } = useInput("", (v) => v.trim() !== "");
-
   const {
     value: motivation,
     handleInputChange: handleMotivation,
     handleInputBlur: handleMotivationBlur,
     hasError: motivationError,
   } = useInput("", (v) => v.trim().length >= 10);
-
   const [readyToLearn, setReadyToLearn] = useState(null);
-
   const {
     value: comment,
     handleInputChange: handleComment,
     handleInputBlur: handleCommentBlur,
     hasError: commentError,
-  } = useInput("", () => true); // optional field, no validation
+  } = useInput("", () => true);
 
+  const isPedicureMasterOptions = [
+    t("form.isPedicureMasterOptions.master"),
+    t("form.isPedicureMasterOptions.podologist"),
+  ];
+  const hasMedicalEducationOptions = [
+    t("form.hasMedicalEducationOptions.yes"),
+    t("form.hasMedicalEducationOptions.no"),
+  ];
+  const experienceYearsOptions = [
+    t("form.experienceYearsOptions.1-3"),
+    t("form.experienceYearsOptions.4-5"),
+    t("form.experienceYearsOptions.6-10"),
+    t("form.experienceYearsOptions.more"),
+  ];
+  const hasTeachingExperienceOptions = [
+    t("form.hasTeachingExperienceOptions.yes"),
+    t("form.hasTeachingExperienceOptions.no"),
+  ];
+  const hasClassroomOptions = [
+    t("form.hasClassroomOptions.yes"),
+    t("form.hasClassroomOptions.no"),
+    t("form.hasClassroomOptions.rent"),
+  ];
+  const studentsPerMonthOptions = [
+    t("form.studentsPerMonthOptions.1-5"),
+    t("form.studentsPerMonthOptions.6-10"),
+    t("form.studentsPerMonthOptions.11-20"),
+    t("form.studentsPerMonthOptions.more"),
+  ];
+  const knowsKARTOptions = [
+    t("form.knowsKARTOptions.yes"),
+    t("form.knowsKARTOptions.no"),
+    t("form.knowsKARTOptions.partial"),
+  ];
+  const usesKARTPeriodOptions = [
+    t("form.usesKARTPeriodOptions.less1"),
+    t("form.usesKARTPeriodOptions.1-2"),
+    t("form.usesKARTPeriodOptions.3-5"),
+    t("form.usesKARTPeriodOptions.more5"),
+    t("form.usesKARTPeriodOptions.notUsed"),
+  ];
+  const readyToLearnOptions = [
+    t("form.readyToLearnOptions.yes"),
+    t("form.readyToLearnOptions.no"),
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Required text inputs values
     const requiredTextInputs = [
       fullName,
       birthDate,
@@ -189,7 +213,6 @@ function InstructorsFormPage() {
       comment,
     ];
 
-    // Radios/select required values
     const requiredRadios = [
       isPedicureMaster,
       hasMedicalEducation,
@@ -202,11 +225,8 @@ function InstructorsFormPage() {
       readyToLearn,
     ];
 
-    // Check for empty text fields (trimmed)
     const hasEmptyText = requiredTextInputs.some((val) => !val || val.trim() === "");
-
     const hasEmptyRadio = requiredRadios.some((val) => val === null || val === "");
-
 
     const hasTextErrors =
       fullNameError ||
@@ -224,7 +244,7 @@ function InstructorsFormPage() {
       commentError;
 
     if (hasEmptyText || hasEmptyRadio || hasTextErrors) {
-      setError("Пожалуйста, заполните все обязательные поля правильно.");
+      setError(t("form.errorFillAll"));
       return;
     }
 
@@ -260,10 +280,8 @@ function InstructorsFormPage() {
 
     console.log("Заявка на инструктора:", data);
 
-
     setSocials([]);
     setCurrentInput("");
-
     handleFullNameChange({ target: { value: "" } });
     handleBirthDateChange({ target: { value: "" } });
     handleCityChange({ target: { value: "" } });
@@ -279,7 +297,6 @@ function InstructorsFormPage() {
     handlePromotionPlatforms({ target: { value: "" } });
     handleMotivation({ target: { value: "" } });
     handleComment({ target: { value: "" } });
-
     setIsPedicureMaster(null);
     setHasMedicalEducation(null);
     setExperienceYears("");
@@ -291,35 +308,39 @@ function InstructorsFormPage() {
     setReadyToLearn(null);
   };
 
-
   return (
     <section className="flex flex-col gap-6">
-      <div className='flex justify-center'>
+      <div className="flex justify-center">
         <HintNavigation
           links={[
-            { label: "Главная", href: "/" },
-            { label: "Форма дилерства", href: "/dilers-form" },
+            { label: t("navigation.home"), href: "/" },
+            { label: t("navigation.instructors"), href: "/instructors-form" },
           ]}
         />
       </div>
-      <Title color="green" className="text-center">Форма для запроса статуса Дилера</Title>
-      <Text className="text-center text-[#404040]! max-w-[603px] mx-auto" >Уважаемый кандидат! Просим вас внимательно заполнить анкету. Предоставленные данные помогут нам оценить ваш опыт, профессиональные компетенции и возможность представлять бренд KART PODOLOGY в роли инструктора.</Text>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-[830px] mx-auto w-full" >
-
+      <Title color="green" className="text-center">
+        {t("title")}
+      </Title>
+      <p className="text-center text-[#404040]! max-w-[603px] mx-auto">{t("hint")}</p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-[830px] mx-auto w-full">
         <FormSection>
-          <Title >Персональная информация</Title>
+          <Title>{t("form.personalInfo")}</Title>
           <div className="flex flex-wrap gap-4 sm:gap-6">
-            <Field label="Фамилия, имя, отчество" value={fullName} onChange={handleFullNameChange} onBlur={handleFullNameBlur} error={fullNameError} className="w-full md:w-[48%]" />
-            <Field label="Дата рождения" value={birthDate} onChange={handleBirthDateChange} onBlur={handleBirthDateBlur} error={birthDateError} className="w-full md:w-[48%]" />
-            <Field label="Город проживания" value={city} onChange={handleCityChange} onBlur={handleCityBlur} error={cityError} className="w-full md:w-[48%]" />
-            <Field label="E-mail" value={email} onChange={handleEmailChange} onBlur={handleEmailBlur} error={emailError} className="w-full md:w-[48%]" />
-            {/* <div className="w-full h-full"> */}
-
-            <PhoneInput countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumber} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneNumberError} styles={'w-full md:w-[48%]'} />
-
-
-            {/* </div> */}
-            <Field label="Сайт" value={website} onChange={handleWebsiteChange} onBlur={handleWebsiteBlur} error={websiteError} className="w-full md:w-[48%]" />
+            <Field label={t("form.fullName")} value={fullName} onChange={handleFullNameChange} onBlur={handleFullNameBlur} error={fullNameError} className="w-full md:w-[48%]" />
+            <Field label={t("form.birthDate")} value={birthDate} onChange={handleBirthDateChange} onBlur={handleBirthDateBlur} error={birthDateError} className="w-full md:w-[48%]" />
+            <Field label={t("form.city")} value={city} onChange={handleCityChange} onBlur={handleCityBlur} error={cityError} className="w-full md:w-[48%]" />
+            <Field label={t("form.email")} value={email} onChange={handleEmailChange} onBlur={handleEmailBlur} error={emailError} className="w-full md:w-[48%]" />
+            <PhoneInput
+              countryCode={countryCode}
+              setCountryCode={setCountryCode}
+              phoneNumber={phoneNumber}
+              handlePhoneNumberChange={handlePhoneNumberChange}
+              handlePhoneNumberBlur={handlePhoneNumberBlur}
+              phoneNumberError={phoneNumberError}
+              styles={"w-full md:w-[48%]"}
+              label={t("form.phone")}
+            />
+            <Field label={t("form.website")} value={website} onChange={handleWebsiteChange} onBlur={handleWebsiteBlur} error={websiteError} className="w-full md:w-[48%]" />
           </div>
 
           {socials.map((social, index) => (
@@ -327,7 +348,7 @@ function InstructorsFormPage() {
               key={index}
               value={social}
               onChange={(e) => handleChangeSocial(index, e.target.value)}
-              className="w-full border border-[#E2E2E2] rounded  outline-none  p-2 focus:border-[#272727]"
+              className="w-full border border-[#E2E2E2] rounded outline-none p-2 focus:border-[#272727]"
             />
           ))}
           <input
@@ -335,47 +356,57 @@ function InstructorsFormPage() {
             value={currentInput}
             onChange={(e) => setCurrentInput(e.target.value)}
             onBlur={handleAddSocial}
-            placeholder="+ Добавить Соцсети"
-            className="w-full  p-2 rounded outline-none"
+            placeholder={t("form.socialNetworksPlaceholder")}
+            className="w-full p-2 rounded outline-none"
           />
         </FormSection>
+
         <FormSection>
-          <Title >Профессиональный опыт</Title>
-          <RadioGroup label="Вы являетесь:" options={["Мастер педикюра", "Практикующий подолог"]} value={isPedicureMaster} onChange={setIsPedicureMaster} />
-          <Field label="Образование (указать профиль и уровень)" value={educationDetail} onChange={handleEducationDetail} onBlur={handleEducationDetailBlur} error={educationDetailError} />
-          <RadioGroup label="Наличие медицинского образования" options={["Да", "Нет"]} value={hasMedicalEducation} onChange={setHasMedicalEducation} />
-          <RadioGroup label="Стаж работы в сфере педикюра / подологии:" options={["1-3 года", "4-5 лет", "6-10 лет", "Больше 10 лет"]} value={experienceYears} onChange={setExperienceYears} />
-          <Field label="Текущее место работы и должность" value={currentJob} onChange={handleCurrentJob} onBlur={handleCurrentJobBlur} error={currentJobError} />
-          <Field label="Какими техниками и подходами владеете (кратко)" value={techniques} onChange={handleTechniques} onBlur={handleTechniquesBlur} error={techniquesError} />
+          <Title>{t("form.professionalExperience")}</Title>
+          <RadioGroup label={t("form.isPedicureMaster")} options={isPedicureMasterOptions} value={isPedicureMaster} onChange={setIsPedicureMaster} />
+          <Field label={t("form.educationDetail")} value={educationDetail} onChange={handleEducationDetail} onBlur={handleEducationDetailBlur} error={educationDetailError} />
+          <RadioGroup label={t("form.hasMedicalEducation")} options={hasMedicalEducationOptions} value={hasMedicalEducation} onChange={setHasMedicalEducation} />
+          <RadioGroup label={t("form.experienceYears")} options={experienceYearsOptions} value={experienceYears} onChange={setExperienceYears} />
+          <Field label={t("form.currentJob")} value={currentJob} onChange={handleCurrentJob} onBlur={handleCurrentJobBlur} error={currentJobError} />
+          <Field label={t("form.techniques")} value={techniques} onChange={handleTechniques} onBlur={handleTechniquesBlur} error={techniquesError} />
         </FormSection>
 
         <FormSection>
-          <Title>Обучающая деятельность</Title>
-          <RadioGroup label="Имеется ли опыт преподавания (курсы, мастер-классы, семинары)?" options={["Да", "Нет"]} value={hasTeachingExperience} onChange={setHasTeachingExperience} />
-          <Field label="Если да, опишите кратко ваш опыт, тематику и период проведения" value={teachingDetail} onChange={handleTeachingDetail} onBlur={handleTeachingDetailBlur} error={teachingDetailError} />
-          <RadioGroup label="Наличие или доступ к учебной площадке" options={["Да", "Нет", "Могу арендовать при необходимости"]} value={hasClassroom} onChange={setHasClassroom} />
-          <RadioGroup label="Сколько студентов вы обучаете в месяц" options={["1-5", "6-10", "11-20", "Более 20"]} value={studentsPerMonth} onChange={setStudentsPerMonth} />
+          <Title>{t("form.teachingActivity")}</Title>
+          <RadioGroup label={t("form.hasTeachingExperience")} options={hasTeachingExperienceOptions} value={hasTeachingExperience} onChange={setHasTeachingExperience} />
+          <Field label={t("form.teachingDetail")} value={teachingDetail} onChange={handleTeachingDetail} onBlur={handleTeachingDetailBlur} error={teachingDetailError} />
+          <RadioGroup label={t("form.hasClassroom")} options={hasClassroomOptions} value={hasClassroom} onChange={setHasClassroom} />
+          <RadioGroup label={t("form.studentsPerMonth")} options={studentsPerMonthOptions} value={studentsPerMonth} onChange={setStudentsPerMonth} />
         </FormSection>
-        <FormSection>
-          <Title>Знание и использование продукции KART</Title>
-          <RadioGroup label="Знакомы ли вы с брендом KART и нашей продукцией?" options={["Да", "Нет", "Частично"]} value={knowsKART} onChange={setKnowsKART} />
-          <RadioGroup label="Какой период вы используете продукцию KART в своей практике?" options={["Менее 1 года", "1-2 года", "3-5 лет", "Более 5 лет", "Не использую"]} value={usesKARTPeriod} onChange={setUsesKARTPeriod} />
-        </FormSection>
-        <FormSection>
-          <Title>Коммуникационные навыки и продвижение</Title>
-          <TextAreaField label="Ваши сильные стороны как преподавателя (по вашему мнению)" value={strongSides} onChange={handleStrongSides} onBlur={handleStrongSidesBlur} error={strongSidesError} />
-          <TextAreaField label="Опыт работы с аудиторией (оффлайн / онлайн)" value={audienceExp} onChange={handleAudienceExp} onBlur={handleAudienceExpBlur} error={audienceExpError} />
-          <TextAreaField label="Какие платформы/каналы вы используете для продвижения себя как специалиста (Instagram, YouTube и пр.)" value={promotionPlatforms} onChange={handlePromotionPlatforms} onBlur={handlePromotionPlatformsBlur} error={promotionPlatformsError} />
 
-          <Title>Дополнительная информация</Title>
-          <TextAreaField label="Почему вы хотите стать инструктором KART?" value={motivation} onChange={handleMotivation} onBlur={handleMotivationBlur} error={motivationError} />
-          <RadioGroup label="Готовы ли вы пройти обучение в рамках программы инструкторов KART?" options={["Да", "Нет"]} value={readyToLearn} onChange={setReadyToLearn} />
-          <TextAreaField label="Дополнительные комментарии или предложения" value={comment} onChange={handleComment} onBlur={handleCommentBlur} error={commentError} />
+        <FormSection>
+          <Title>{t("form.knowledgeAndUse")}</Title>
+          <RadioGroup label={t("form.knowsKART")} options={knowsKARTOptions} value={knowsKART} onChange={setKnowsKART} />
+          <RadioGroup label={t("form.usesKARTPeriod")} options={usesKARTPeriodOptions} value={usesKARTPeriod} onChange={setUsesKARTPeriod} />
         </FormSection>
+
+        <FormSection>
+          <Title>{t("form.communicationAndPromotion")}</Title>
+          <TextAreaField label={t("form.strongSides")} value={strongSides} onChange={handleStrongSides} onBlur={handleStrongSidesBlur} error={strongSidesError} />
+          <TextAreaField label={t("form.audienceExp")} value={audienceExp} onChange={handleAudienceExp} onBlur={handleAudienceExpBlur} error={audienceExpError} />
+          <TextAreaField label={t("form.promotionPlatforms")} value={promotionPlatforms} onChange={handlePromotionPlatforms} onBlur={handlePromotionPlatformsBlur} error={promotionPlatformsError} />
+        </FormSection>
+
+        <FormSection>
+          <Title>{t("form.additionalInfo")}</Title>
+          <TextAreaField label={t("form.motivation")} value={motivation} onChange={handleMotivation} onBlur={handleMotivationBlur} error={motivationError} />
+          <RadioGroup label={t("form.readyToLearn")} options={readyToLearnOptions} value={readyToLearn} onChange={setReadyToLearn} />
+          <TextAreaField label={t("form.comment")} value={comment} onChange={handleComment} onBlur={handleCommentBlur} error={commentError} />
+        </FormSection>
+
         {error && <p className="text-red-500">{error}</p>}
-        <Button type="submit" className="px-4 py-2 bg-green-600 text-white rounded">Отправить</Button>
-      </form>
+        <div className="mx-auto">
+          <ButtonWithCircleLink buttonText={t("form.submit")} type="submit" className="px-4 py-2   text-white rounded">
 
+          </ButtonWithCircleLink>
+        </div>
+
+      </form>
     </section>
   );
 }
@@ -383,4 +414,3 @@ function InstructorsFormPage() {
 
 
 
-export default InstructorsFormPage;

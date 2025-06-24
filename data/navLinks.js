@@ -1,28 +1,27 @@
 export const navLinks = [
   {
-    label: "О компании",
+    labelKey: "about",
     dropdown: [
-      { href: "/conditions", label: "Условия для мастеров" },
-      { href: "/instructors", label: "Инструкторы" },
-      { href: "/about", label: "О компании" },
-      { href: "/criteria-diler", label: "Как стать дилером" },
-      { href: "/criteria-instructor", label: "Как стать инструктором" },
-      { href: "/profile", label: "Материалы для скачивания" },
+      { href: "/conditions", labelKey: "conditions" },
+      { href: "/instructors", labelKey: "instructors" },
+      { href: "/about", labelKey: "about" },
+      { href: "/criteria-diler", labelKey: "dealerCriteria" },
+      { href: "/criteria-instructor", labelKey: "instructorCriteria" },
+      { href: "/profile", labelKey: "downloads" },
     ],
   },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contacts", label: "Контакты" },
-  { href: "/galery", label: "Галерея" },
-  { href: "/quick-order", label: "Быстрый заказ" },
+  { href: "/faq", labelKey: "faq" },
+  { href: "/contacts", labelKey: "contacts" },
+  { href: "/galery", labelKey: "gallery" },
+  { href: "/quick-order", labelKey: "quickOrder" },
 ];
 
-
 export const productLinks = [
-  { href: "/professional-feet", label: "Professional Feet" },
-  { href: "#", label: "Feeto Care" },
-  { href: "#", label: "Tools" },
-  { href: "#", label: "Disposable caps" },
-  { href: "#", label: "Nail Cutters" },
-  { href: "#", label: "Unloading material" },
-  { href: "#", label: "Accessories" },
+  { href: "/professional-feet", labelKey: "professionalFeet" },
+  { href: "#", labelKey: "feetoCare" },
+  { href: "#", labelKey: "tools" },
+  { href: "#", labelKey: "disposableCaps" },
+  { href: "#", labelKey: "nailCutters" },
+  { href: "#", labelKey: "unloadingMaterial" },
+  { href: "#", labelKey: "accessories" },
 ];

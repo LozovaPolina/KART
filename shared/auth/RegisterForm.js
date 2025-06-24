@@ -1,127 +1,101 @@
 'use client';
 
-import { registerUserAction } from '../../redux/reducer/authSlice';
-// import { registerUserAction } from '../../redux/reducer/AuthSlice';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { registerUserAction } from '../../redux/reducer/authSlice';
+import { useInput } from '../../hooks/useInput';
 import Title from '../ui/title/Title';
 import Text from '../ui/text/Text';
 import Button from '../ui/button/Button';
-import Link from 'next/link';
-import { useInput } from '../../hooks/useInput';
-import Field from '../ui/field/Feild';
-import RadioGroup from '../ui/radio-group/RadioGroup';
-// import { registerUserAction } from '@/redux/slices/auth/authSlice';
-
+import { Link } from '../../i18n/navigation';
+import Field from '../ui/Field/Field';
+import RadioGroup from '../ui/RadioGroup/RadioGroup';
+import { useTranslations } from 'next-intl';
 
 const countries = ['Россия', 'Казахстан', 'Украина', 'Беларусь', 'Другая страна'];
-const roles = ['Мастер', 'Частный клиент']; // Example roles
-const answers = ['Да', 'Нет'];
+
+
 const RegisterForm = () => {
+  const t = useTranslations('RegisterForm');
   const dispatch = useDispatch();
   const { loading, error: reduxError, isRegistered } = useSelector((state) => state.auth);
+  const roles = [
+    t('fields.roles.master'),
+    t('fields.roles.client'),
+  ];
 
-  // useInput hooks
+  const answers = [
+    t('fields.answers.yes'),
+    t('fields.answers.no'),
+  ];
   const {
     value: nameValue,
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError
-  } = useInput("", (value) => value.trim() !== "");
+  } = useInput('', (value) => value.trim() !== '');
 
   const {
     value: emailValue,
     handleInputChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     hasError: emailError
-  } = useInput("", (value) => /\S+@\S+\.\S+/.test(value));
+  } = useInput('', (value) => /\S+@\S+\.\S+/.test(value));
 
   const {
     value: passwordValue,
     handleInputChange: handlePasswordChange,
     handleInputBlur: handlePasswordBlur,
     hasError: passwordError
-  } = useInput("", (value) => value.length >= 5);
-
+  } = useInput('', (value) => value.length >= 5);
 
   const [role, setRole] = useState('');
   const [passedKartCourse, setPassedKartCourse] = useState('');
-
-
-  const [country, setCountry] = useState("");
-
-  const [error, setError] = useState("");
-
+  const [country, setCountry] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { value, type, checked } = e.target;
-
-    if (type === "checkbox") {
-      setAcceptedTerms(checked);
-    } else {
-      setCountry(value);
-    }
+    setCountry(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
-    if (nameValue.trim() === "") {
-      setError("Введите имя");
-      return;
-    }
-    if (!/\S+@\S+\.\S+/.test(emailValue)) {
-      setError("Введите корректный email");
-      return;
-    }
-    if (passwordValue.length < 5) {
-      setError("Пароль должен быть минимум 5 символов");
-      return;
-    }
-
-    if (country.trim() === "") {
-      setError("Выберите страну");
-      return;
-    }
-    if (role.trim() === "") {
-      setError("Выберите роль");
-      return;
-    }
-    if (passedKartCourse.trim() === "") {
-      setError("Выберите проходили ли Вы курс");
-      return;
-    }
-
+    if (nameValue.trim() === '') return setError(t('errors.name'));
+    if (!/\S+@\S+\.\S+/.test(emailValue)) return setError(t('errors.email'));
+    if (passwordValue.length < 5) return setError(t('errors.password'));
+    if (country.trim() === '') return setError(t('errors.country'));
+    if (role.trim() === '') return setError(t('errors.role'));
+    if (passedKartCourse.trim() === '') return setError(t('errors.course'));
 
     dispatch(
       registerUserAction({
         username: nameValue,
         email: emailValue,
         password: passwordValue,
-        country: country,
-        role: role,
-        passedKartCourse: passedKartCourse,
+        country,
+        role,
+        passedKartCourse
       })
     );
 
-    handleNameChange({ target: { value: "" } });
-    handleEmailChange({ target: { value: "" } });
-    handlePasswordChange({ target: { value: "" } });
-
-    setRole('')
-    setPassedKartCourse('')
-    setCountry('')
+    handleNameChange({ target: { value: '' } });
+    handleEmailChange({ target: { value: '' } });
+    handlePasswordChange({ target: { value: '' } });
+    setRole('');
+    setPassedKartCourse('');
+    setCountry('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto h-full hide-scrollbar   flex flex-col gap-4">
-      <Title className='text-center'>Регистрация</Title>
-      <Text className='text-[#4A4A4A]! text-center'>Заполните регистрационную форму для получения лучшего предложения</Text>
-
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto h-full flex flex-col gap-4">
+      <Title className="text-center">{t('title')}</Title>
+      <Text className="text-[#4A4A4A]! text-center">{t('subtitle')}</Text>
 
       <Field
-        label="Имя"
+        label={t('fields.name')}
         value={nameValue}
         onChange={handleNameChange}
         onBlur={handleNameBlur}
@@ -130,15 +104,16 @@ const RegisterForm = () => {
       />
 
       <Field
-        label="Пароль"
+        label={t('fields.password')}
         value={passwordValue}
         onChange={handlePasswordChange}
         onBlur={handlePasswordBlur}
         error={passwordError}
         name="password"
       />
+
       <Field
-        label="Email"
+        label={t('fields.email')}
         value={emailValue}
         onChange={handleEmailChange}
         onBlur={handleEmailBlur}
@@ -146,7 +121,6 @@ const RegisterForm = () => {
         name="email"
       />
 
-      {/* Страна */}
       <div className="relative w-full mt-4">
         <select
           name="country"
@@ -163,43 +137,49 @@ const RegisterForm = () => {
           htmlFor="country"
           className="absolute left-2 top-0 -translate-y-1/2 px-1 bg-[#F5F5F5] text-sm text-[#272727]"
         >
-          Страна
+          {t('fields.country')}
         </label>
       </div>
+
       <RadioGroup
-        label="Выберите роль:"
+        label={t('fields.role')}
         name="role"
-        options={[...roles]}
+        options={roles}
         value={role}
-        wrapStyles={"items-center"}
+        wrapStyles="items-center"
         onChange={setRole}
       />
 
-
       <RadioGroup
-        label="Проходили курс педикюра KART?"
+        label={t('fields.course')}
         name="passedKartCourse"
-        options={[...answers]}
+        options={answers}
         value={passedKartCourse}
-        wrapStyles={"items-center"}
+        wrapStyles="items-center"
         onChange={setPassedKartCourse}
       />
 
-
-      {isRegistered && <p className="text-green-500 text-sm">Успешная регистрация!</p>}
+      {isRegistered && <p className="text-green-500 text-sm">{t('success')}</p>}
 
       <Button
         type="submit"
         disabled={loading}
         className="w-full bg-[#49BA4A] text-white py-2 rounded hover:shadow disabled:opacity-50"
       >
-        {loading ? 'Загрузка...' : 'Зарегистрироваться'}
+        {loading ? t('loading') : t('submit')}
       </Button>
+
       {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-      <Text className='text-center text-[#000000]! text-[.75rem]!'>Для получения доступа к приобретению профессиональной
-        продукции для выполнения процедур педикюра KART, а также получения скидки в размере 40%,
-        Вам необходимо получить сертификат мастера KART.
-        Для подробной информации ознакомьтесь с разделом <Link href={'/'} className='text-[#49BA4A] cursor-pointer'>&quot;Академия KART&quot;</Link ></Text>
+
+      <Text className="text-center text-[#000000]! text-[.75rem]!">
+        {t.rich('note', {
+          academy: (chunks) => (
+            <Link href="/" className="text-[#49BA4A] cursor-pointer">
+              {chunks}
+            </Link>
+          )
+        })}
+      </Text>
     </form>
   );
 };

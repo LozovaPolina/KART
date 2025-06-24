@@ -17,11 +17,10 @@ function TextAreaField({
     const textarea = textAreaRef.current;
     if (textarea) {
       textarea.style.height = "28px";
-      textarea.style.height = textarea.scrollHeight + "px"; // Expand
+      textarea.style.height = textarea.scrollHeight + "px";
     }
     onChange(e);
   };
-  console.log(error)
   return (
     <div className={`relative w-full mt-4 ${className}`}>
       <label

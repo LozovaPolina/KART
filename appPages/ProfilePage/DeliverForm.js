@@ -2,85 +2,92 @@
 
 import { useInput } from '../../hooks/useInput';
 import Button from '../../shared/ui/button/Button';
-import Field from '../../shared/ui/field/Feild';
+import Field from '../../shared/ui/Field/Field';
 import React, { useState } from 'react';
-import PhoneInput from "../../shared/ui/phone-input/PhoneInput"
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput"
+import { useTranslations } from 'next-intl';
 
 function DeliverForm() {
-  const [error, setError] = useState()
+  const t = useTranslations('DeliverForm');
+  const [error, setError] = useState();
+
   const {
     value: nameValue,
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError,
-  } = useInput("", (v) => v.trim().length > 1);
-
+  } = useInput('', (v) => v.trim().length > 1);
 
   const {
     value: surnameValue,
     handleInputChange: handleSurnameChange,
     handleInputBlur: handleSurnameBlur,
     hasError: surnameError,
-  } = useInput("", (v) => v.trim().length > 1);
+  } = useInput('', (v) => v.trim().length > 1);
 
   const {
     value: nameCompanyValue,
     handleInputChange: handleNameCompanyChange,
     handleInputBlur: handleNameCompanyBlur,
     hasError: nameCompanyError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
 
   const {
     value: VATNumValue,
     handleInputChange: VATNumChange,
     handleInputBlur: VATNumBlur,
     hasError: VATNumError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
 
   const {
     value: countryValue,
     handleInputChange: handleCountryChange,
     handleInputBlur: handleCountryBlur,
     hasError: countryError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
+
   const {
     value: emailValue,
     handleInputChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     hasError: emailError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
+
   const {
     value: adressValue,
     handleInputChange: handleAdressChange,
     handleInputBlur: handleAdressBlur,
     hasError: adressError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
+
   const {
     value: houseValue,
     handleInputChange: handleHouseChange,
     handleInputBlur: handleHouseBlur,
     hasError: houseError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
+
   const {
     value: postalCodeValue,
     handleInputChange: handlePostalCodeChange,
     handleInputBlur: handlePostalCodeBlur,
     hasError: postalCodeError,
-  } = useInput("", (v) => v.trim().length >= 3);
+  } = useInput('', (v) => v.trim().length >= 3);
+
   const {
     value: EORINumber,
     handleInputChange: handleEORINumberChange,
     handleInputBlur: handleEORINumberBlur,
     hasError: EORINumberError,
-  } = useInput("", (v) => v.length >= 5);
+  } = useInput('', (v) => v.length >= 5);
 
-  const [countryCode, setCountryCode] = useState("+380");
+  const [countryCode, setCountryCode] = useState('+380');
   const {
     value: phoneNumberValue,
     handleInputChange: handlePhoneNumberChange,
     handleInputBlur: handlePhoneNumberBlur,
     hasError: phoneError,
-  } = useInput("", (val) => /^\d{6,14}$/.test(val));
+  } = useInput('', (val) => /^\d{6,14}$/.test(val));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,7 +108,7 @@ function DeliverForm() {
       houseError || countryError || postalCodeError || phoneError;
 
     if (hasErrors || required.some((val) => !val.trim())) {
-      setError("Пожалуйста, заполните все обязательные поля правильно.");
+      setError(t('error'));
       return;
     }
 
@@ -116,176 +123,36 @@ function DeliverForm() {
       country: countryValue,
     };
 
-    // Добавляем эти поля, только если они заполнены
     if (nameCompanyValue.trim()) data.companyName = nameCompanyValue;
     if (VATNumValue.trim()) data.VATNumber = VATNumValue;
     if (EORINumber.trim()) data.EORINumber = EORINumber;
 
-    console.log("Форма отправлена:", data);
+    console.log('Форма отправлена:', data);
     setError(null);
   };
 
   return (
-    <form className="flex flex-col gap-2 " onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
       <div className="bg-[#F5F5F5] md:h-[503px] hide-scrollbar p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-
-        <h3 className="text-lg font-semibold ">Контактные данные</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
-
-          <Field
-            label="Фамилия"
-            value={surnameValue}
-            onChange={handleSurnameChange}
-            onBlur={handleSurnameBlur}
-            error={surnameError}
-            name="surname"
-            className="col-span-2 md:col-span-1"
-          />
-
-          <Field
-            label="Имя"
-            value={nameValue}
-            onChange={handleNameChange}
-            onBlur={handleNameBlur}
-            error={nameError}
-            name="name"
-            className="col-span-2 md:col-span-1"
-          />
-
-          <Field
-            label="Название компании (необязательно)"
-            value={nameCompanyValue}
-            onChange={handleNameCompanyChange}
-            onBlur={handleNameCompanyBlur}
-            error={nameCompanyError}
-            name="name_company"
-            className="col-span-2"
-          />
-          <Field
-            label="ID / VAT Number (необязательно)"
-            value={VATNumValue}
-            onChange={VATNumChange}
-            onBlur={VATNumBlur}
-            error={VATNumError}
-            name="VATNum"
-            className="col-span-2"
-          />
-
-          <Field
-            label="Страна/регион *"
-            value={countryValue}
-            onChange={handleCountryChange}
-            onBlur={handleCountryBlur}
-            error={countryError}
-            name="country"
-            className="col-span-2"
-          />
-          <Field
-            label="Адрес *"
-            value={adressValue}
-            onChange={handleAdressChange}
-            onBlur={handleAdressBlur}
-            error={adressError}
-            name="adress"
-            className="col-span-2 md:col-span-1"
-
-          />
-          <Field
-            label="Номер дома, квартиры*"
-            value={houseValue}
-            onChange={handleHouseChange}
-            onBlur={handleHouseBlur}
-            error={houseError}
-            name="adress"
-            className="col-span-2 md:col-span-1"
-          />
-          <Field
-            label="Почтовый индекс *"
-            value={postalCodeValue}
-            onChange={handlePostalCodeChange}
-            onBlur={handlePostalCodeBlur}
-            error={postalCodeError}
-            name="adress"
-            className="col-span-2"
-          />
-          <Field
-            label="Email"
-            value={emailValue}
-            onChange={handleEmailChange}
-            onBlur={handleEmailBlur}
-            error={emailError}
-            name="email"
-            className="col-span-2"
-          />
-          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles={"col-span-2"} />
-          {/* <div >
-            <div className="flex gap-2 relative w-[115px">
-              <label htmlFor="countryCode" className="text-sm text-[#272727] bg-[#F5F5F5]  mb-1 absolute left-4 -top-2">
-                Код страны
-              </label>
-              <select
-                value={countryCode}
-                name='countryCode'
-                onChange={(e) => setCountryCode(e.target.value)}
-                className="border-2 border-[#E2E2E2] bg-[#F5F5F5] rounded p-2 w-[125px] focus:border-black"
-              >
-                {countryCodes.map((c) => (
-                  <option key={c.code} value={c.code} className='w-[115px] flex gap-2' >
-                    <span>{c.label} </span>  <span>{c.code} </span>
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="countryCode" className="text-sm  mb-1 text-[#272727] bg-[#F5F5F5] absolute left-36 -top-2">
-                Номер телефона
-              </label>
-              <input
-                type="text"
-                placeholder=""
-                value={phoneNumberValue}
-                onChange={handlePhoneNumberChange}
-                onBlur={handlePhoneNumberBlur}
-                className={`flex-1 p-2 border-2 rounded focus:border-black ${phoneError ? "border-red-500" : "border-[#E2E2E2]"
-                  }`}
-              />
-            </div>
-            {phoneError && (
-              <p className="text-red-500 text-sm mt-1">Введите корректный номер</p>
-            )}
-          </div> */}
-
-          <Field
-            label="Почтовый индекс *"
-            value={postalCodeValue}
-            onChange={handlePostalCodeChange}
-            onBlur={handlePostalCodeBlur}
-            error={postalCodeError}
-            name="adress"
-            className="col-span-2"
-          />
-          <Field
-            label="EORI number (необязательно)"
-            value={EORINumber}
-            onChange={handleEORINumberChange}
-            onBlur={handleEORINumberBlur}
-            error={EORINumberError}
-            name="EORINumber"
-            className="col-span-2"
-          />
-
+        <h3 className="text-lg font-semibold">{t('title')}</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Field label={t('surname')} value={surnameValue} onChange={handleSurnameChange} onBlur={handleSurnameBlur} error={surnameError} name="surname" className="col-span-2 md:col-span-1" />
+          <Field label={t('name')} value={nameValue} onChange={handleNameChange} onBlur={handleNameBlur} error={nameError} name="name" className="col-span-2 md:col-span-1" />
+          <Field label={t('company')} value={nameCompanyValue} onChange={handleNameCompanyChange} onBlur={handleNameCompanyBlur} error={nameCompanyError} name="name_company" className="col-span-2" />
+          <Field label={t('vat')} value={VATNumValue} onChange={VATNumChange} onBlur={VATNumBlur} error={VATNumError} name="VATNum" className="col-span-2" />
+          <Field label={t('country')} value={countryValue} onChange={handleCountryChange} onBlur={handleCountryBlur} error={countryError} name="country" className="col-span-2" />
+          <Field label={t('adress')} value={adressValue} onChange={handleAdressChange} onBlur={handleAdressBlur} error={adressError} name="adress" className="col-span-2 md:col-span-1" />
+          <Field label={t('house')} value={houseValue} onChange={handleHouseChange} onBlur={handleHouseBlur} error={houseError} name="house" className="col-span-2 md:col-span-1" />
+          <Field label={t('postal')} value={postalCodeValue} onChange={handlePostalCodeChange} onBlur={handlePostalCodeBlur} error={postalCodeError} name="postal" className="col-span-2" />
+          <Field label={t('email')} value={emailValue} onChange={handleEmailChange} onBlur={handleEmailBlur} error={emailError} name="email" className="col-span-2" />
+          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles="col-span-2" />
+          <Field label={t('eori')} value={EORINumber} onChange={handleEORINumberChange} onBlur={handleEORINumberBlur} error={EORINumberError} name="EORINumber" className="col-span-2" />
         </div>
-
       </div>
-
       {error && <p className="text-red-500">{error}</p>}
-      <Button
-        type="submit"
-        className="bg-[#49BA4A] w-fit"
-      >
-        Сохранить
-      </Button>
-    </form >
+      <Button type="submit" className="bg-[#49BA4A] w-fit">{t('save')}</Button>
+    </form>
   );
 }
-
 
 export default DeliverForm;

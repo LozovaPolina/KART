@@ -1,7 +1,7 @@
 
 import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 import Image from 'next/image';
-import Link from 'next/link';
+
 import React from 'react';
 import galeryImage from "../../public/assets/image/galery.png"
 function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
@@ -19,9 +19,7 @@ function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
         </div>
       )}
       <p className='text-center'>{text}</p>
-      <Link href={href} className="w-full ">
-        <ButtonWithCircleLink buttonText={btnText} buttonClassName='w-[80%]' href={href} />
-      </Link>
+      <ButtonWithCircleLink buttonText={btnText} buttonClassName='w-[70%]' href={href} />
     </div>
   );
 }

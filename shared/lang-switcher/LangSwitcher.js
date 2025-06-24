@@ -1,15 +1,25 @@
-import clsx from 'clsx';
-import { ChevronDown } from 'lucide-react';
-import React from 'react';
+'use client';
+import { locales, localeNames, usePathname, useRouter, Locale } from '../../i18n/navigation';
+import { useLocale } from 'next-intl';
 
-function LangSwitcher({ classes }) {
+export default function LocaleSwitcher() {
+  const currentLocale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const onChange = (e) => {
+    const next = e.target.value;
+    localStorage.setItem('preferred-locale', next);
+    router.replace(pathname, { locale: next });
+  };
+
   return (
-    <div className={clsx("items-center gap-[.3125rem] cursor-pointer", classes)}>
-      <span className="text-[#323232] ">UA</span>
-      <ChevronDown size={16} className="text-[#323232]" />
-
-    </div>
+    <select value={currentLocale} onChange={onChange}>
+      {locales.map((loc) => (
+        <option key={loc} value={loc}>
+          {localeNames[loc]}
+        </option>
+      ))}
+    </select>
   );
 }
-
-export default LangSwitcher;

@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-	max-width: 1450px;
+	max-width: 1650px;
 	margin: 0 auto;
 	padding: 0 15px;
 }
@@ -43,4 +43,22 @@ dialog[open] {
 	height: 0;
 	display: none;
 	/* Chrome/Safari */
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(10%);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.animate-marquee {
+	animation: marquee 30s linear infinite;
+	display: inline-block;
+	/* keep inline for scrolling effect */
+	white-space: nowrap;
+	/* prevent wrapping */
 }
