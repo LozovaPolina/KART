@@ -22,7 +22,6 @@ import priceListIcon from "../../public/assets/svg/priceList.svg"
 import videoIcon from "../../public/assets/svg/videoIcon.svg"
 import protocolcon from "../../public/assets/svg/protocolcon.svg"
 import { BadgePercent, FileText, ShoppingBag } from "lucide-react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import AdvantagesList from "./AdvantagesList";
 const items = [

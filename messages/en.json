@@ -334,7 +334,7 @@
 			"instructors": "Instructor Form"
 		},
 		"title": "Form for Instructor Status Request",
-		"hint": "Dear candidate! Please fill out the questionnaire carefully. The information provided will help us assess your experience, professional competencies, and ability to represent the KART PODOLOGY brand as an instructor.",
+		"hint": "Dear candidate! Please carefully fill out the form. The information you provide will help us assess your experience, professional competencies, and your potential to represent the KART PODOLOGY brand as an instructor.",
 		"form": {
 			"personalInfo": "Personal Information",
 			"professionalExperience": "Professional Experience",
@@ -342,53 +342,53 @@
 			"knowledgeAndUse": "Knowledge and Use of KART Products",
 			"communicationAndPromotion": "Communication Skills and Promotion",
 			"additionalInfo": "Additional Information",
-			"fullName": "Full Name",
-			"birthDate": "Date of Birth",
-			"city": "City of Residence",
+			"fullName": "Full Name:",
+			"birthDate": "Date of Birth:",
+			"city": "City of Residence:",
 			"email": "E-mail",
-			"phone": "Phone",
-			"website": "Website",
+			"phone": "Phone Number",
+			"website": "Links to Social Media",
 			"socialNetworksPlaceholder": "+ Add Social Media",
-			"isPedicureMaster": "You are:",
+			"isPedicureMaster": "You are a:",
 			"isPedicureMasterOptions": {
-				"master": "Pedicure Master",
+				"master": "Pedicure Specialist",
 				"podologist": "Practicing Podologist"
 			},
 			"educationDetail": "Education (specify field and level)",
-			"hasMedicalEducation": "Medical education present",
+			"hasMedicalEducation": "Do you have medical education?",
 			"hasMedicalEducationOptions": {
 				"yes": "Yes",
 				"no": "No"
 			},
-			"experienceYears": "Years of experience in pedicure / podology:",
+			"experienceYears": "Years of experience in pedicure/podology:",
 			"experienceYearsOptions": {
-				"1-3": "1-3 years",
-				"4-5": "4-5 years",
-				"6-10": "6-10 years",
+				"1-3": "1–3 years",
+				"4-5": "4–5 years",
+				"6-10": "6–10 years",
 				"more": "More than 10 years"
 			},
-			"currentJob": "Current job and position",
-			"techniques": "Techniques and approaches you master (briefly)",
-			"hasTeachingExperience": "Do you have teaching experience (courses, master classes, seminars)?",
+			"currentJob": "Current workplace and position:",
+			"techniques": "What techniques and approaches do you use (briefly)?",
+			"hasTeachingExperience": "Do you have teaching experience (courses, masterclasses, seminars)?",
 			"hasTeachingExperienceOptions": {
 				"yes": "Yes",
 				"no": "No"
 			},
-			"teachingDetail": "If yes, briefly describe your experience, topics, and duration",
-			"hasClassroom": "Availability or access to a training venue",
+			"teachingDetail": "If yes, briefly describe the topics of your courses:",
+			"hasClassroom": "Do you have or have access to a training venue?",
 			"hasClassroomOptions": {
 				"yes": "Yes",
 				"no": "No",
 				"rent": "Can rent if necessary"
 			},
-			"studentsPerMonth": "Number of students you train per month",
+			"studentsPerMonth": "How many students do you teach per month?",
 			"studentsPerMonthOptions": {
-				"1-5": "1-5",
-				"6-10": "6-10",
-				"11-20": "11-20",
+				"1-5": "1–5",
+				"6-10": "6–10",
+				"11-20": "11–20",
 				"more": "More than 20"
 			},
-			"knowsKART": "Are you familiar with the KART brand and products?",
+			"knowsKART": "Are you familiar with the KART brand, methodology, and products?",
 			"knowsKARTOptions": {
 				"yes": "Yes",
 				"no": "No",
@@ -397,21 +397,21 @@
 			"usesKARTPeriod": "How long have you been using KART products in your practice?",
 			"usesKARTPeriodOptions": {
 				"less1": "Less than 1 year",
-				"1-2": "1-2 years",
-				"3-5": "3-5 years",
+				"1-2": "1–2 years",
+				"3-5": "3–5 years",
 				"more5": "More than 5 years",
-				"notUsed": "Not used"
+				"notUsed": "Do not use"
 			},
-			"strongSides": "Your strengths as a teacher (in your opinion)",
-			"audienceExp": "Experience working with audiences (offline / online)",
-			"promotionPlatforms": "Which platforms/channels do you use to promote yourself as a specialist (Instagram, YouTube, etc.)",
+			"strongSides": "Your strengths as an instructor (in your opinion):",
+			"audienceExp": "Experience working with an audience (offline / online):",
+			"promotionPlatforms": "What platforms/channels do you use to promote yourself as a specialist (Instagram, YouTube, etc.):",
 			"motivation": "Why do you want to become a KART instructor?",
-			"readyToLearn": "Are you willing to undergo training within the KART instructors program?",
+			"readyToLearn": "Are you ready to complete training under the KART instructor program?",
 			"readyToLearnOptions": {
 				"yes": "Yes",
 				"no": "No"
 			},
-			"comment": "Additional comments or suggestions",
+			"comment": "Additional comments or suggestions:",
 			"submit": "Submit",
 			"errorFillAll": "Please fill in all required fields correctly."
 		}
@@ -514,6 +514,100 @@
 			"nailCutters": "Nail Clippers",
 			"unloadingMaterial": "Unloading Material",
 			"accessories": "Accessories"
+		}
+	},
+	"PhoneInput": {
+		"countryCode": "Country Code",
+		"phone": "Phone Number"
+	},
+	"Field": {
+		"invalid": "Please enter a valid value"
+	},
+	"AuthGuard": {
+		"alreadyHaveAccount": "Already have an account?",
+		"login": "Login"
+	},
+	"LoginForm": {
+		"title": "Log in to your account",
+		"subtitle": "To continue, please log in or create an account.",
+		"username": "Username",
+		"password": "Password",
+		"login": "Log in",
+		"noAccount": "No account?",
+		"rememberMe": "Remember me",
+		"loading": "Loading...",
+		"success": "Successfully logged in!"
+	},
+	"RegisterForm": {
+		"title": "Registration",
+		"subtitle": "Fill out the form to get the best offer",
+		"fields": {
+			"name": "Name",
+			"email": "Email",
+			"password": "Password",
+			"country": "Country",
+			"role": "Select your role",
+			"course": "Did you take the KART pedicure course?",
+			"roles": {
+				"master": "Master",
+				"client": "Private Client"
+			},
+			"answers": {
+				"yes": "Yes",
+				"no": "No"
+			}
+		},
+		"errors": {
+			"name": "Please enter your name",
+			"email": "Please enter a valid email",
+			"password": "Password must be at least 5 characters",
+			"country": "Please select a country",
+			"role": "Please select a role",
+			"course": "Please select an option"
+		},
+		"submit": "Register",
+		"loading": "Loading...",
+		"success": "Successfully registered!",
+		"note": "To access professional KART pedicure products and get a 40% discount, you need a KART master certificate. For more information, visit the {academy}KART Academy{/academy} section."
+	},
+	"ContactPage": {
+		"navigation": {
+			"home": "Home",
+			"contacts": "Contacts"
+		},
+		"fields": {
+			"name": "Your Name",
+			"email": "Email",
+			"phone": "Phone Number",
+			"message": "Question or Message"
+		},
+		"errors": {
+			"fixForm": "Please correct the errors in the form.",
+			"nameRequired": "Please enter your name",
+			"emailInvalid": "Please enter a valid email",
+			"messageRequired": "Please enter a message"
+		},
+		"buttons": {
+			"send": "Send"
+		},
+		"messages": {
+			"formSent": "Form submitted!"
+		},
+		"contactForm": {
+			"titlePart1": "Contact",
+			"titlePart2": "Form",
+			"subtitle": "For Quick Communication",
+			"description": "We are open for dialogue. Fill out the form below and we will contact you.",
+			"addressLabel": "Address:",
+			"address": "Chilanzar District, Djavda Sakharov St, 11",
+			"phoneLabel": "Phone Number",
+			"phone": "tel: +998 55 5059944",
+			"messengerLabel": "TG/ WA / Viber",
+			"messengerPhones": "tel: +998 55 5779320"
+		},
+		"map": {
+			"title": "Google Map with Marker",
+			"src": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12089.738127725638!2d-73.9851304!3d40.758896!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855d2996c5f%3A0x3d6f8d6c917f9e4e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1717616158731!5m2!1sen!2sus"
 		}
 	}
 }

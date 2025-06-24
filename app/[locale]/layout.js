@@ -7,6 +7,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "../../i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import LocaleRedirector from "../../shared/redirector/LocaleRedirector";
 
 const firaSans = Fira_Sans({
   variable: "--font-fira-sans",
@@ -34,6 +35,7 @@ export default async function RootLayout({ children, params }) {
       <body className="min-h-screen flex flex-col bg-[#F5F5F5CC]">
         <AppProvider>
           <NextIntlClientProvider locale={locale}>
+            <LocaleRedirector />
             <Header />
             <main className="flex-grow container pt-[90px]! xl:pt-[160px]!">
               {children}

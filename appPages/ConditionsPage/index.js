@@ -4,7 +4,7 @@ import Title from '../../shared/ui/title/Title';
 import Image from 'next/image';
 import React from 'react';
 import logoImg from "../../public/assets/svg/logo-aboutPage.svg";
-import Link from 'next/link';
+import { Link } from "../../i18n/navigation";
 import { useTranslations } from 'next-intl';
 
 export default function ConditionsPage() {

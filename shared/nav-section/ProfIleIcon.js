@@ -12,7 +12,7 @@ function ProfileIcon() {
     <button onClick={() => router.push('/profile')} className="p-2 rounded-full hover:bg-gray-100 transition" aria-label="Go to Profile">
       <User color="#262626" />
     </button>
-    // {/* </AuthGuard> */}
+    // </AuthGuard>
   );
 }
 

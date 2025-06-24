@@ -7,7 +7,7 @@ import womenImg from "../../public/assets/image/womenImg.png"
 import linkImg from "../../public/assets/svg/link.svg"
 import Swiper from "../../shared/swiper/Swiper";
 import Button from "../../shared/ui/button/Button";
-import Link from "next/link";
+import { Link } from "../../i18n/navigation";
 import { useTranslations } from 'next-intl';
 function InstructorsItem() {
 	return (

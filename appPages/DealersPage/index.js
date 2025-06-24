@@ -1,12 +1,9 @@
-import { Facebook, Globe, Instagram, LocateIcon, Mail, MapPin, Phone } from "lucide-react";
+import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import React from "react";
-// import { FaFacebookF, FaInstagram } from "react-icons/fa";
-// import { FiGlobe, FiMail, FiPhone } from "react-icons/fi";
-import ukraineImg from '../../public/assets/image/flags/ukraine.png';
 import facebookImg from '../../public/assets/svg/facebook.svg';
 import instaImg from '../../public/assets/svg/insta.svg';
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "../../i18n/navigation";
 import Title from "../../shared/ui/title/Title";
 import Button from "../../shared/ui/button/Button";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";

@@ -3,7 +3,7 @@
 import HeaderNav from "./HeaderNav";
 import logotype from "../../public/assets/svg/logotype.svg"; // Adjust the path as needed
 import ProductLinks from "./ProductsLinks";
-import Link from "next/link";
+import { Link } from "../../i18n/navigation";
 import Image from "next/image";
 import { Search, ShoppingBag } from "lucide-react";
 import ProfileIcon from "./ProfIleIcon";

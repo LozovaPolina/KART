@@ -1,7 +1,7 @@
 
 import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
 import Image from 'next/image';
-import Link from 'next/link';
+
 import React from 'react';
 import galeryImage from "../../public/assets/image/galery.png"
 function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
