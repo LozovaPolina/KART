@@ -14,7 +14,7 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <select value={currentLocale} onChange={onChange}>
+    <select className='px-3 py-2 rounded-md bg-transparent text-[#323232] text-sm  focus:bg-white  focus:outline-none focus:border-transparent transition' value={currentLocale} onChange={onChange}>
       {locales.map((loc) => (
         <option key={loc} value={loc}>
           {localeNames[loc]}

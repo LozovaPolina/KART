@@ -12,7 +12,7 @@ function ProfessionalFeetPage() {
     <section className='flex flex-col gap-4 '>
       <ShopCardName name={'Professional Feet'} />
 
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-8 justify-center">
 
         {products.map(product => (
           <ShopItem key={product.id} product={product} />

@@ -12,6 +12,7 @@ import Title from "../../shared/ui/title/Title";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import FormSection from "../../shared/ui/FormSection/FormSection";
 import { useTranslations } from "next-intl";
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 
 
 export default function DilersFormPage() {
@@ -111,12 +112,7 @@ export default function DilersFormPage() {
     hasError: instagramError,
   } = useInput("", (v) => v.length >= 5);
 
-  const {
-    value: phoneValue,
-    handleInputChange: handlePhoneChange,
-    handleInputBlur: handlePhoneBlur,
-    hasError: phoneError,
-  } = useInput("", (v) => /^\d{10,}$/.test(v.replace(/\D/g, "")));
+
 
   const {
     value: regionValue,
@@ -164,6 +160,14 @@ export default function DilersFormPage() {
 
   const [clientBaseSize, setClientBaseSize] = useState([]);
 
+  const [countryCode, setCountryCode] = useState("+90");
+  const {
+    value: phoneNumber,
+    handleInputChange: handlePhoneNumberChange,
+    handleInputBlur: handlePhoneNumberBlur,
+    hasError: phoneNumberError,
+  } = useInput("", (v) => v.trim() !== "");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -200,7 +204,7 @@ export default function DilersFormPage() {
     const data = {
       name: contactNameValue,
       email: emailValue,
-      phone: phoneValue,
+      phone: countryCode + phoneNumber,
       adress: adressValue,
       postalCode: websiteValue,
       socials,
@@ -282,6 +286,7 @@ export default function DilersFormPage() {
               onBlur={handleNameCompanyBlur}
               error={nameCompanyError}
               name="company"
+              placeholder={t("placeholders.companyName")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -291,6 +296,7 @@ export default function DilersFormPage() {
               onBlur={handleAdressBlur}
               error={adressError}
               name="adress"
+              placeholder={t("placeholders.address")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -300,6 +306,7 @@ export default function DilersFormPage() {
               onBlur={handleContactNameBlur}
               error={contactNameError}
               name="contact"
+              placeholder={t("placeholders.contactPerson")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -309,17 +316,22 @@ export default function DilersFormPage() {
               onBlur={jobTitleBlur}
               error={jobTitleError}
               name="jobTitle"
+              placeholder={t("placeholders.jobTitle")}
               className="w-full md:w-[48%]"
             />
-            <Field
-              label={t("fields.phone")}
-              value={phoneValue}
-              onChange={handlePhoneChange}
-              onBlur={handlePhoneBlur}
-              error={phoneError}
-              name="phone"
-              className="w-full md:w-[48%]"
+
+            <PhoneInput
+              countryCode={countryCode}
+              setCountryCode={setCountryCode}
+              phoneNumber={phoneNumber}
+              handlePhoneNumberChange={handlePhoneNumberChange}
+              handlePhoneNumberBlur={handlePhoneNumberBlur}
+              phoneNumberError={phoneNumberError}
+              styles={"w-full md:w-[48%]"}
+              label={t("form.phone")}
+              placeholder={t("placeholders.phone")}
             />
+
             <Field
               label={t("fields.email")}
               value={emailValue}
@@ -327,6 +339,7 @@ export default function DilersFormPage() {
               onBlur={handleEmailBlur}
               error={emailError}
               name="email"
+              placeholder={t("placeholders.email")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -336,6 +349,7 @@ export default function DilersFormPage() {
               onBlur={handleWebsiteBlur}
               error={websiteError}
               name="website"
+              placeholder={t("placeholders.website")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -345,6 +359,7 @@ export default function DilersFormPage() {
               onBlur={handleInstagramBlur}
               error={instagramError}
               name="instagram"
+              placeholder={t("placeholders.instagram")}
               className="w-full md:w-[48%]"
             />
 
@@ -511,6 +526,7 @@ export default function DilersFormPage() {
             onBlur={handleRegionBlur}
             error={regionError}
             name="region"
+            placeholder={t("placeholders.region")}
             className="w-full"
           />
         </FormSection>
@@ -524,6 +540,7 @@ export default function DilersFormPage() {
             onBlur={handleBrandsBlur}
             error={brandsError}
             name="brands"
+            placeholder={t("placeholders.brandsRepresented")}
           />
           <TextAreaField
             label={t("fields.cooperationInterest")}
@@ -532,6 +549,7 @@ export default function DilersFormPage() {
             onBlur={handleInterestBlur}
             error={interestError}
             name="interest"
+            placeholder={t("placeholders.cooperationInterest") + "..."}
           />
           <TextAreaField
             label={t("fields.additionalComments")}
@@ -540,6 +558,7 @@ export default function DilersFormPage() {
             onBlur={handleCommentsBlur}
             error={commentsError}
             name="comments"
+            placeholder={t("placeholders.additionalComments") + "..."}
           />
         </FormSection>
 

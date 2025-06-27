@@ -215,7 +215,7 @@ function HomePage() {
               </div>
 
               <Text className="font-bold">{t('certificateMainAdvantages')}</Text>
-              <ul className="flex justify-between">
+              <ul className="flex gap-[32%]">
                 <li className="flex gap-2 items-center">
                   <BadgePercent color="#96B87D" />
                   <Text>{t('certificateAdvantageDiscount')}</Text>

@@ -19,14 +19,14 @@ function HeaderNav() {
             {navLinks.map((link, i) => (
                 link.dropdown ? (
                     <div key={i} className="relative">
-                        <button onClick={() => toggleDropdown(i)} className="flex items-center gap-1 text-base cursor-pointer text-[#404040] hover:text-black">
+                        <button onClick={() => toggleDropdown(i)} className="flex items-center gap-1 text-[18px]  hover:font-medium  cursor-pointer text-[#404040] ">
                             {t(link.labelKey)}
                             <ChevronDown size={16} className={`transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`} />
                         </button>
                         {openIndex === i && (
                             <div className="absolute top-full left-0 mt-2 bg-white rounded shadow-md z-50 min-w-[200px]">
                                 {link.dropdown.map((item, j) => (
-                                    <NavLink label={t(item.labelKey)} key={j} styles="block px-4! py-2! text-sm! text-[#404040] hover:bg-[#E7EBE5]" href={item.href} />
+                                    <NavLink label={t(item.labelKey)} key={j} onClick={() => toggleDropdown(i)} styles="block px-4! py-2! text-sm! text-[#404040] hover:bg-[#E7EBE5]" href={item.href} />
                                 ))}
                             </div>
                         )}

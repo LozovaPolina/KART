@@ -7,6 +7,8 @@ import InstructorCard from './InstructorCard';
 import Pagination from '../../shared/pagination/Pagination';
 import { useSearchParams } from "next/navigation";
 import { instructors } from '../../data/instructors'
+import Button from '../../shared/ui/button/Button';
+import { Link } from '../../i18n/navigation';
 
 
 
@@ -33,6 +35,8 @@ export default function InstructorsPage() {
       </div>
 
       <Pagination totalPages={Math.ceil(instructors.length / perPage)} />
+
+      <Link href='/criteria-instructor'><Button>Стать инструктором</Button></Link>
     </div>
   );
 }

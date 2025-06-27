@@ -15,15 +15,16 @@ export const criterisInstructors = (t) => [
     content: t('criteria3.content'),
   },
   {
-    number: 4,
-    title: t('criteria4.title'),
-    content: t('criteria4.content'),
-  },
-  {
     number: 5,
     title: t('criteria5.title'),
     content: t('criteria5.content'),
   },
+  {
+    number: 4,
+    title: t('criteria4.title'),
+    content: t('criteria4.content'),
+  },
+
   {
     number: 6,
     title: t('criteria6.title'),

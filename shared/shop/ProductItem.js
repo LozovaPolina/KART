@@ -16,7 +16,12 @@ function ShopItem({ product }) {
   const formattedDiscountedPrice = useFormattedPrice(product.discountedPrice);
 
   return (
-    <div key={product.id} className='flex w-[340px] flex-col gap-2 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
+    <div
+      key={product.id}
+      className="flex flex-col gap-4 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]
+               xl:w-[370px] md:w-[310px] lg:w-[280px] sm:w-[230px] w-[260px]"
+    >
+
       <Image
         className='w-full object-cover rounded-2xl'
         src={productImg}
@@ -24,7 +29,7 @@ function ShopItem({ product }) {
         width={340}
         height={200}
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col  ">
         <div className="flex justify-between">
           <p className='text-[#3C5E23]'>{product.title}</p>
 
@@ -36,8 +41,8 @@ function ShopItem({ product }) {
         </div>
       </div>
       <ButtonWithCircleLink
-        onClick={() => dispatch(addToCart({ id: product.id }))}
-        href={`/professional-feet/${product.slug}`}
+        buttonOnClick={() => dispatch(addToCart({ id: product.id }))}
+        circleHref={`/professional-feet/${product.slug}`}
         circleClassName='bg-gradient-to-b from-black/10 to-[#49BA4A]'
         buttonText='В корзину'
         buttonClassName='w-[80%] bg-[#49BA4A] bg-gradient-to-b from-black/10 to-[#49BA4A]'

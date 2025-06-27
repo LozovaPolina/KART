@@ -47,7 +47,7 @@ export default function InstructorsFormPage() {
     hasError: birthDateError,
   } = useInput("", (v) => {
     if (!v.trim()) return false; // required
-    return /^\d{4}-\d{2}-\d{2}$/.test(v);
+    return /^\d{4}.\d{2}.\d{2}$/.test(v);
   });
 
   const {
@@ -326,10 +326,42 @@ export default function InstructorsFormPage() {
         <FormSection>
           <Title>{t("form.personalInfo")}</Title>
           <div className="flex flex-wrap gap-4 sm:gap-6">
-            <Field label={t("form.fullName")} value={fullName} onChange={handleFullNameChange} onBlur={handleFullNameBlur} error={fullNameError} className="w-full md:w-[48%]" />
-            <Field label={t("form.birthDate")} value={birthDate} onChange={handleBirthDateChange} onBlur={handleBirthDateBlur} error={birthDateError} className="w-full md:w-[48%]" />
-            <Field label={t("form.city")} value={city} onChange={handleCityChange} onBlur={handleCityBlur} error={cityError} className="w-full md:w-[48%]" />
-            <Field label={t("form.email")} value={email} onChange={handleEmailChange} onBlur={handleEmailBlur} error={emailError} className="w-full md:w-[48%]" />
+            <Field
+              label={t("form.fullName")}
+              value={fullName}
+              onChange={handleFullNameChange}
+              onBlur={handleFullNameBlur}
+              error={fullNameError}
+              placeholder={t("placeholders.fullName")}
+              className="w-full md:w-[48%]"
+            />
+            <Field
+              label={t("form.birthDate")}
+              value={birthDate}
+              onChange={handleBirthDateChange}
+              onBlur={handleBirthDateBlur}
+              error={birthDateError}
+              placeholder={t("placeholders.birthDate")}
+              className="w-full md:w-[48%]"
+            />
+            <Field
+              label={t("form.city")}
+              value={city}
+              onChange={handleCityChange}
+              onBlur={handleCityBlur}
+              error={cityError}
+              placeholder={t("placeholders.city")}
+              className="w-full md:w-[48%]"
+            />
+            <Field
+              label={t("form.email")}
+              value={email}
+              onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
+              error={emailError}
+              placeholder={t("placeholders.email")}
+              className="w-full md:w-[48%]"
+            />
             <PhoneInput
               countryCode={countryCode}
               setCountryCode={setCountryCode}
@@ -339,8 +371,17 @@ export default function InstructorsFormPage() {
               phoneNumberError={phoneNumberError}
               styles={"w-full md:w-[48%]"}
               label={t("form.phone")}
+              placeholder={t("placeholders.phone")}
             />
-            <Field label={t("form.website")} value={website} onChange={handleWebsiteChange} onBlur={handleWebsiteBlur} error={websiteError} className="w-full md:w-[48%]" />
+            <Field
+              label={t("form.website")}
+              value={website}
+              onChange={handleWebsiteChange}
+              onBlur={handleWebsiteBlur}
+              error={websiteError}
+              placeholder={t("placeholders.website")}
+              className="w-full md:w-[48%]"
+            />
           </div>
 
           {socials.map((social, index) => (
@@ -348,6 +389,7 @@ export default function InstructorsFormPage() {
               key={index}
               value={social}
               onChange={(e) => handleChangeSocial(index, e.target.value)}
+              placeholder={t("placeholders.socialNetworks")}
               className="w-full border border-[#E2E2E2] rounded outline-none p-2 focus:border-[#272727]"
             />
           ))}
@@ -363,49 +405,154 @@ export default function InstructorsFormPage() {
 
         <FormSection>
           <Title>{t("form.professionalExperience")}</Title>
-          <RadioGroup label={t("form.isPedicureMaster")} options={isPedicureMasterOptions} value={isPedicureMaster} onChange={setIsPedicureMaster} />
-          <Field label={t("form.educationDetail")} value={educationDetail} onChange={handleEducationDetail} onBlur={handleEducationDetailBlur} error={educationDetailError} />
-          <RadioGroup label={t("form.hasMedicalEducation")} options={hasMedicalEducationOptions} value={hasMedicalEducation} onChange={setHasMedicalEducation} />
-          <RadioGroup label={t("form.experienceYears")} options={experienceYearsOptions} value={experienceYears} onChange={setExperienceYears} />
-          <Field label={t("form.currentJob")} value={currentJob} onChange={handleCurrentJob} onBlur={handleCurrentJobBlur} error={currentJobError} />
-          <Field label={t("form.techniques")} value={techniques} onChange={handleTechniques} onBlur={handleTechniquesBlur} error={techniquesError} />
+          <RadioGroup
+            label={t("form.isPedicureMaster")}
+            options={isPedicureMasterOptions}
+            value={isPedicureMaster}
+            onChange={setIsPedicureMaster}
+          />
+          <Field
+            label={t("form.educationDetail")}
+            value={educationDetail}
+            onChange={handleEducationDetail}
+            onBlur={handleEducationDetailBlur}
+            error={educationDetailError}
+            placeholder={t("placeholders.educationDetail")}
+          />
+          <RadioGroup
+            label={t("form.hasMedicalEducation")}
+            options={hasMedicalEducationOptions}
+            value={hasMedicalEducation}
+            onChange={setHasMedicalEducation}
+          />
+          <RadioGroup
+            label={t("form.experienceYears")}
+            options={experienceYearsOptions}
+            value={experienceYears}
+            onChange={setExperienceYears}
+          />
+          <Field
+            label={t("form.currentJob")}
+            value={currentJob}
+            onChange={handleCurrentJob}
+            onBlur={handleCurrentJobBlur}
+            error={currentJobError}
+            placeholder={t("placeholders.currentJob")}
+          />
+          <Field
+            label={t("form.techniques")}
+            value={techniques}
+            onChange={handleTechniques}
+            onBlur={handleTechniquesBlur}
+            error={techniquesError}
+            placeholder={t("placeholders.techniques")}
+          />
         </FormSection>
 
         <FormSection>
           <Title>{t("form.teachingActivity")}</Title>
-          <RadioGroup label={t("form.hasTeachingExperience")} options={hasTeachingExperienceOptions} value={hasTeachingExperience} onChange={setHasTeachingExperience} />
-          <Field label={t("form.teachingDetail")} value={teachingDetail} onChange={handleTeachingDetail} onBlur={handleTeachingDetailBlur} error={teachingDetailError} />
-          <RadioGroup label={t("form.hasClassroom")} options={hasClassroomOptions} value={hasClassroom} onChange={setHasClassroom} />
-          <RadioGroup label={t("form.studentsPerMonth")} options={studentsPerMonthOptions} value={studentsPerMonth} onChange={setStudentsPerMonth} />
+          <RadioGroup
+            label={t("form.hasTeachingExperience")}
+            options={hasTeachingExperienceOptions}
+            value={hasTeachingExperience}
+            onChange={setHasTeachingExperience}
+          />
+          <Field
+            label={t("form.teachingDetail")}
+            value={teachingDetail}
+            onChange={handleTeachingDetail}
+            onBlur={handleTeachingDetailBlur}
+            error={teachingDetailError}
+            placeholder={t("placeholders.teachingDetail")}
+          />
+          <RadioGroup
+            label={t("form.hasClassroom")}
+            options={hasClassroomOptions}
+            value={hasClassroom}
+            onChange={setHasClassroom}
+          />
+          <RadioGroup
+            label={t("form.studentsPerMonth")}
+            options={studentsPerMonthOptions}
+            value={studentsPerMonth}
+            onChange={setStudentsPerMonth}
+          />
         </FormSection>
 
         <FormSection>
           <Title>{t("form.knowledgeAndUse")}</Title>
-          <RadioGroup label={t("form.knowsKART")} options={knowsKARTOptions} value={knowsKART} onChange={setKnowsKART} />
-          <RadioGroup label={t("form.usesKARTPeriod")} options={usesKARTPeriodOptions} value={usesKARTPeriod} onChange={setUsesKARTPeriod} />
+          <RadioGroup
+            label={t("form.knowsKART")}
+            options={knowsKARTOptions}
+            value={knowsKART}
+            onChange={setKnowsKART}
+          />
+          <RadioGroup
+            label={t("form.usesKARTPeriod")}
+            options={usesKARTPeriodOptions}
+            value={usesKARTPeriod}
+            onChange={setUsesKARTPeriod}
+          />
         </FormSection>
 
         <FormSection>
           <Title>{t("form.communicationAndPromotion")}</Title>
-          <TextAreaField label={t("form.strongSides")} value={strongSides} onChange={handleStrongSides} onBlur={handleStrongSidesBlur} error={strongSidesError} />
-          <TextAreaField label={t("form.audienceExp")} value={audienceExp} onChange={handleAudienceExp} onBlur={handleAudienceExpBlur} error={audienceExpError} />
-          <TextAreaField label={t("form.promotionPlatforms")} value={promotionPlatforms} onChange={handlePromotionPlatforms} onBlur={handlePromotionPlatformsBlur} error={promotionPlatformsError} />
+          <TextAreaField
+            label={t("form.strongSides")}
+            value={strongSides}
+            onChange={handleStrongSides}
+            onBlur={handleStrongSidesBlur}
+            error={strongSidesError}
+            placeholder={t("placeholders.strongSides")}
+          />
+          <TextAreaField
+            label={t("form.audienceExp")}
+            value={audienceExp}
+            onChange={handleAudienceExp}
+            onBlur={handleAudienceExpBlur}
+            error={audienceExpError}
+            placeholder={t("placeholders.audienceExp")}
+          />
+          <TextAreaField
+            label={t("form.promotionPlatforms")}
+            value={promotionPlatforms}
+            onChange={handlePromotionPlatforms}
+            onBlur={handlePromotionPlatformsBlur}
+            error={promotionPlatformsError}
+            placeholder={t("placeholders.promotionPlatforms")}
+          />
         </FormSection>
 
         <FormSection>
           <Title>{t("form.additionalInfo")}</Title>
-          <TextAreaField label={t("form.motivation")} value={motivation} onChange={handleMotivation} onBlur={handleMotivationBlur} error={motivationError} />
-          <RadioGroup label={t("form.readyToLearn")} options={readyToLearnOptions} value={readyToLearn} onChange={setReadyToLearn} />
-          <TextAreaField label={t("form.comment")} value={comment} onChange={handleComment} onBlur={handleCommentBlur} error={commentError} />
+          <TextAreaField
+            label={t("form.motivation")}
+            value={motivation}
+            onChange={handleMotivation}
+            onBlur={handleMotivationBlur}
+            error={motivationError}
+            placeholder={t("placeholders.motivation")}
+          />
+          <RadioGroup
+            label={t("form.readyToLearn")}
+            options={readyToLearnOptions}
+            value={readyToLearn}
+            onChange={setReadyToLearn}
+          />
+          <TextAreaField
+            label={t("form.comment")}
+            value={comment}
+            onChange={handleComment}
+            onBlur={handleCommentBlur}
+            error={commentError}
+            placeholder={t("placeholders.comment")}
+          />
         </FormSection>
 
         {error && <p className="text-red-500">{error}</p>}
         <div className="mx-auto">
-          <ButtonWithCircleLink buttonText={t("form.submit")} type="submit" className="px-4 py-2   text-white rounded">
-
-          </ButtonWithCircleLink>
+          <ButtonWithCircleLink buttonText={t("form.submit")} type="submit" className="px-4 py-2 text-white rounded" />
         </div>
-
       </form>
     </section>
   );

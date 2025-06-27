@@ -6,7 +6,7 @@ import { MapPinHouse, PhoneIncoming, CalendarClockIcon } from 'lucide-react';
 import FooterNavigation from './FooterNavigation';
 function Footer() {
   return (
-    <footer className='max-w-[1450px] w-full   mx-auto flex flex-col gap-6 md:gap-0 items-center md:flex-row md:items-start text-white justify-between  bg-[#96B87D]! mt-[9.375rem]! md:mt-[7.5rem]! py-6 px-12 pb-12'>
+    <footer className='w-full   mx-auto flex flex-col gap-6 md:gap-0 items-center md:flex-row md:items-start text-white justify-around  bg-[#96B87D]! mt-[9.375rem]! md:mt-[7.5rem]! py-6 px-12 pb-12'>
       <div className='flex flex-col gap-4 items-center md:items-start'>
         <Image src={footerLogog} alt='logo' />
         <p className='text-[.9375rem]'>© Все права <br /> защищены KART</p>

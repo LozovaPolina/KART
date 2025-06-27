@@ -12,8 +12,8 @@ import { dealersData } from "../../data/flagsDilers";
 
 export default function DealersPage() {
   return (
-    <div className="p-4 max-w-[1438px] w-full  mx-auto flex flex-col gap-2 ">
-      <div className="flex flex-col gap-6 justify-center items-center">
+    <div className="w-full  mx-auto flex flex-col gap-4 ">
+      <div className="flex flex-col gap-6 items-center">
         <HintNavigation links={[
           { label: 'Главная', href: '/' },
           { label: 'Представители', href: '/dealers' },
@@ -22,7 +22,7 @@ export default function DealersPage() {
 
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-flag-img h-fit p-8 rounded-xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  h-fit p-8 rounded-xl">
         {dealersData.map((dealer, index) => (
           <div key={index} className="flex flex-col gap-2 ">
             <div
@@ -74,13 +74,13 @@ export default function DealersPage() {
             </div>
           </div>
         ))}
-
+        <Link className="text-center w-full  col-span-3 " href={'/criteria-diler'}>
+          <Button className="bg-[#A0C287] hover:shadow text-white py-2 px-4 rounded-full text-sm">
+            Как стать Дилером KART
+          </Button>
+        </Link>
       </div>
-      <Link className="text-center mt-8" href={'/criteria-diler'}>
-        <Button className="bg-[#A0C287] hover:shadow text-white py-2 px-4 rounded-full text-sm">
-          Как стать Дилером KART
-        </Button>
-      </Link>
+
       <MapLocation />
     </div>
   );

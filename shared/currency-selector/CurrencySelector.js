@@ -16,7 +16,11 @@ export default function CurrencySelector() {
     dispatch(fetchExchangeRates());
   }, [dispatch]);
   return (
-    <select value={selectedCurrency} onChange={handleChange} className="p-1 text-[#323232] bg-white  ">
+    <select
+      value={selectedCurrency}
+      onChange={handleChange}
+      className="px-3 py-2 rounded-md bg-transparent text-[#323232]  focus:bg-white text-sm focus:outline-none focus:border-transparent transition"
+    >
       <option value="EUR">EUR (€)</option>
       <option value="USD">USD ($)</option>
       <option value="UAH">UAH (₴)</option>

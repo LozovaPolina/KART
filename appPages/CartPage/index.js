@@ -9,7 +9,7 @@ export default function CartPage() {
   const t = useTranslations('CartPage');
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto relative">
       <div className="flex flex-col items-center gap-6 w-full justify-center mb-4">
         <HintNavigation
           links={[

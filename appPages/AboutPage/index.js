@@ -36,9 +36,9 @@ export default function AboutPage() {
         </div>
 
         {/* Description */}
-        <section className='bg-[#F5F5F5] p-6 rounded-xl text-[16px]! shadow-[0px_2px_10px_rgba(0,0,0,0.1)] mb-10 flex flex-col gap-6'>
-          <Text className='leading-normal'>{t('description1')}</Text>
-          <Text className='leading-normal'>{t('description2')}</Text>
+        <section className='bg-[#F5F5F5] p-6 rounded-xl  shadow-[0px_2px_10px_rgba(0,0,0,0.1)] mb-10 flex flex-col gap-6'>
+          <Text className='leading-normal text-[16px]!'>{t('description1')}</Text>
+          <Text className='leading-normal text-[16px]!'>{t('description2')}</Text>
         </section>
 
         {/* Advantages List */}
@@ -48,7 +48,7 @@ export default function AboutPage() {
           </h2>
           <ul className='list-disc list-inside space-y-2 text-[#848484]'>
             {t.raw('benefits.items', { returnObjects: true }).map((item, idx) => (
-              <li key={idx}>{item}</li>
+              <li key={idx} className="leading-normal text-[16px]!">{item}</li>
             ))}
           </ul>
         </section>

@@ -24,27 +24,31 @@ function ProductItem({ product }) {
         <div className="w-12 h-12 relative  overflow-hidden">
           <Image
             src={productImg}
-            alt={product?.name}
+            alt={product?.title}
             fill
             className="object-contain"
           />
         </div>
-        <span className="text-sm text-[#848484]">{product?.name}</span>
+        <span className="text-sm text-[#848484]">{product?.title}</span>
       </div>
       <div className="flex w-full sm:w-[70%] justify-between items-center ">
-        <div className="text-sm text-[#848484] w-[80px] text-center">{product?.id}</div>
+        <div className="text-sm text-[#848484] w-[80px] text-center">#{product?.id}</div>
         <div className="text-sm font-semibold text-[#848484] w-[90px] text-center">
           {formattedPrice}
         </div>
-        <div className="flex items-center text-[#848484] gap-2 w-[80px] justify-center">
-          <button onClick={() => dispatch(deleteFromCart({ id: product.id }))} className=" text-[15px] p-2 cursor-pointer"><Minus size={16} /></button>
-          <span className="text-lg font-bold">{quantityInCart}</span>
-          <button onClick={() => dispatch(addToCart({ id: product.id }))} className="text-[15px] p-2 cursor-pointer"><Plus size={16} /></button>
+        <div className="flex gap-6">
+          <div className="flex items-center text-[#848484] gap-2 w-[80px] justify-center">
+            <button onClick={() => dispatch(deleteFromCart({ id: product.id }))} className=" text-[15px] p-2 cursor-pointer"><Minus size={16} /></button>
+            <span className="text-lg font-bold">{quantityInCart}</span>
+            <button onClick={() => dispatch(addToCart({ id: product.id }))} className="text-[15px] p-2 cursor-pointer"><Plus size={16} /></button>
+          </div>
+          <div className="sm:w-[110px]">
+            <Button className=" py-1 text-sm font-medium text-black! block  sm:hidden" bgColor={'white'} > <ShoppingCart /> </Button>
+            <Button className="w-full  py-1 text-sm font-medium rounded-lg! text-black! hidden sm:block" bgColor={' bg-transparent'} onClick={() => dispatch(addToCart({ id: product.id }))} >В корзину</Button>
+          </div>
+
         </div>
-        <div className="sm:w-[110px]">
-          <Button className=" py-1 text-sm font-medium text-black! block  sm:hidden" bgColor={'white'} > <ShoppingCart /> </Button>
-          <Button className="w-full py-1 text-sm font-medium text-black! hidden sm:block" bgColor={'white'} onClick={() => dispatch(addToCart({ id: product.id }))} >В корзину</Button>
-        </div>
+
 
       </div>
 
