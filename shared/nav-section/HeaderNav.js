@@ -34,7 +34,7 @@ function HeaderNav() {
                     <div key={i} className="relative">
                         <button
                             onClick={() => toggleDropdown(i)}
-                            className="flex items-center gap-1 text-[18px] text-[#404040] hover:font-medium"
+                            className="flex items-center gap-1 text-[15px] text-[#404040] hover:font-medium"
                         >
                             {t(link.labelKey)}
                             <ChevronDown
