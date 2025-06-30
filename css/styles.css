@@ -188,7 +188,7 @@ input {
 
 .feetolines .feetolines__list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   padding: 10px 0;
   user-select: none;
@@ -197,7 +197,7 @@ input {
 .feetolines .feetolines__list-item {
   position: relative;
   flex-shrink: 0;
-  width: 440px;
+  width: 519px;
   height: 385px;
   user-select: none;
   border-radius: 20px;

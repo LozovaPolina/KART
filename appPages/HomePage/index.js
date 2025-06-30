@@ -138,7 +138,7 @@ function HomePage() {
             ))}
             className={"feetolines__list"}
             itemsLength={1}
-            widthPercent={"26.875rem"}
+            widthPercent={30}
             controlBlock={false}
           ></Swiper>
         </div>
