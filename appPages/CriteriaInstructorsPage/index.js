@@ -4,13 +4,19 @@ import { criterisInstructors } from "../../data/criteriaInstructors"
 import { useTranslations } from 'next-intl';
 import Title from '../../shared/ui/title/Title';
 import Text from '../../shared/ui/text/Text';
+import HintNavigation from '../../shared/hint-navigation/HintNavigation';
 export default function CriteriaInstructorsPage() {
   const t = useTranslations('InstructorCriteriaPage');
 
   return (
     <section className='flex flex-col gap-10 items-center'>
       <div className="flex flex-col items-center gap-4 max-w-[603px] ">
-
+        <HintNavigation
+          links={[
+            { label: 'Главная', href: '../' },
+            { label: 'Критерии', href: '/criteria-instructors' },
+          ]}
+        />
         <Title color='green'>{t("title")}</Title>
         <Text className='text-[#404040]! text-center'>{t("text")}</Text>
       </div>
