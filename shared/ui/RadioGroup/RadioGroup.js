@@ -18,9 +18,9 @@ export default function RadioGroup({ label, name, options, value, onChange, wrap
               onChange={() => onChange(opt)}
               className="sr-only peer"
             />
-            <div className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#0066FF] transition-all duration-200 peer-checked:border-[#0066FF]">
+            <div className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#49BA4A] transition-all duration-200 peer-checked:border-[#49BA4A]">
               <div
-                className={`w-3 h-3 rounded-full transition-transform duration-200 ${value === opt ? "bg-[#0066FF]" : "bg-transparent"
+                className={`w-3 h-3 rounded-full transition-transform duration-200 ${value === opt ? "bg-[#49BA4A]" : "bg-transparent"
                   }`}
               />
             </div>

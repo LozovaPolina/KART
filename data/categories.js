@@ -1,7 +1,7 @@
 
 export const categories = [
-  "Professional Feet Care",
-  "Feeto Care Tools",
+  "Professional Feet",
+  "Feeto Care",
   "Disposable Caps",
   "Disposable Files",
   "Nail Cutters",

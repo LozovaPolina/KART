@@ -16,8 +16,7 @@ function OrderSummary() {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems) || [];
-  const selectedCurrency = useSelector(selectCurrency);
-  const exchangeRates = useSelector(selectExchangeRates);
+
   const status = useSelector(selectCurrencyStatus);
 
   const deliveryFee = 35;
@@ -71,14 +70,7 @@ function OrderSummary() {
       <h3 className="p-2 text-lg font-semibold rounded-xl text-[#848484] shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
         {t("title")}
       </h3>
-      {!canCheckout && (
-        <div
-          className="absolute bg-white top-19 sm:-top-0 z-[998]   transform -right-[11%] sm:right-[24%] md:right-[34%] -translate-x-1/2 ] flex items-center gap-2  text-sm  rounded-xl px-2 py-2 shadow-md "
-        >
-          <div className="shadow-md p-1 rounded-lg"><CreditCard color='#96B87D' /></div>
-          <span className='text-[#4A4A4A]'>Мин. сумма — 200€</span>
-        </div>
-      )}
+
       <div className="p-4 space-y-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-2xl h-fit">
         <div className="flex justify-between text-sm text-[#848484]">
           <span>Общая сумма:</span>
@@ -118,6 +110,14 @@ function OrderSummary() {
           {t("checkout")}
         </Button>
       </div>
+      {!canCheckout && (
+        <div
+          className=" bg-gradient-to-t from-white  to-gray-100   flex justify-center items-center gap-2  text-sm  rounded-xl px-2 py-2 shadow-md "
+        >
+          <div className="shadow-md p-1 rounded-lg"><CreditCard color='#96B87D' /></div>
+          <span className='text-[#4A4A4A]'>Мин. сумма — 200€</span>
+        </div>
+      )}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import ShopItem from '../../../../../shared/shop/ProductItem';
 import { useFormattedPrice } from '../../../../../hooks/useFormattedPrice';
 
 import { products } from '../../../../../data/products'
-import Text from '../../../../../shared/ui/text/Text';
 import Title from '../../../../../shared/ui/title/Title';
 import { useTranslations } from 'next-intl';
 

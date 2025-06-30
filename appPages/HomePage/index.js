@@ -100,6 +100,24 @@ function HomePage() {
 
       <section className='feetolines'>
         <div className='wrap container'>
+
+          {/* {feetoItems.map(({ key, imgSrc, imgAltKey, titleKey, categoryKey }) => (
+            <div
+              key={key}
+              className="feetolines__list-item select-none"
+              draggable={false}
+            >
+              <Image
+                className="feetolines__item-img select-none"
+                src={imgSrc}
+                alt={t(imgAltKey)}
+              />
+              <div className="feetolines__item-sticker">
+                <h4 className="feetolines__item-title">{t(titleKey)}</h4>
+                <p className="feetolines__item-category">{t(categoryKey)}</p>
+              </div>
+            </div>
+          ))} */}
           <Swiper
             items={feetoItems.map(({ key, imgSrc, imgAltKey, titleKey, categoryKey }) => (
               <div
@@ -150,14 +168,14 @@ function HomePage() {
       </section>
       <section className="flex flex-col md:flex-row gap-4 mb-24 justify-center items-center">
         <Image
-          className="w-full md:w-[60%]"
+          className="w-full md:w-[60%] h-[353px]"
           src={magnifyingGlasImg}
           alt={t('kartMoreThanPedicureTitle')}
         />
         <div className="w-full md:w-[40%] flex flex-col gap-4 justify-between">
-          <Title>{t('kartMoreThanPedicureTitle')}</Title>
+          <Title className="leading-normal ">{t('kartMoreThanPedicureTitle')}</Title>
           <div className="p-6 bg-[#F5F5F5] min-h-[14.8125rem] shadow rounded-2xl">
-            <Text>{t('kartMoreThanPedicureText')}</Text>
+            <Text className="leading-normal text-[1rem]! ">{t('kartMoreThanPedicureText')}</Text>
           </div>
           <ButtonWithCircleLink
             href="/about"

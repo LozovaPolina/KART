@@ -19,7 +19,7 @@ function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
         </div>
       )}
       <p className='text-center'>{text}</p>
-      <ButtonWithCircleLink buttonText={btnText} buttonClassName=' flex-1 justify-between' href={href} />
+      <ButtonWithCircleLink wrapClass={"w-full"} buttonText={btnText} buttonClassName=' flex-1 justify-between ' href={href} />
     </div>
   );
 }

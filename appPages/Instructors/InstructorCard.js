@@ -1,15 +1,16 @@
 
 import CircleLink from '../../shared/ui/button/CircleLink';
-import { ArrowUpRightFromSquare, Globe, Instagram, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from "../../i18n/navigation";
 import React from 'react';
 import womenImg from '../../public/assets/image/womenImg.png';
-
+import instagram from '../../public/assets/svg/insta.svg';
+import gmail from '../../public/assets/svg/gmail-icon.svg';
+import website from '../../public/assets/svg/website-icon.svg';
 const socialIcons = {
-  mail: <Mail color='#404040' className="w-4 h-4" />,
-  instagram: <Instagram color='#404040' className="w-4 h-4" />,
-  globe: <Globe color='#404040' className="w-4 h-4" />,
+  mail: <Image src={gmail} alt='gmail' className="w-4 h-4" />,
+  instagram: <Image src={instagram} alt='instagram' className="w-4 h-4" />,
+  globe: <Image src={website} alt='website' className="w-4 h-4" />,
 };
 
 export default function InstructorCard({ instructor }) {
@@ -42,7 +43,7 @@ export default function InstructorCard({ instructor }) {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[2.1875rem] h-[2.1875rem] bg-gray-100 rounded-full shadow flex justify-center items-center hover:bg-gray-200 transition"
+                  className="w-[2rem] h-[2rem] bg-gray-100 rounded-full shadow flex justify-center items-center hover:bg-gray-200 transition"
                 >
                   {socialIcons[item.type]}
                 </Link>

@@ -1,6 +1,7 @@
 import { Link } from "../../../i18n/navigation";
 import CircleLink from './CircleLink';
 import Button from './Button';
+import clsx from "clsx";
 
 export function ButtonWithCircleLink({
   buttonText = 'Детальнее',
@@ -12,6 +13,7 @@ export function ButtonWithCircleLink({
   circleClassName = '',
   circleHref,
   arrowColor,
+  wrapClass,
 }) {
   const content = (
     <>
@@ -34,11 +36,11 @@ export function ButtonWithCircleLink({
 
   if (href) {
     return (
-      <Link href={href} className="flex gap-4 items-center">
+      <Link href={href} className={clsx("flex gap-4 items-center ", wrapClass)}>
         {content}
       </Link>
     );
   }
 
-  return <div className="flex gap-4 items-center">{content}</div>;
+  return <div className={clsx("flex gap-4 items-center", wrapClass)}>{content}</div>;
 }
