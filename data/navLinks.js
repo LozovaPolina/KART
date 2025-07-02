@@ -2,11 +2,12 @@ export const navLinks = [
   {
     labelKey: "about",
     dropdown: [
-      { href: "/conditions", labelKey: "conditions" },
-      { href: "/instructors", labelKey: "instructors" },
       { href: "/about", labelKey: "about" },
-      { href: "/criteria-diler", labelKey: "dealerCriteria" },
+      { href: "/conditions", labelKey: "conditions" },
+      { href: "/dealers", labelKey: "dealers" },
+      { href: "/instructors", labelKey: "instructors" },
       { href: "/criteria-instructor", labelKey: "instructorCriteria" },
+      { href: "/criteria-diler", labelKey: "dealerCriteria" },
       { href: "/profile", labelKey: "downloads" },
     ],
   },

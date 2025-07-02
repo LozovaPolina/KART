@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import React from 'react';
 import galeryImage from "../../public/assets/image/galery.png"
+import Button from '../../shared/ui/button/Button';
 function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
   return (
     <div className='flex flex-col items-center gap-2 max-w-[312px] w-full'>
@@ -19,7 +20,8 @@ function GaleryItem({ src, text, href = '', btnText = "", type = 'photo' }) {
         </div>
       )}
       <p className='text-center'>{text}</p>
-      <ButtonWithCircleLink wrapClass={"w-full"} buttonText={btnText} buttonClassName=' flex-1 justify-between ' href={href} />
+      <Button className='w-[90%]'>{btnText}</Button>
+
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Header() {
         <div className="flex justify-between items-center flex-wrap gap-y-4 pt-[25px] pb-[10px]">
           <Link href="/" className="flex items-center flex-wrap ">
             <Image
-              className="w-[88px] h-[30px] min-w-[88px]"
+              className="w-[110px]  "
               src={logotype}
               alt="KART Podology"
               priority
@@ -54,7 +54,7 @@ export default function Header() {
             <div className="hidden xl:flex items-center gap-[15px]">
               <LangSwitcher classes='hidden xl:flex' />
               <CurrencySelector />
-              <Link href="#" className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#a0c287] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+              <Link href="#" className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#A4D49D] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
                 <p className="text-white font-normal">{t("onlineEducation")}</p>
               </Link>
             </div>

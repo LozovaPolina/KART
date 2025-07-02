@@ -88,7 +88,7 @@ const ProfilePage = () => {
             })}
           </ul>
 
-          <button className="flex items-center mt-12  sm:mt-auto gap-2 px-6 py-1 text-sm text-[#49BA4A] hover:underline">
+          <button className="flex items-center mt-12  sm:mt-auto gap-2 px-6 py-1 text-sm text-[#5EAC41] hover:underline">
             <LogOut size={16} />
             {t('logout')}
           </button>

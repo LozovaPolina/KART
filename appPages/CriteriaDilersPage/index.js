@@ -51,7 +51,7 @@ export default function CriteriaDilersPage() {
       <ButtonWithCircleLink
         href='/dilers-form'
         buttonText={t('sendRequest')}
-        buttonClassName='bg-[#81D742]'
+
       />
     </section>
   );

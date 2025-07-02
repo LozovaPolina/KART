@@ -6,6 +6,7 @@ import Field from '../../shared/ui/Field/Field';
 import React, { useState } from 'react';
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput"
 import { useTranslations } from 'next-intl';
+import Title from '../../shared/ui/title/Title';
 
 function DeliverForm() {
   const t = useTranslations('DeliverForm');
@@ -134,18 +135,8 @@ function DeliverForm() {
   return (
     <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
       <div className="bg-[#F5F5F5] p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-        <h3 className="text-lg font-semibold">{t('title')}</h3>
+        <Title className="text-lg font-semibold mb-5">{t('title')}</Title>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field
-            label={t('surname')}
-            value={surnameValue}
-            onChange={handleSurnameChange}
-            onBlur={handleSurnameBlur}
-            error={surnameError}
-            name="surname"
-            placeholder="Kowalski"
-            className="col-span-2 md:col-span-1"
-          />
           <Field
             label={t('name')}
             value={nameValue}
@@ -156,6 +147,17 @@ function DeliverForm() {
             placeholder="Anna"
             className="col-span-2 md:col-span-1"
           />
+          <Field
+            label={t('surname')}
+            value={surnameValue}
+            onChange={handleSurnameChange}
+            onBlur={handleSurnameBlur}
+            error={surnameError}
+            name="surname"
+            placeholder="Kowalski"
+            className="col-span-2 md:col-span-1"
+          />
+
           <Field
             label={t('company')}
             value={nameCompanyValue}
@@ -235,8 +237,7 @@ function DeliverForm() {
             handlePhoneNumberBlur={handlePhoneNumberBlur}
             phoneNumberError={phoneError}
             styles="col-span-2"
-            label={t('form.phone')}
-            placeholder="+48 600 123 456"
+
           />
           <Field
             label={t('eori')}
@@ -251,7 +252,7 @@ function DeliverForm() {
         </div>
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" className="bg-[#49BA4A] w-fit">
+      <Button type="submit" className=" w-fit">
         {t('save')}
       </Button>
     </form>

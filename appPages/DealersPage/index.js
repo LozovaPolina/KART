@@ -87,7 +87,7 @@ export default function DealersPage() {
       {/* Кнопка вынесена из grid */}
       <div className="flex justify-center mt-4">
         <Link href="/criteria-diler">
-          <Button className="bg-[#A0C287] hover:shadow text-white py-2 px-6 rounded-full text-sm">
+          <Button className=" hover:shadow text-white py-2 px-6 rounded-full text-sm">
             Как стать Дилером KART
           </Button>
         </Link>

@@ -48,7 +48,6 @@ export default function CriteriaInstructorsPage() {
       <ButtonWithCircleLink
         href='/instructors-form'
         buttonText={t('sendRequest')}
-        buttonClassName='bg-[#81D742]'
       />
     </section>
   );

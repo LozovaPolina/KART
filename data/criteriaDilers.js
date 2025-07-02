@@ -29,9 +29,5 @@ export const criteriaDilers = (t) => [
     title: t('criteria6.title'),
     content: t('criteria6.content'),
   },
-  {
-    number: 7,
-    title: t('criteria7.title'),
-    content: t('criteria7.content'),
-  },
+
 ];

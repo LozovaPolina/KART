@@ -105,7 +105,7 @@ function OrderSummary() {
 
         <Button
           disabled={!canCheckout}
-          className="w-full bg-[#81D742] text-white disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full  text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {t("checkout")}
         </Button>

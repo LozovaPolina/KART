@@ -91,6 +91,16 @@ export default function PersonalInfoForm() {
         <h3 className="text-lg font-semibold col-span-2">{t('title')}</h3>
 
         <Field
+          label={t('name')}
+          value={nameValue}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
+          error={nameError}
+          name="name"
+          placeholder={t('placeholders.name') || "Иван"}
+          className="col-span-2 md:col-span-1"
+        />
+        <Field
           label={t('surname')}
           value={surnameValue}
           onChange={handleSurnameChange}
@@ -101,16 +111,6 @@ export default function PersonalInfoForm() {
           className="col-span-2 md:col-span-1"
         />
 
-        <Field
-          label={t('name')}
-          value={nameValue}
-          onChange={handleNameChange}
-          onBlur={handleNameBlur}
-          error={nameError}
-          name="name"
-          placeholder={t('placeholders.name') || "Иван"}
-          className="col-span-2 md:col-span-1"
-        />
 
         <Field
           label={t('nickname')}
@@ -164,7 +164,7 @@ export default function PersonalInfoForm() {
       </div>
 
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" className="bg-[#49BA4A]">
+      <Button type="submit" >
         {t('save')}
       </Button>
     </form>

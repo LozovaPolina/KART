@@ -13,33 +13,32 @@ import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import FormSection from "../../shared/ui/FormSection/FormSection";
 import { useTranslations } from "next-intl";
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
 
 
 export default function DilersFormPage() {
   const t = useTranslations("DilersFormPage");
   const mainActivityArray = [
-    t("mainActivity.marketing"),
-    t("mainActivity.development"),
-    t("mainActivity.design"),
-    t("mainActivity.sales"),
+    t("mainActivity.cosmeticsSales"),
+    t("mainActivity.masterTraining"),
+    t("mainActivity.serviceProvision"),
+    t("mainActivity.other"),
   ];
 
   const promotionChannelsArray = [
     t("promotionChannels.instagram"),
-    t("promotionChannels.tiktok"),
+    t("promotionChannels.vkontakte"),
+    t("promotionChannels.youtube"),
     t("promotionChannels.telegram"),
-    t("promotionChannels.website"),
-    t("promotionChannels.contextAds"),
-    t("promotionChannels.offlineEvents"),
-    t("promotionChannels.recommendations"),
+    t("promotionChannels.eventsParticipation"),
+    t("promotionChannels.ownWebsite"),
+    t("promotionChannels.other"),
   ];
-
   const distributionMethodsArray = [
-    t("distributionMethods.offlineSales"),
-    t("distributionMethods.marketplaces"),
-    t("distributionMethods.socialNetworks"),
-    t("distributionMethods.wholesale"),
-    t("distributionMethods.events"),
+    t("distributionMethods.retailSales"),
+    t("distributionMethods.wholesaleSupply"),
+    t("distributionMethods.onlineStore"),
+    t("distributionMethods.other"),
   ];
   const [error, setError] = useState(null);
   const [socials, setSocials] = useState([]);
@@ -175,7 +174,7 @@ export default function DilersFormPage() {
       contactNameValue,
       emailValue,
       adressValue,
-      phoneValue,
+      phoneNumber,
     ];
 
     const radioRequired = [
@@ -192,7 +191,7 @@ export default function DilersFormPage() {
     ];
 
     const hasTextErrors =
-      contactNameError || emailError || adressError || websiteError || phoneError;
+      contactNameError || emailError || adressError || websiteError || phoneNumberError;
 
     const hasRadioErrors = radioRequired.some((val) => val.trim() === "");
 
@@ -234,7 +233,7 @@ export default function DilersFormPage() {
     handleContactNameChange({ target: { value: "" } });
     handleEmailChange({ target: { value: "" } });
     handleAdressChange({ target: { value: "" } });
-    handlePhoneChange({ target: { value: "" } });
+    handlePhoneNumberChange({ target: { value: "" } });
     handleWebsiteChange({ target: { value: "" } });
     handleInstagramChange({ target: { value: "" } });
     handleRegionChange({ target: { value: "" } });
@@ -328,8 +327,6 @@ export default function DilersFormPage() {
               handlePhoneNumberBlur={handlePhoneNumberBlur}
               phoneNumberError={phoneNumberError}
               styles={"w-full md:w-[48%]"}
-              label={t("form.phone")}
-              placeholder={t("placeholders.phone")}
             />
 
             <Field
@@ -563,13 +560,17 @@ export default function DilersFormPage() {
         </FormSection>
 
         {error && <p className="text-red-500">{error}</p>}
+        <div className="mx-auto">
+          <ButtonWithCircleLink
+            type="submit"
+            buttonText={t("buttons.save")}
+            className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
+          >
 
-        <Button
-          type="submit"
-          className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
-        >
-          {t("buttons.save")}
-        </Button>
+          </ButtonWithCircleLink>
+
+        </div>
+
       </form>
     </section>
   );

@@ -19,7 +19,7 @@ export default function ContactPage() {
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError,
-    reset: resetName,
+
   } = useInput("", (value) => value.trim() !== "");
 
   const {
@@ -27,7 +27,6 @@ export default function ContactPage() {
     handleInputChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     hasError: emailError,
-    reset: resetEmail,
   } = useInput("", (value) => /\S+@\S+\.\S+/.test(value));
 
   const [countryCode, setCountryCode] = useState('+380');
@@ -44,7 +43,6 @@ export default function ContactPage() {
     handleInputChange: handleMessageChange,
     handleInputBlur: handleMessageBlur,
     hasError: messageError,
-    reset: resetMessage,
   } = useInput("", (value) => value.trim() !== "");
 
   const [submitError, setSubmitError] = useState("");
@@ -56,7 +54,7 @@ export default function ContactPage() {
     // Trigger blur handlers
     handleNameBlur();
     handleEmailBlur();
-    handlePhoneBlur();
+    handlePhoneNumberBlur();
     handleMessageBlur();
 
     if (nameError || emailError || phoneError || messageError) {
@@ -76,13 +74,14 @@ export default function ContactPage() {
       setSubmitError(t("errors.messageRequired"));
       return;
     }
+    const data = {
+      name: nameValue,
+      email: emailValue,
+      phone: countryCode + phoneNumberValue,
+      messageValue: messageValue,
+    };
+    console.log(data)
 
-    alert(t("messages.formSent"));
-
-    resetName();
-    resetEmail();
-    resetPhone();
-    resetMessage();
   };
 
   return (
@@ -96,7 +95,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <section className="bg-[#F5F5F5] py-10 px-4 md:px-10">
+      <section className=" py-10 px-4 md:px-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-8 rounded-xl">
           {/* Form */}
           <form
@@ -140,8 +139,6 @@ export default function ContactPage() {
               handlePhoneNumberBlur={handlePhoneNumberBlur}
               phoneNumberError={phoneError}
               styles="col-span-2"
-              label={t('form.phone')}
-              placeholder="+48 600 123 456"
               labelBgStyle="bg-white"
             />
             <div className="relative w-full">

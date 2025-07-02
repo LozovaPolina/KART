@@ -25,7 +25,24 @@ const cartSlice = createSlice({
         state.cartItems.push(newItem);
       }
     },
+    addToCartQuick(state, action) {
+      const { id, quantity } = action.payload;
+      if (quantity <= 0) return;
 
+      const itemIndex = state.cartItems.findIndex(item => item.id === id);
+
+      if (itemIndex >= 0) {
+        // Item already in cart → increase quantity
+        state.cartItems[itemIndex].quantity += quantity;
+      } else {
+        // New item → add to cart with specified quantity
+        const item = state.items.find(item => item.id === id);
+        if (item) {
+          const newItem = { ...item, quantity };
+          state.cartItems.push(newItem);
+        }
+      }
+    },
     removeFromCart(state, action) {
       const itemIndex = state.cartItems.findIndex(item => item.id === action.payload.id);
 
@@ -43,7 +60,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, deleteFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, deleteFromCart, addToCartQuick } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.cartItems;
 export const selectProducts = (state) => state.cart.items;

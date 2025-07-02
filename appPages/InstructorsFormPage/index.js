@@ -47,7 +47,7 @@ export default function InstructorsFormPage() {
     hasError: birthDateError,
   } = useInput("", (v) => {
     if (!v.trim()) return false; // required
-    return /^\d{4}.\d{2}.\d{2}$/.test(v);
+    return /^\d{2}.\d{2}.\d{4}$/.test(v);
   });
 
   const {
@@ -76,10 +76,7 @@ export default function InstructorsFormPage() {
     handleInputChange: handleWebsiteChange,
     handleInputBlur: handleWebsiteBlur,
     hasError: websiteError,
-  } = useInput("", (v) => {
-    if (!v.trim()) return true;
-    return /^https?:\/\/\S+\.\S+/.test(v);
-  });
+  } = useInput("", (v) => v.trim() !== "");
 
   const [isPedicureMaster, setIsPedicureMaster] = useState(null);
   const [hasMedicalEducation, setHasMedicalEducation] = useState(null);

@@ -141,11 +141,7 @@
 		},
 		"criteria6": {
 			"title": "Reputation and Reliability",
-			"content": "Positive business reputation. Guarantee of compliance with contractual obligations and brand policies."
-		},
-		"criteria7": {
-			"title": "Regional Exclusivity",
-			"content": "Willingness to develop the brand in the assigned territory considering exclusive or semi-exclusive representation conditions."
+			"content": "A positive business reputation. Guarantees of compliance with contractual obligations and brand policy. Willingness to develop the brand in the assigned territory, taking into account the conditions of exclusive or semi-exclusive representation."
 		}
 	},
 	"InstructorCriteriaPage": {
@@ -322,29 +318,28 @@
 			"fillAllRequired": "Please fill in all required fields correctly."
 		},
 		"buttons": {
-			"save": "Save"
+			"save": "Submit"
 		},
 		"mainActivity": {
-			"marketing": "Marketing",
-			"development": "Development",
-			"design": "Design",
-			"sales": "Sales"
+			"cosmeticsSales": "Cosmetics Sales",
+			"masterTraining": "Master Training",
+			"serviceProvision": "Service Provision",
+			"other": "Other"
 		},
 		"promotionChannels": {
 			"instagram": "Instagram",
-			"tiktok": "TikTok",
+			"vkontakte": "VKontakte",
+			"youtube": "YouTube",
 			"telegram": "Telegram",
-			"website": "Website",
-			"contextAds": "Contextual advertising",
-			"offlineEvents": "Offline events",
-			"recommendations": "Recommendations / Word of mouth"
+			"eventsParticipation": "Participation in exhibitions / events",
+			"ownWebsite": "Own website",
+			"other": "Other"
 		},
 		"distributionMethods": {
-			"offlineSales": "Offline sales point",
-			"marketplaces": "Via marketplaces",
-			"socialNetworks": "Via social networks",
-			"wholesale": "Wholesale trade",
-			"events": "Exhibitions / events"
+			"retailSales": "Retail Sales",
+			"wholesaleSupply": "Wholesale Supply",
+			"onlineStore": "Online Store",
+			"other": "Other"
 		}
 	},
 	"InstructorsFormPage": {
@@ -497,7 +492,7 @@
 		}
 	},
 	"DeliverForm": {
-		"title": "Contact Information",
+		"title": "Deliver Form",
 		"surname": "Surname",
 		"name": "Name",
 		"company": "Company Name (optional)",
@@ -545,6 +540,7 @@
 			"instructors": "Instructors",
 			"dealerCriteria": "How to Become a Dealer КART",
 			"instructorCriteria": "How to Become an Instructor",
+			"dealers": "Dealers of KART",
 			"downloads": "Downloadable Materials",
 			"faq": "FAQ",
 			"contacts": "Contacts",
@@ -664,5 +660,13 @@
 		"usage": "How to Use",
 		"ingredients": "Ingredients List",
 		"popularProducts": "Popular Products"
+	},
+	"QuickProductSection": {
+		"product": "Product",
+		"code": "Code",
+		"price": "Price",
+		"quantity": "Quantity",
+		"addToCart": "Add to Cart",
+		"added": "Added"
 	}
 }

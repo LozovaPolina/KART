@@ -17,7 +17,7 @@ function NavLink({ label, href, styles, ...props }) {
       href={href}
       {...props}
       className={clsx("whitespace-nowrap text-[15px] hover:font-medium   text-bl py-[10px]",
-        isActive ? "text-[#97B18A]! " : "text-[#404040]",
+        isActive ? "text-[#5EAC41]! " : "text-[#404040]",
         styles,
       )}
     >

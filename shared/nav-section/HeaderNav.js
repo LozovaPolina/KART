@@ -43,9 +43,11 @@ function HeaderNav() {
                                     }`}
                             />
                         </button>
-
                         {openIndex === i && (
-                            <div className="absolute top-full left-0 mt-2 bg-white rounded shadow-md z-50 min-w-[200px]">
+                            <div
+                                className="absolute top-full left-0 mt-2 bg-white rounded shadow-md z-50 min-w-[200px]"
+                                onMouseLeave={() => setOpenIndex(null)}
+                            >
                                 {link.dropdown.map((item, j) => (
                                     <NavLink
                                         key={j}

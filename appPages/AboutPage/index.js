@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div
           className='p-8 rounded-xl'
           style={{
-            background: 'linear-gradient(to left, white, #96B87D)',
+            background: 'linear-gradient(to left, white, #5EAC41)',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
           }}
         >
