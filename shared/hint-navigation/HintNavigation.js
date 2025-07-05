@@ -6,7 +6,7 @@ function HintNavigation({ links, className = "" }) {
   return (
     <nav
       className={clsx(
-        "flex items-center mt-8 gap-2 text-[#404040] text-[1rem]",
+        "flex items-center flex-wrap sm:flex-nowrap gap-2 text-[#404040] text-[1rem]",
         className
       )}
     >

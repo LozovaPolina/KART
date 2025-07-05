@@ -25,27 +25,34 @@ function CombinedOrders({ orderGroup }) {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className="rounded-xl">
+    <div className="rounded-xl h-fit">
       <button
         onClick={() => setIsVisible(p => !p)}
-        className="flex items-center w-full flex-wrap justify-between gap-2 mb-2"
+        className="flex  items-center w-full   gap-2 mb-2"
       >
-        <div className="flex items-center justify-between w-full sm:px-4 px-2 py-2 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-          <span className="sm:text-sm text-xs font-semibold">
-            {shortenYear(orderGroup.date)}
-          </span>
-          <span className={`text-sm font-semibold ${orderGroup.status === t('status.paid')
+        <div className="flex  flex-grow items-center justify-between rounded-xl w-full sm:px-4 px-2 py-2 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+          <div className="flex flex-col items-start ">
+            <span className="sm:text-sm text-xs">
+              {shortenYear(orderGroup.date)}
+            </span>
+            <span className="sm:text-xs text-xs text-black ">
+              {orderGroup.orderNumber === "Basket" || orderGroup.orderNumber === "Корзина" ? orderGroup.orderNumber : `Номер: ${orderGroup.orderNumber}`}
+
+
+            </span>
+
+          </div>
+
+          <span className={`text-xs sm:text-sm font-semibold ${orderGroup.status === t('status.paid')
             ? 'text-[#EF4444]'
             : 'text-[#C89A00]'
             }`}>
             {orderGroup.status}
           </span>
-          <span className="sm:text-sm text-xs text-black font-medium">
-            #{orderGroup.orderNumber}
-          </span>
+
         </div>
 
-        <span className="text-[#49BA4A] flex-1 sm:p-2 py-2 w-full sm:w-fit text-center font-semibold shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+        <span className="text-[#49BA4A] text-[15px] sm:text-lg sm:min-w-[120px] rounded-xl  p-3 min-w-[85px]   text-center font-semibold shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
           {formattedPrice}
         </span>
       </button>

@@ -5,24 +5,35 @@ import React from 'react';
 
 import { criteriaDilers } from "../../data/criteriaDilers"
 import { useTranslations } from 'next-intl';
+import Title from '../../shared/ui/title/Title';
+import Text from '../../shared/ui/text/Text';
+import HintNavigation from '../../shared/hint-navigation/HintNavigation';
 
 export default function CriteriaDilersPage() {
   const t = useTranslations('CriteriaDilersPage');
 
   return (
     <section className='flex flex-col gap-10 items-center'>
-      <div className='flex flex-wrap justify-center sm:gap-x-6 gap-y-12 sm:gap-y-18 h-fit p-8 rounded-xl'>
+      <div className="flex flex-col items-center gap-4 max-w-[603px] ">
+        <HintNavigation
+          links={[
+            { label: 'Главная', href: '../' },
+            { label: 'Критерии', href: '/criteria-instructors' },
+          ]}
+        />
+        <Title color='green'>{t("title")}</Title>
+        <Text className='text-[#404040]! text-center'>{t("text")}</Text>
+      </div>
+      <div className='flex flex-wrap justify-center sm:gap-x-6 gap-y-12 sm:gap-y-18 h-fit md:p-6 rounded-2xl'>
         {criteriaDilers(t).map((item, index) => (
           <div
             key={index}
             className='flex flex-col gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'
           >
-            <div className='flex flex-col justify-between rounded-lg space-y-2 shadow-[0_2px_10px_rgba(0,0,0,0.1)] relative'>
-              <div className='flex justify-between rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)] p-3 w-full bg-white relative text-center'>
-                <div className='flex items-center gap-2 w-full'>
-                  <div className='flex flex-col w-full'>
-                    <h3 className='font-semibold text-lg mb-1'>{item.title}</h3>
-                  </div>
+            <div className='flex flex-col justify-between rounded-2xl space-y-2 shadow-[0_2px_10px_rgba(0,0,0,0.1)] relative'>
+              <div className='flex flex-col flex-1 justify-between rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.1)] px-4 py-6 w-full bg-white relative text-center'>
+                <div className='flex items-center gap-2 w-full text-center '>
+                  <h3 className='text-2xl w-full'>{item.title}</h3>
                 </div>
                 <div className='w-8 h-8 bg-[#43B549] text-white rounded-full flex items-center justify-center font-bold absolute -top-4 left-1/2 -translate-x-1/2'>
                   {item.number}
@@ -30,8 +41,8 @@ export default function CriteriaDilersPage() {
               </div>
             </div>
 
-            <div className='shadow-[0_2px_10px_rgba(0,0,0,0.1)] text-center p-4 rounded-lg bg-[#F5F5F580] flex flex-col justify-between gap-1 flex-grow h-full'>
-              <p className='text-[#404040] text-sm flex-grow'>{item.content}</p>
+            <div className='shadow-[0_2px_10px_rgba(0,0,0,0.1)] text-center p-4  rounded-2xl bg-[#F5F5F580] h-full'>
+              <p className='text-[#404040] text-sm h-full flex items-center'>{item.content}</p>
             </div>
           </div>
         ))}
@@ -40,7 +51,7 @@ export default function CriteriaDilersPage() {
       <ButtonWithCircleLink
         href='/dilers-form'
         buttonText={t('sendRequest')}
-        buttonClassName='bg-[#81D742]'
+
       />
     </section>
   );

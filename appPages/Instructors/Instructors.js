@@ -7,6 +7,8 @@ import InstructorCard from './InstructorCard';
 import Pagination from '../../shared/pagination/Pagination';
 import { useSearchParams } from "next/navigation";
 import { instructors } from '../../data/instructors'
+import Button from '../../shared/ui/button/Button';
+import { Link } from '../../i18n/navigation';
 
 
 
@@ -26,13 +28,15 @@ export default function InstructorsPage() {
       />
       <Title color="green">Сертифицированные инструкторы KART</Title>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {pagedInstructors?.map((instructor, idx) => (
           <InstructorCard key={idx} instructor={instructor} />
         ))}
       </div>
 
       <Pagination totalPages={Math.ceil(instructors.length / perPage)} />
+
+      <Link href='/criteria-instructor'><Button>Стать инструктором</Button></Link>
     </div>
   );
 }

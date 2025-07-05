@@ -35,7 +35,7 @@ export default function FAQPage() {
             <div className="flex items-center justify-between hover:shadow-sm shadow-[0px_2px_10px_rgba(0,0,0,0.1)] flex-col gap-1 sm:gap-0 sm:flex-row">
               <button
                 onClick={() => toggle(index)}
-                className="w-full text-left p-4 flex justify-between items-center text-[#848484]"
+                className={`w-full text-left p-4 flex justify-between items-center text-[#848484] ${openIndex === index ? "font-medium" : ""}`}
               >
                 <span>{item.question}</span>
                 <span>

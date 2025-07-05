@@ -6,6 +6,7 @@ import Field from '../../shared/ui/Field/Field';
 import React, { useState } from 'react';
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput"
 import { useTranslations } from 'next-intl';
+import Title from '../../shared/ui/title/Title';
 
 function DeliverForm() {
   const t = useTranslations('DeliverForm');
@@ -133,25 +134,129 @@ function DeliverForm() {
 
   return (
     <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-      <div className="bg-[#F5F5F5] md:h-[503px] hide-scrollbar p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
-        <h3 className="text-lg font-semibold">{t('title')}</h3>
+      <div className="bg-[#F5F5F5] p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+        <Title className="text-lg font-semibold mb-5">{t('title')}</Title>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label={t('surname')} value={surnameValue} onChange={handleSurnameChange} onBlur={handleSurnameBlur} error={surnameError} name="surname" className="col-span-2 md:col-span-1" />
-          <Field label={t('name')} value={nameValue} onChange={handleNameChange} onBlur={handleNameBlur} error={nameError} name="name" className="col-span-2 md:col-span-1" />
-          <Field label={t('company')} value={nameCompanyValue} onChange={handleNameCompanyChange} onBlur={handleNameCompanyBlur} error={nameCompanyError} name="name_company" className="col-span-2" />
-          <Field label={t('vat')} value={VATNumValue} onChange={VATNumChange} onBlur={VATNumBlur} error={VATNumError} name="VATNum" className="col-span-2" />
-          <Field label={t('country')} value={countryValue} onChange={handleCountryChange} onBlur={handleCountryBlur} error={countryError} name="country" className="col-span-2" />
-          <Field label={t('adress')} value={adressValue} onChange={handleAdressChange} onBlur={handleAdressBlur} error={adressError} name="adress" className="col-span-2 md:col-span-1" />
-          <Field label={t('house')} value={houseValue} onChange={handleHouseChange} onBlur={handleHouseBlur} error={houseError} name="house" className="col-span-2 md:col-span-1" />
-          <Field label={t('postal')} value={postalCodeValue} onChange={handlePostalCodeChange} onBlur={handlePostalCodeBlur} error={postalCodeError} name="postal" className="col-span-2" />
-          <Field label={t('email')} value={emailValue} onChange={handleEmailChange} onBlur={handleEmailBlur} error={emailError} name="email" className="col-span-2" />
-          <PhoneInput className="w-full col-span-2" countryCode={countryCode} setCountryCode={setCountryCode} phoneNumber={phoneNumberValue} handlePhoneNumberChange={handlePhoneNumberChange} handlePhoneNumberBlur={handlePhoneNumberBlur} phoneNumberError={phoneError} styles="col-span-2" />
-          <Field label={t('eori')} value={EORINumber} onChange={handleEORINumberChange} onBlur={handleEORINumberBlur} error={EORINumberError} name="EORINumber" className="col-span-2" />
+          <Field
+            label={t('name')}
+            value={nameValue}
+            onChange={handleNameChange}
+            onBlur={handleNameBlur}
+            error={nameError}
+            name="name"
+            placeholder="Anna"
+            className="col-span-2 md:col-span-1"
+          />
+          <Field
+            label={t('surname')}
+            value={surnameValue}
+            onChange={handleSurnameChange}
+            onBlur={handleSurnameBlur}
+            error={surnameError}
+            name="surname"
+            placeholder="Kowalski"
+            className="col-span-2 md:col-span-1"
+          />
+
+          <Field
+            label={t('company')}
+            value={nameCompanyValue}
+            onChange={handleNameCompanyChange}
+            onBlur={handleNameCompanyBlur}
+            error={nameCompanyError}
+            name="name_company"
+            placeholder="Beauty Experts Group"
+            className="col-span-2"
+          />
+          <Field
+            label={t('vat')}
+            value={VATNumValue}
+            onChange={VATNumChange}
+            onBlur={VATNumBlur}
+            error={VATNumError}
+            name="VATNum"
+            placeholder="PL1234567890"
+            className="col-span-2"
+          />
+          <Field
+            label={t('country')}
+            value={countryValue}
+            onChange={handleCountryChange}
+            onBlur={handleCountryBlur}
+            error={countryError}
+            name="country"
+            placeholder="Poland"
+            className="col-span-2"
+          />
+          <Field
+            label={t('adress')}
+            value={adressValue}
+            onChange={handleAdressChange}
+            onBlur={handleAdressBlur}
+            error={adressError}
+            name="adress"
+            placeholder="Krakowska Street"
+            className="col-span-2 md:col-span-1"
+          />
+          <Field
+            label={t('house')}
+            value={houseValue}
+            onChange={handleHouseChange}
+            onBlur={handleHouseBlur}
+            error={houseError}
+            name="house"
+            placeholder="15A"
+            className="col-span-2 md:col-span-1"
+          />
+          <Field
+            label={t('postal')}
+            value={postalCodeValue}
+            onChange={handlePostalCodeChange}
+            onBlur={handlePostalCodeBlur}
+            error={postalCodeError}
+            name="postal"
+            placeholder="30-123"
+            className="col-span-2"
+          />
+          <Field
+            label={t('email')}
+            value={emailValue}
+            onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
+            error={emailError}
+            name="email"
+            placeholder="example@email.com"
+            className="col-span-2"
+          />
+          <PhoneInput
+            className="w-full col-span-2"
+            countryCode={countryCode}
+            setCountryCode={setCountryCode}
+            phoneNumber={phoneNumberValue}
+            handlePhoneNumberChange={handlePhoneNumberChange}
+            handlePhoneNumberBlur={handlePhoneNumberBlur}
+            phoneNumberError={phoneError}
+            styles="col-span-2"
+
+          />
+          <Field
+            label={t('eori')}
+            value={EORINumber}
+            onChange={handleEORINumberChange}
+            onBlur={handleEORINumberBlur}
+            error={EORINumberError}
+            name="EORINumber"
+            placeholder="PL123456789012"
+            className="col-span-2"
+          />
         </div>
       </div>
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" className="bg-[#49BA4A] w-fit">{t('save')}</Button>
+      <Button type="submit" className=" w-fit">
+        {t('save')}
+      </Button>
     </form>
+
   );
 }
 

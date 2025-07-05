@@ -12,33 +12,33 @@ import Title from "../../shared/ui/title/Title";
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import FormSection from "../../shared/ui/FormSection/FormSection";
 import { useTranslations } from "next-intl";
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
 
 
 export default function DilersFormPage() {
   const t = useTranslations("DilersFormPage");
   const mainActivityArray = [
-    t("mainActivity.marketing"),
-    t("mainActivity.development"),
-    t("mainActivity.design"),
-    t("mainActivity.sales"),
+    t("mainActivity.cosmeticsSales"),
+    t("mainActivity.masterTraining"),
+    t("mainActivity.serviceProvision"),
+    t("mainActivity.other"),
   ];
 
   const promotionChannelsArray = [
     t("promotionChannels.instagram"),
-    t("promotionChannels.tiktok"),
+    t("promotionChannels.vkontakte"),
+    t("promotionChannels.youtube"),
     t("promotionChannels.telegram"),
-    t("promotionChannels.website"),
-    t("promotionChannels.contextAds"),
-    t("promotionChannels.offlineEvents"),
-    t("promotionChannels.recommendations"),
+    t("promotionChannels.eventsParticipation"),
+    t("promotionChannels.ownWebsite"),
+    t("promotionChannels.other"),
   ];
-
   const distributionMethodsArray = [
-    t("distributionMethods.offlineSales"),
-    t("distributionMethods.marketplaces"),
-    t("distributionMethods.socialNetworks"),
-    t("distributionMethods.wholesale"),
-    t("distributionMethods.events"),
+    t("distributionMethods.retailSales"),
+    t("distributionMethods.wholesaleSupply"),
+    t("distributionMethods.onlineStore"),
+    t("distributionMethods.other"),
   ];
   const [error, setError] = useState(null);
   const [socials, setSocials] = useState([]);
@@ -111,12 +111,7 @@ export default function DilersFormPage() {
     hasError: instagramError,
   } = useInput("", (v) => v.length >= 5);
 
-  const {
-    value: phoneValue,
-    handleInputChange: handlePhoneChange,
-    handleInputBlur: handlePhoneBlur,
-    hasError: phoneError,
-  } = useInput("", (v) => /^\d{10,}$/.test(v.replace(/\D/g, "")));
+
 
   const {
     value: regionValue,
@@ -164,6 +159,14 @@ export default function DilersFormPage() {
 
   const [clientBaseSize, setClientBaseSize] = useState([]);
 
+  const [countryCode, setCountryCode] = useState("+90");
+  const {
+    value: phoneNumber,
+    handleInputChange: handlePhoneNumberChange,
+    handleInputBlur: handlePhoneNumberBlur,
+    hasError: phoneNumberError,
+  } = useInput("", (v) => v.trim() !== "");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -171,7 +174,7 @@ export default function DilersFormPage() {
       contactNameValue,
       emailValue,
       adressValue,
-      phoneValue,
+      phoneNumber,
     ];
 
     const radioRequired = [
@@ -188,7 +191,7 @@ export default function DilersFormPage() {
     ];
 
     const hasTextErrors =
-      contactNameError || emailError || adressError || websiteError || phoneError;
+      contactNameError || emailError || adressError || websiteError || phoneNumberError;
 
     const hasRadioErrors = radioRequired.some((val) => val.trim() === "");
 
@@ -200,7 +203,7 @@ export default function DilersFormPage() {
     const data = {
       name: contactNameValue,
       email: emailValue,
-      phone: phoneValue,
+      phone: countryCode + phoneNumber,
       adress: adressValue,
       postalCode: websiteValue,
       socials,
@@ -230,7 +233,7 @@ export default function DilersFormPage() {
     handleContactNameChange({ target: { value: "" } });
     handleEmailChange({ target: { value: "" } });
     handleAdressChange({ target: { value: "" } });
-    handlePhoneChange({ target: { value: "" } });
+    handlePhoneNumberChange({ target: { value: "" } });
     handleWebsiteChange({ target: { value: "" } });
     handleInstagramChange({ target: { value: "" } });
     handleRegionChange({ target: { value: "" } });
@@ -282,6 +285,7 @@ export default function DilersFormPage() {
               onBlur={handleNameCompanyBlur}
               error={nameCompanyError}
               name="company"
+              placeholder={t("placeholders.companyName")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -291,6 +295,7 @@ export default function DilersFormPage() {
               onBlur={handleAdressBlur}
               error={adressError}
               name="adress"
+              placeholder={t("placeholders.address")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -300,6 +305,7 @@ export default function DilersFormPage() {
               onBlur={handleContactNameBlur}
               error={contactNameError}
               name="contact"
+              placeholder={t("placeholders.contactPerson")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -309,17 +315,20 @@ export default function DilersFormPage() {
               onBlur={jobTitleBlur}
               error={jobTitleError}
               name="jobTitle"
+              placeholder={t("placeholders.jobTitle")}
               className="w-full md:w-[48%]"
             />
-            <Field
-              label={t("fields.phone")}
-              value={phoneValue}
-              onChange={handlePhoneChange}
-              onBlur={handlePhoneBlur}
-              error={phoneError}
-              name="phone"
-              className="w-full md:w-[48%]"
+
+            <PhoneInput
+              countryCode={countryCode}
+              setCountryCode={setCountryCode}
+              phoneNumber={phoneNumber}
+              handlePhoneNumberChange={handlePhoneNumberChange}
+              handlePhoneNumberBlur={handlePhoneNumberBlur}
+              phoneNumberError={phoneNumberError}
+              styles={"w-full md:w-[48%]"}
             />
+
             <Field
               label={t("fields.email")}
               value={emailValue}
@@ -327,6 +336,7 @@ export default function DilersFormPage() {
               onBlur={handleEmailBlur}
               error={emailError}
               name="email"
+              placeholder={t("placeholders.email")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -336,6 +346,7 @@ export default function DilersFormPage() {
               onBlur={handleWebsiteBlur}
               error={websiteError}
               name="website"
+              placeholder={t("placeholders.website")}
               className="w-full md:w-[48%]"
             />
             <Field
@@ -345,6 +356,7 @@ export default function DilersFormPage() {
               onBlur={handleInstagramBlur}
               error={instagramError}
               name="instagram"
+              placeholder={t("placeholders.instagram")}
               className="w-full md:w-[48%]"
             />
 
@@ -511,6 +523,7 @@ export default function DilersFormPage() {
             onBlur={handleRegionBlur}
             error={regionError}
             name="region"
+            placeholder={t("placeholders.region")}
             className="w-full"
           />
         </FormSection>
@@ -524,6 +537,7 @@ export default function DilersFormPage() {
             onBlur={handleBrandsBlur}
             error={brandsError}
             name="brands"
+            placeholder={t("placeholders.brandsRepresented")}
           />
           <TextAreaField
             label={t("fields.cooperationInterest")}
@@ -532,6 +546,7 @@ export default function DilersFormPage() {
             onBlur={handleInterestBlur}
             error={interestError}
             name="interest"
+            placeholder={t("placeholders.cooperationInterest") + "..."}
           />
           <TextAreaField
             label={t("fields.additionalComments")}
@@ -540,17 +555,22 @@ export default function DilersFormPage() {
             onBlur={handleCommentsBlur}
             error={commentsError}
             name="comments"
+            placeholder={t("placeholders.additionalComments") + "..."}
           />
         </FormSection>
 
         {error && <p className="text-red-500">{error}</p>}
+        <div className="mx-auto">
+          <ButtonWithCircleLink
+            type="submit"
+            buttonText={t("buttons.save")}
+            className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
+          >
 
-        <Button
-          type="submit"
-          className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
-        >
-          {t("buttons.save")}
-        </Button>
+          </ButtonWithCircleLink>
+
+        </div>
+
       </form>
     </section>
   );

@@ -85,7 +85,7 @@ const feetoItems = [
 function HomePage() {
   const t = useTranslations('HomePage');
   return (
-    <div className='page'>
+    <div className=''>
 
       <section className="">
         <div className=" mb-7 relative">
@@ -100,6 +100,24 @@ function HomePage() {
 
       <section className='feetolines'>
         <div className='wrap container'>
+
+          {/* {feetoItems.map(({ key, imgSrc, imgAltKey, titleKey, categoryKey }) => (
+            <div
+              key={key}
+              className="feetolines__list-item select-none"
+              draggable={false}
+            >
+              <Image
+                className="feetolines__item-img select-none"
+                src={imgSrc}
+                alt={t(imgAltKey)}
+              />
+              <div className="feetolines__item-sticker">
+                <h4 className="feetolines__item-title">{t(titleKey)}</h4>
+                <p className="feetolines__item-category">{t(categoryKey)}</p>
+              </div>
+            </div>
+          ))} */}
           <Swiper
             items={feetoItems.map(({ key, imgSrc, imgAltKey, titleKey, categoryKey }) => (
               <div
@@ -120,7 +138,7 @@ function HomePage() {
             ))}
             className={"feetolines__list"}
             itemsLength={1}
-            widthPercent={"26.875rem"}
+            widthPercent={30}
             controlBlock={false}
           ></Swiper>
         </div>
@@ -150,21 +168,20 @@ function HomePage() {
       </section>
       <section className="flex flex-col md:flex-row gap-4 mb-24 justify-center items-center">
         <Image
-          className="w-full md:w-[60%]"
+          className="w-full md:w-[60%] h-[353px]"
           src={magnifyingGlasImg}
           alt={t('kartMoreThanPedicureTitle')}
         />
         <div className="w-full md:w-[40%] flex flex-col gap-4 justify-between">
-          <Title>{t('kartMoreThanPedicureTitle')}</Title>
+          <Title className="leading-normal pl-6">{t('kartMoreThanPedicureTitle')}</Title>
           <div className="p-6 bg-[#F5F5F5] min-h-[14.8125rem] shadow rounded-2xl">
-            <Text>{t('kartMoreThanPedicureText')}</Text>
+            <Text className="leading-normal text-[1rem]! ">{t('kartMoreThanPedicureText')}</Text>
           </div>
           <ButtonWithCircleLink
             href="/about"
-            arrowColor="#81D742"
-            circleClassName="bg-gradient-to-b bg-[#FFFFFF] from-black/10 to-[#FFFFFF]"
+            circleClassName="bg-[#5EAC41] "
             buttonText={t('kartMoreThanPedicureButtonText')}
-            buttonClassName="w-[90%] text-[#81D742]! bg-[#FFFFFF] bg-gradient-to-b from-black/10 to-[#FFFFFF]"
+            buttonClassName="w-[90%]  bg-[#5EAC41] "
           />
         </div>
       </section>
@@ -197,37 +214,37 @@ function HomePage() {
 
       <div className="flex flex-col gap-24">
         <section className="certificate">
-          <div className="flex gap-8 items-center justify-center flex-col md:flex-row">
+          <div className="flex gap-8 items-center justify-between flex-col lg:flex-row">
             <Image
               src={certificateImg}
               alt={t('certificateTitlePart2')}
-              className="object-fill w-full md:w-1/2 h-full"
+              className="object-fill w-full max-w-[800px]  md:max-w-[760px] max-h-[504px] h-full"
             />
-            <div className="w-full md:w-1/2 flex flex-col gap-4">
+            <div className="w-full shrink-0  lg:w-1/2 flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <Title>{t('certificateTitlePart1')}</Title>
                 <Title color="green">{t('certificateTitlePart2')}</Title>
               </div>
 
               <div className="flex flex-col gap-4">
-                <Text>{t('certificateText1')}</Text>
+                <Text >{t('certificateText1')}</Text>
                 <Text>{t('certificateText2')}</Text>
               </div>
 
               <Text className="font-bold">{t('certificateMainAdvantages')}</Text>
-              <ul className="flex justify-between">
-                <li className="flex gap-2 items-center">
-                  <BadgePercent color="#96B87D" />
+              <ul className="flex gap-2 flex-col sm:gap-8   items-start sm:flex-row  md:gap-12 lg:gap-14 xl:gap-16 w-full">
+                <li className="flex gap-2 items-center max-w-[248px] w-full">
+                  <BadgePercent color="#96B87D" className="w-[1.5625rem] h-[1.5625rem]" />
                   <Text>{t('certificateAdvantageDiscount')}</Text>
                 </li>
                 <li className="flex gap-2 items-center">
-                  <ShoppingBag color="#96B87D" />
+                  <ShoppingBag color="#96B87D" className="w-[1.5625rem] h-[1.5625rem] shrink-0" />
                   <Text>{t('certificateAdvantageProducts')}</Text>
                 </li>
               </ul>
 
               <Text className="font-bold">{t('certificateAccessToMaterials')}</Text>
-              <div className="flex gap-[26%]">
+              <div className="flex flex-col  gap-2 sm:gap-8  sm:flex-row md:gap-12 lg:gap-14  xl:gap-16 w-full items-start">
                 <ul className="flex flex-col gap-2">
                   <li className="flex gap-2 items-center">
                     <FileText color="#96B87D" />

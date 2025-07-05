@@ -8,7 +8,7 @@ export default function ProductLinks() {
     const t = useTranslations("Header.productLinks");
 
     return (
-        <div className="hidden [@media(min-width:1280px)]:flex justify-center py-[10px] gap-[40px]">
+        <div className="hidden [@media(min-width:1280px)]:flex justify-center gap-[40px]">
             {productLinks.map((link) => (
                 <NavLink
                     href={link.href}
@@ -31,7 +31,7 @@ export function ProductLinksMobile({ onClose }) {
                     key={link.labelKey}
                     label={t(link.labelKey)}
                     onClick={onClose}
-                    styles={"border-b border-[#EDEDED] py-2 text-sm!"}
+                    styles={"border-b border-[#EDEDED] pb-4 text-sm!"}
                 />
             ))}
         </nav>

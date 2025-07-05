@@ -23,7 +23,7 @@ function OrderСonditionsList() {
       <div className="w-full md:w-[50%] rounded-2xl shadow p-8 flex flex-col gap-4">
         <div>
           <Title>
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center mb-2">
               <Image src={handsImg} alt="hands" />
               {t('orderConditions.title')}
             </div>

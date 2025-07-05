@@ -26,17 +26,17 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-md">
       <div className="max-w-[1578px] mx-auto px-[15px]">
-        <div className="flex justify-between items-center flex-wrap gap-y-4 pt-[25px] pb-[15px]">
-          <Link href="/" className="flex items-center flex-wrap gap-[30px]">
+        <div className="flex justify-between items-center flex-wrap gap-y-4 pt-[25px] pb-[10px]">
+          <Link href="/" className="flex items-center flex-wrap ">
             <Image
-              className="w-[88px] h-[30px] min-w-[88px]"
+              className="w-[110px]  "
               src={logotype}
               alt="KART Podology"
               priority
             />
           </Link>
 
-          <HeaderNav className="hidden xl:flex items-center gap-[40px]" />
+          <HeaderNav />
 
           <div className="hidden xl:block max-w-[328px] w-full">
             <form method="GET" action="/" className="w-full">
@@ -50,25 +50,28 @@ export default function Header() {
               </div>
             </form>
           </div>
-
-          <div className="hidden xl:flex items-center gap-[15px]">
-            <LangSwitcher classes='hidden xl:flex' />
-            <CurrencySelector />
-            <Link href="#" className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#a0c287] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
-              <p className="text-white font-normal">{t("onlineEducation")}</p>
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Link href={'/cart'} className="text-lg! text-[#323232]"><ShoppingBag size={20} color="#323232" /></Link>
-            <ProfileIcon />
-            <button onClick={() => setMobileMenuOpen(true)} className="block xl:hidden" aria-label="Open mobile menu">
-              <svg className="w-[25px] h-[25px] cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
-                <path d="M7.2915 6.25H17.7082..." stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+          <div className="flex gap-6">
+            <div className="hidden xl:flex items-center gap-[15px]">
+              <LangSwitcher classes='hidden xl:flex' />
+              <CurrencySelector />
+              <Link href="#" className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#A4D49D] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+                <p className="text-white font-normal">{t("onlineEducation")}</p>
+              </Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <Link href={'/cart'} className="text-lg! text-[#323232]"><ShoppingBag size={20} color="#323232" /></Link>
+              <ProfileIcon />
+              <button onClick={() => setMobileMenuOpen(true)} className="block xl:hidden" aria-label="Open mobile menu">
+                <svg className="w-[25px] h-[25px] cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+                  <path d="M7.2915 6.25H17.7082..." stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
+
+
+
       </div>
 
       <div className="max-w-[1450px] mx-auto px-[15px]">

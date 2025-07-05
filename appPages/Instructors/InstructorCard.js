@@ -1,15 +1,16 @@
 
 import CircleLink from '../../shared/ui/button/CircleLink';
-import { ArrowUpRightFromSquare, Globe, Instagram, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from "../../i18n/navigation";
 import React from 'react';
 import womenImg from '../../public/assets/image/womenImg.png';
-
+import instagram from '../../public/assets/svg/insta.svg';
+import gmail from '../../public/assets/svg/gmail-icon.svg';
+import website from '../../public/assets/svg/website-icon.svg';
 const socialIcons = {
-  mail: <Mail color='#404040' className="w-4 h-4" />,
-  instagram: <Instagram color='#404040' className="w-4 h-4" />,
-  globe: <Globe color='#404040' className="w-4 h-4" />,
+  mail: <Image src={gmail} alt='gmail' className="w-5 h-5" />,
+  instagram: <Image src={instagram} alt='instagram' className="w-5 h-5" />,
+  globe: <Image src={website} alt='website' className="w-5 h-5" />,
 };
 
 export default function InstructorCard({ instructor }) {
@@ -19,9 +20,7 @@ export default function InstructorCard({ instructor }) {
         <Image
           src={womenImg}
           alt={instructor?.name}
-          width={100}
-          height={100}
-          className="object-cover rounded-xl"
+          className="object-cover rounded-xl w-[5.625rem] h-[5.625rem] sm:w-[6.25rem] sm:h-[6.25rem]"
         />
 
         <div className="flex-1 flex flex-col gap-2 justify-between text-[#000000] min-h-[100px]">
@@ -42,7 +41,7 @@ export default function InstructorCard({ instructor }) {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[2.1875rem] h-[2.1875rem] bg-gray-100 rounded-full shadow flex justify-center items-center hover:bg-gray-200 transition"
+                  className="w-[2rem] h-[2rem] bg-gray-100 rounded-xl shadow flex justify-center items-center hover:bg-gray-200 transition"
                 >
                   {socialIcons[item.type]}
                 </Link>

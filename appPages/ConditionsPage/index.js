@@ -17,7 +17,7 @@ export default function ConditionsPage() {
         <div
           className='p-8 rounded-xl'
           style={{
-            background: 'linear-gradient(to left, white, #96B87D)',
+            background: 'linear-gradient(to left, white, #5EAC41)',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
           }}
         >
@@ -38,14 +38,14 @@ export default function ConditionsPage() {
 
         {/* Section 1 */}
         <section className='p-4 sm:p-6 rounded-xl flex flex-col gap-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
-          <Text>{t('masterKart')}</Text>
-          <Text>
+          <Text className='text-[16px]! leading-normal'>{t('masterKart')}</Text>
+          <Text className='text-[16px]! leading-normal'>
             {t('pedicureMaster')}{' '}
             <Link href='/' className='text-[#49BA4A]'>
               {t('linkText')}
             </Link>
           </Text>
-          <Text>{t('retailClient')}</Text>
+          <Text className='text-[16px]! leading-normal'>{t('retailClient')}</Text>
         </section>
 
         {/* Section 2 */}
@@ -58,7 +58,7 @@ export default function ConditionsPage() {
               <li key={i}>{item}</li>
             ))}
           </ul>
-          <Text>
+          <Text className='text-[16px]! leading-normal'>
             {t('dealerNote')}{' '}
             <Link href='/' className='text-[#49BA4A]'>
               {t('linkText')}
@@ -68,11 +68,11 @@ export default function ConditionsPage() {
 
         {/* Section 3 */}
         <section className='p-6 rounded-xl flex flex-col gap-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]'>
-          <Text>{t('orderProcessing')}</Text>
-          <Text>{t('contactDetailsNote')}</Text>
+          <Text className='text-[16px]! leading-normal'>{t('orderProcessing')}</Text>
+          <Text className='text-[16px]! leading-normal'>{t('contactDetailsNote')}</Text>
         </section>
 
-        <Text className='leading-normal'>{t('contactDetailsNote')}</Text>
+        <Text className='text-[16px]! leading-normal' >{t('contactDetailsNote')}</Text>
       </div>
     </main>
   );

@@ -5,6 +5,8 @@ import Button from '../../shared/ui/button/Button';
 import Field from '../../shared/ui/Field/Field';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { SquarePen } from 'lucide-react';
+import PhoneInput from '../../shared/ui/PhoneInput/PhoneInput';
 
 export default function PersonalInfoForm() {
   const t = useTranslations('PersonalInfoForm');
@@ -31,12 +33,18 @@ export default function PersonalInfoForm() {
     hasError: nicknameError,
   } = useInput('', (v) => v.trim().length >= 3);
 
+
+  const [countryCode, setCountryCode] = useState('+380');
   const {
-    value: phoneValue,
-    handleInputChange: handlePhoneChange,
-    handleInputBlur: handlePhoneBlur,
+    value: phoneNumberValue,
+    handleInputChange: handlePhoneNumberChange,
+    handleInputBlur: handlePhoneNumberBlur,
     hasError: phoneError,
-  } = useInput('', (v) => /^\d{10,}$/.test(v.replace(/\D/g, '')));
+  } = useInput('', (val) => /^\d{6, 14}$/.test(val));
+
+
+
+
 
   const {
     value: emailValue,
@@ -83,24 +91,26 @@ export default function PersonalInfoForm() {
         <h3 className="text-lg font-semibold col-span-2">{t('title')}</h3>
 
         <Field
-          label={t('surname')}
-          value={surnameValue}
-          onChange={handleSurnameChange}
-          onBlur={handleSurnameBlur}
-          error={surnameError}
-          name="surname"
-          className="col-span-2 md:col-span-1"
-        />
-
-        <Field
           label={t('name')}
           value={nameValue}
           onChange={handleNameChange}
           onBlur={handleNameBlur}
           error={nameError}
           name="name"
+          placeholder={t('placeholders.name') || "Иван"}
           className="col-span-2 md:col-span-1"
         />
+        <Field
+          label={t('surname')}
+          value={surnameValue}
+          onChange={handleSurnameChange}
+          onBlur={handleSurnameBlur}
+          error={surnameError}
+          name="surname"
+          placeholder={t('placeholders.surname') || "Иванов"}
+          className="col-span-2 md:col-span-1"
+        />
+
 
         <Field
           label={t('nickname')}
@@ -109,29 +119,36 @@ export default function PersonalInfoForm() {
           onBlur={handleNicknameBlur}
           error={nicknameError}
           name="nickname"
+          placeholder={t('placeholders.nickname') || "ivan123"}
           className="col-span-2"
         />
 
-        <Field
-          label={t('phone')}
-          value={phoneValue}
-          onChange={handlePhoneChange}
-          onBlur={handlePhoneBlur}
-          error={phoneError}
-          name="phone"
-          className="col-span-2"
-          placeholder="+905555555555"
+        <PhoneInput
+          className="w-full col-span-2"
+          countryCode={countryCode}
+          setCountryCode={setCountryCode}
+          phoneNumber={phoneNumberValue}
+          handlePhoneNumberChange={handlePhoneNumberChange}
+          handlePhoneNumberBlur={handlePhoneNumberBlur}
+          phoneNumberError={phoneError}
+          styles="col-span-2"
         />
 
-        <Field
-          label={t('email')}
-          value={emailValue}
-          onChange={handleEmailChange}
-          onBlur={handleEmailBlur}
-          error={emailError}
-          name="email"
-          className="col-span-2"
-        />
+        <div className="mb-2 col-span-2">
+          <Field
+            label={t('email')}
+            value={emailValue}
+            onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
+            error={emailError}
+            name="email"
+            placeholder={t('placeholders.email') || "example@mail.com"}
+            className="w-full"
+          />
+          <button type='button' className='flex gap-2 items-center text-sm cursor-pointer mt-1'>
+            Изменить <SquarePen size={15} />
+          </button>
+        </div>
 
         <Field
           label={t('password')}
@@ -141,12 +158,13 @@ export default function PersonalInfoForm() {
           onBlur={handlePasswordBlur}
           error={passwordError}
           name="password"
+          placeholder={t('placeholders.password') || "••••••••"}
           className="col-span-2"
         />
       </div>
 
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit" className="bg-[#49BA4A]">
+      <Button type="submit" >
         {t('save')}
       </Button>
     </form>

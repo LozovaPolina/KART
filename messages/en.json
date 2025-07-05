@@ -117,6 +117,8 @@
 	},
 	"CriteriaDilersPage": {
 		"sendRequest": "Send request",
+		"title": "Criteria for KART Dealers",
+		"text": "KART company invites reliable partners for cooperation who are ready for long-term relationships, capable of actively training specialists and promoting the KART brand in their assigned territories.",
 		"criteria1": {
 			"title": "Business Profile",
 			"content": "Experience in the pedicure/podology field. Possession of a license (if required) and relevant permits for educational and commercial activities."
@@ -139,14 +141,12 @@
 		},
 		"criteria6": {
 			"title": "Reputation and Reliability",
-			"content": "Positive business reputation. Guarantee of compliance with contractual obligations and brand policies."
-		},
-		"criteria7": {
-			"title": "Regional Exclusivity",
-			"content": "Willingness to develop the brand in the assigned territory considering exclusive or semi-exclusive representation conditions."
+			"content": "A positive business reputation. Guarantees of compliance with contractual obligations and brand policy. Willingness to develop the brand in the assigned territory, taking into account the conditions of exclusive or semi-exclusive representation."
 		}
 	},
 	"InstructorCriteriaPage": {
+		"title": "Criteria for KART PODOLOGY Instructors",
+		"text": "KART PODOLOGY company sets certain requirements for candidates applying for the instructor role. Instructors represent the brand at training events and embody the company’s values and standards. Below are the key criteria for selecting KART instructors.",
 		"sendRequest": "Send request",
 		"criteria1": {
 			"title": "Professional Experience",
@@ -231,6 +231,21 @@
 			"regionAndScale": "Region and Scale of Activity",
 			"additionalInfo": "Additional Information"
 		},
+		"placeholders": {
+			"companyName": "Example Sp. z o.o.",
+			"address": "15 Krakowska Street, Warsaw",
+			"contactPerson": "Alex Novak",
+			"jobTitle": "Marketing Director",
+			"phone": "+48 600 123 456",
+			"email": "example@email.com",
+			"website": "www.example.pl",
+			"instagram": "@example_company",
+			"addSocialPlaceholder": "e.g., @example on Telegram",
+			"region": "Masovian Voivodeship",
+			"brandsRepresented": "e.g., Ziaja, Bielenda",
+			"cooperationInterest": "Interested in promoting new brands",
+			"additionalComments": "Open to various partnership options"
+		},
 		"fields": {
 			"companyName": "Company Name / Individual Entrepreneur:",
 			"address": "Address",
@@ -303,29 +318,28 @@
 			"fillAllRequired": "Please fill in all required fields correctly."
 		},
 		"buttons": {
-			"save": "Save"
+			"save": "Submit"
 		},
 		"mainActivity": {
-			"marketing": "Marketing",
-			"development": "Development",
-			"design": "Design",
-			"sales": "Sales"
+			"cosmeticsSales": "Cosmetics Sales",
+			"masterTraining": "Master Training",
+			"serviceProvision": "Service Provision",
+			"other": "Other"
 		},
 		"promotionChannels": {
 			"instagram": "Instagram",
-			"tiktok": "TikTok",
+			"vkontakte": "VKontakte",
+			"youtube": "YouTube",
 			"telegram": "Telegram",
-			"website": "Website",
-			"contextAds": "Contextual advertising",
-			"offlineEvents": "Offline events",
-			"recommendations": "Recommendations / Word of mouth"
+			"eventsParticipation": "Participation in exhibitions / events",
+			"ownWebsite": "Own website",
+			"other": "Other"
 		},
 		"distributionMethods": {
-			"offlineSales": "Offline sales point",
-			"marketplaces": "Via marketplaces",
-			"socialNetworks": "Via social networks",
-			"wholesale": "Wholesale trade",
-			"events": "Exhibitions / events"
+			"retailSales": "Retail Sales",
+			"wholesaleSupply": "Wholesale Supply",
+			"onlineStore": "Online Store",
+			"other": "Other"
 		}
 	},
 	"InstructorsFormPage": {
@@ -335,6 +349,24 @@
 		},
 		"title": "Form for Instructor Status Request",
 		"hint": "Dear candidate! Please carefully fill out the form. The information you provide will help us assess your experience, professional competencies, and your potential to represent the KART PODOLOGY brand as an instructor.",
+		"placeholders": {
+			"fullName": "Anna Kowalska",
+			"birthDate": "12/03/1987",
+			"city": "Krakow",
+			"email": "anna.k@example.com",
+			"phone": "+48 600 123 456",
+			"website": "www.beautystudio.pl",
+			"socialNetworks": "@anna_nails on Instagram",
+			"educationDetail": "Medical secondary education, courses in podology and hardware pedicure",
+			"currentJob": "Pedicure specialist at 'Glow' beauty salon",
+			"techniques": "Hardware pedicure, ingrown nail treatment, diabetic foot care",
+			"teachingDetail": "Conducting private workshops and training beginner specialists",
+			"strongSides": "Attention to detail, empathy, clear communication",
+			"audienceExp": "Experience with students at various levels, over 100 training sessions held",
+			"promotionPlatforms": "Instagram, Facebook, local events, client referrals",
+			"motivation": "I want to share my experience and grow together with the brand",
+			"comment": "I am open to additional training and ready to meet brand standards"
+		},
 		"form": {
 			"personalInfo": "Personal Information",
 			"professionalExperience": "Professional Experience",
@@ -344,10 +376,10 @@
 			"additionalInfo": "Additional Information",
 			"fullName": "Full Name:",
 			"birthDate": "Date of Birth:",
-			"city": "City of Residence:",
-			"email": "E-mail",
-			"phone": "Phone Number",
-			"website": "Links to Social Media",
+			"city": "City:",
+			"email": "E-mail:",
+			"phone": "Phone Number:",
+			"website": "Links to Social Media:",
 			"socialNetworksPlaceholder": "+ Add Social Media",
 			"isPedicureMaster": "You are a:",
 			"isPedicureMasterOptions": {
@@ -449,10 +481,18 @@
 		"email": "Email",
 		"password": "Password",
 		"save": "Save",
-		"error": "Please fill out all fields correctly."
+		"error": "Please fill out all fields correctly.",
+		"placeholders": {
+			"surname": "Smith",
+			"name": "John",
+			"nickname": "johnny123",
+			"phone": "+1 555 123 4567",
+			"email": "example@mail.com",
+			"password": "••••••••"
+		}
 	},
 	"DeliverForm": {
-		"title": "Contact Information",
+		"title": "Deliver Form",
 		"surname": "Surname",
 		"name": "Name",
 		"company": "Company Name (optional)",
@@ -498,8 +538,9 @@
 			"about": "About",
 			"conditions": "Conditions for Masters",
 			"instructors": "Instructors",
-			"dealerCriteria": "How to Become a Dealer",
+			"dealerCriteria": "How to Become a Dealer КART",
 			"instructorCriteria": "How to Become an Instructor",
+			"dealers": "Dealers of KART",
 			"downloads": "Downloadable Materials",
 			"faq": "FAQ",
 			"contacts": "Contacts",
@@ -579,7 +620,8 @@
 			"name": "Your Name",
 			"email": "Email",
 			"phone": "Phone Number",
-			"message": "Question or Message"
+			"message": "Question or Message",
+			"messagePlaceholder": "Type your message here..."
 		},
 		"errors": {
 			"fixForm": "Please correct the errors in the form.",
@@ -609,5 +651,22 @@
 			"title": "Google Map with Marker",
 			"src": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12089.738127725638!2d-73.9851304!3d40.758896!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855d2996c5f%3A0x3d6f8d6c917f9e4e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1717616158731!5m2!1sen!2sus"
 		}
+	},
+	"ProfessionalFeetSlug": {
+		"home": "Home",
+		"productDescription": "Product Description",
+		"code": "Code",
+		"addToCart": "Add to Cart",
+		"usage": "How to Use",
+		"ingredients": "Ingredients List",
+		"popularProducts": "Popular Products"
+	},
+	"QuickProductSection": {
+		"product": "Product",
+		"code": "Code",
+		"price": "Price",
+		"quantity": "Quantity",
+		"addToCart": "Add to Cart",
+		"added": "Added"
 	}
 }

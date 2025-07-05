@@ -8,6 +8,7 @@ import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLin
 import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 import Field from "../../shared/ui/Field/Field";
 import { useInput } from "../../hooks/useInput";
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 
 export default function ContactPage() {
   const t = useTranslations("ContactPage");
@@ -18,7 +19,7 @@ export default function ContactPage() {
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError,
-    reset: resetName,
+
   } = useInput("", (value) => value.trim() !== "");
 
   const {
@@ -26,27 +27,22 @@ export default function ContactPage() {
     handleInputChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     hasError: emailError,
-    reset: resetEmail,
   } = useInput("", (value) => /\S+@\S+\.\S+/.test(value));
 
+  const [countryCode, setCountryCode] = useState('+380');
   const {
-    value: phoneValue,
-    handleInputChange: handlePhoneChange,
-    handleInputBlur: handlePhoneBlur,
+    value: phoneNumberValue,
+    handleInputChange: handlePhoneNumberChange,
+    handleInputBlur: handlePhoneNumberBlur,
     hasError: phoneError,
-    reset: resetPhone,
-  } = useInput("", (value) => {
-    // Simple phone validation: allow empty or digits, +, -, space
-    if (value.trim() === "") return true; // phone is optional
-    return /^[\d+\-\s()]+$/.test(value);
-  });
+  } = useInput('', (val) => /^\d{6,14}$/.test(val));
+
 
   const {
     value: messageValue,
     handleInputChange: handleMessageChange,
     handleInputBlur: handleMessageBlur,
     hasError: messageError,
-    reset: resetMessage,
   } = useInput("", (value) => value.trim() !== "");
 
   const [submitError, setSubmitError] = useState("");
@@ -58,7 +54,7 @@ export default function ContactPage() {
     // Trigger blur handlers
     handleNameBlur();
     handleEmailBlur();
-    handlePhoneBlur();
+    handlePhoneNumberBlur();
     handleMessageBlur();
 
     if (nameError || emailError || phoneError || messageError) {
@@ -78,13 +74,14 @@ export default function ContactPage() {
       setSubmitError(t("errors.messageRequired"));
       return;
     }
+    const data = {
+      name: nameValue,
+      email: emailValue,
+      phone: countryCode + phoneNumberValue,
+      messageValue: messageValue,
+    };
+    console.log(data)
 
-    alert(t("messages.formSent"));
-
-    resetName();
-    resetEmail();
-    resetPhone();
-    resetMessage();
   };
 
   return (
@@ -98,7 +95,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <section className="bg-[#F5F5F5] py-10 px-4 md:px-10">
+      <section className=" py-10 px-4 md:px-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-8 rounded-xl">
           {/* Form */}
           <form
@@ -114,6 +111,7 @@ export default function ContactPage() {
               onChange={handleNameChange}
               onBlur={handleNameBlur}
               error={nameError}
+              placeholder="Anna Kowalska"
               className="mt-2"
               labelBgColor="bg-white"
             />
@@ -125,19 +123,23 @@ export default function ContactPage() {
               onChange={handleEmailChange}
               onBlur={handleEmailBlur}
               error={emailError}
+              placeholder="example@email.com"
               className="mt-2"
               labelBgColor="bg-white"
             />
-            <Field
-              label={t("fields.phone") + " *"}
-              name="phone"
-              type="tel"
-              value={phoneValue}
-              onChange={handlePhoneChange}
-              onBlur={handlePhoneBlur}
-              error={phoneError}
-              className="mt-2"
-              labelBgColor="bg-white"
+
+
+
+            <PhoneInput
+              className="w-full col-span-2"
+              countryCode={countryCode}
+              setCountryCode={setCountryCode}
+              phoneNumber={phoneNumberValue}
+              handlePhoneNumberChange={handlePhoneNumberChange}
+              handlePhoneNumberBlur={handlePhoneNumberBlur}
+              phoneNumberError={phoneError}
+              styles="col-span-2"
+              labelBgStyle="bg-white"
             />
             <div className="relative w-full">
               <label
@@ -152,7 +154,8 @@ export default function ContactPage() {
                 value={messageValue}
                 onChange={handleMessageChange}
                 onBlur={handleMessageBlur}
-                className={`w-full border rounded-md px-4 py-2 mt-2 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-green-500 ${messageError ? "border-red-500" : "border-[#E2E2E2]"
+                placeholder={t("fields.messagePlaceholder") || "Напишите ваше сообщение здесь..."}
+                className={`w-full border-2 border-[#E2E2E2]  rounded-md px-4 py-2 mt-2 h-24 resize-none focus:outline-none  ${messageError ? "border-red-500" : " focus:border-black  "
                   }`}
               />
               {messageError && (
@@ -172,6 +175,7 @@ export default function ContactPage() {
               buttonText={t("buttons.send")}
             />
           </form>
+
 
           {/* Contact Info */}
           <div className="order-2 md:order-1">
