@@ -1,41 +1,49 @@
+"use client";
 
-import { useTranslations } from "next-intl";
-import { productLinks } from "../../data/navLinks";
+import { useLocale } from "next-intl";
 import NavLink from "./NavLink";
-
+import { useProductCategories } from "../../hooks/useProductCategories";
 
 export default function ProductLinks() {
-    const t = useTranslations("Header.productLinks");
+  const locale = useLocale();
+  const { categories, loading, error } = useProductCategories(locale);
 
-    return (
-        <div className="hidden [@media(min-width:1280px)]:flex justify-center gap-[40px]">
-            {productLinks.map((link) => (
-                <NavLink
-                    href={link.href}
-                    key={link.labelKey}
-                    label={t(link.labelKey)}
-                />
-            ))}
-        </div>
-    );
+  if (loading) return <p>Loading categories...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (categories.length === 0) return <p>No categories found.</p>;
+
+  return (
+    <div className="hidden [@media(min-width:1280px)]:flex justify-center gap-[40px]">
+      {categories.map((category) => (
+        <NavLink
+          key={category.id}
+          href={`/${locale}/products/categories/${category.id}`}
+          label={category.name}
+        />
+      ))}
+    </div>
+  );
 }
-
 export function ProductLinksMobile({ onClose }) {
-    const t = useTranslations("Header.productLinks");
+  const locale = useLocale();
+  const { categories, loading, error } = useProductCategories(locale);
 
-    return (
-        <nav className="flex flex-col ">
-            {productLinks.map((link) => (
-                <NavLink
-                    href={link.href}
-                    key={link.labelKey}
-                    label={t(link.labelKey)}
-                    onClick={onClose}
-                    styles={"border-b border-[#EDEDED] pb-4 text-sm!"}
-                />
-            ))}
-        </nav>
-    );
+  if (loading) return <p>Loading categories...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (categories.length === 0) return <p>No categories found.</p>;
+
+  return (
+    <nav className="flex flex-col">
+      {!loading &&
+        categories.map((category) => (
+          <NavLink
+            key={category.id}
+            href={`/${locale}/products/categories/${category.id}`}
+            label={category.name}
+            onClick={onClose}
+            styles="border-b border-[#EDEDED] pb-4 text-sm!"
+          />
+        ))}
+    </nav>
+  );
 }
-
-
