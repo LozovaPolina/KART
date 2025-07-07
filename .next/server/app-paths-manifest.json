@@ -1,0 +1,21 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/[locale]/(home)/contacts/page": "app/[locale]/(home)/contacts/page.js",
+  "/[locale]/(home)/about/page": "app/[locale]/(home)/about/page.js",
+  "/[locale]/(home)/conditions/page": "app/[locale]/(home)/conditions/page.js",
+  "/[locale]/(home)/criteria-diler/page": "app/[locale]/(home)/criteria-diler/page.js",
+  "/[locale]/(home)/criteria-instructor/page": "app/[locale]/(home)/criteria-instructor/page.js",
+  "/[locale]/(home)/galery/page": "app/[locale]/(home)/galery/page.js",
+  "/[locale]/(home)/dilers-form/page": "app/[locale]/(home)/dilers-form/page.js",
+  "/[locale]/(home)/instructors/page": "app/[locale]/(home)/instructors/page.js",
+  "/[locale]/(home)/instructors-form/page": "app/[locale]/(home)/instructors-form/page.js",
+  "/[locale]/(home)/profile/page": "app/[locale]/(home)/profile/page.js",
+  "/[locale]/(shop)/feeto-care/page": "app/[locale]/(shop)/feeto-care/page.js",
+  "/[locale]/(shop)/professional-feet/[slug]/page": "app/[locale]/(shop)/professional-feet/[slug]/page.js",
+  "/[locale]/(shop)/professional-feet/page": "app/[locale]/(shop)/professional-feet/page.js",
+  "/[locale]/dealers/page": "app/[locale]/dealers/page.js",
+  "/[locale]/faq/page": "app/[locale]/faq/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/cart/page": "app/[locale]/cart/page.js",
+  "/[locale]/quick-order/page": "app/[locale]/quick-order/page.js"
+}
