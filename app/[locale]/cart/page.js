@@ -3,13 +3,8 @@ import React from "react";
 
 import CartPage from "../../../appPages/CartPage/index.js";
 
-
-
 const page = () => {
-
-  return (
-    <CartPage />
-  );
+  return <CartPage />;
 };
 
 export default page;
