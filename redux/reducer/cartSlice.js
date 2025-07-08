@@ -21,54 +21,26 @@ export const fetchProductsByCategory = createAsyncThunk(
     }
 
     try {
-      const res = await fetch(API_URL + `/products?category=${categorySlug}`, {
-        headers: {
-          "Accept-Language": locale,
-        },
-      });
+      const res = await fetch(
+        `${API_URL}/products?category__slug=${categorySlug}`,
+        {
+          headers: {
+            "Accept-Language": locale,
+          },
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to fetch category products");
 
       const data = await res.json();
+      console.log("Fetched products for category:", categorySlug, data);
       return { categorySlug, products: data, locale };
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-export const fetchAllProducts = createAsyncThunk(
-  "products/fetchAll",
-  async ({ locale }, { rejectWithValue }) => {
-    try {
-      const res = await fetch(+"/products", {
-        headers: {
-          "Accept-Language": locale,
-        },
-      });
 
-      if (!res.ok) throw new Error("Failed to fetch all products");
-
-      const allProducts = await res.json();
-
-      // Group products by category slug
-      const groupedByCategory = allProducts.reduce((acc, product) => {
-        const category = product.categorySlug || "uncategorized";
-        if (!acc[category]) {
-          acc[category] = {
-            products: [],
-            locale,
-          };
-        }
-        acc[category].products.push(product);
-        return acc;
-      }, {});
-
-      return groupedByCategory;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -126,17 +98,25 @@ const cartSlice = createSlice({
     builder
       .addCase(fetchProductsByCategory.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+        state.loading = false;
         if (action.payload) {
           const { categorySlug, products, locale } = action.payload;
-          state.byCategory[categorySlug] = { products, locale };
+
+          state.byCategory = {
+            ...state.byCategory,
+            [categorySlug]: {
+              products,
+              locale,
+            },
+          };
         }
-        state.loading = false;
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
-        console.error("Failed to fetch products:", action.payload);
         state.loading = false;
+        state.error = action.payload || action.error.message;
       });
   },
 });
