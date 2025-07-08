@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { products } from "../../data/products";
+import { API_URL } from "../../data/url";
 
 const initialState = {
   cartItems: [],
@@ -11,34 +12,63 @@ const initialState = {
 };
 export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchByCategory",
-  async ({ categoryId, locale }, { getState, rejectWithValue }) => {
+  async ({ categorySlug, locale }, { getState, rejectWithValue }) => {
     const state = getState();
-    const cached = state.cart.byCategory[categoryId];
+    const cached = state.cart.byCategory[categorySlug];
 
     if (cached && cached.locale === locale) {
       return null;
     }
 
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/products?category=${categoryId}`,
-        {
-          headers: {
-            "Accept-Language": locale,
-          },
-        }
-      );
+      const res = await fetch(API_URL + `/products?category=${categorySlug}`, {
+        headers: {
+          "Accept-Language": locale,
+        },
+      });
 
       if (!res.ok) throw new Error("Failed to fetch category products");
 
       const data = await res.json();
-      return { categoryId, products: data, locale };
+      return { categorySlug, products: data, locale };
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+export const fetchAllProducts = createAsyncThunk(
+  "products/fetchAll",
+  async ({ locale }, { rejectWithValue }) => {
+    try {
+      const res = await fetch(+"/products", {
+        headers: {
+          "Accept-Language": locale,
+        },
+      });
 
+      if (!res.ok) throw new Error("Failed to fetch all products");
+
+      const allProducts = await res.json();
+
+      // Group products by category slug
+      const groupedByCategory = allProducts.reduce((acc, product) => {
+        const category = product.categorySlug || "uncategorized";
+        if (!acc[category]) {
+          acc[category] = {
+            products: [],
+            locale,
+          };
+        }
+        acc[category].products.push(product);
+        return acc;
+      }, {});
+
+      return groupedByCategory;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -99,8 +129,8 @@ const cartSlice = createSlice({
       })
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         if (action.payload) {
-          const { categoryId, products, locale } = action.payload;
-          state.byCategory[categoryId] = { products, locale };
+          const { categorySlug, products, locale } = action.payload;
+          state.byCategory[categorySlug] = { products, locale };
         }
         state.loading = false;
       })

@@ -1,18 +1,17 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
-import TextAreaField from '../../shared/ui/Field/TextAreaField';
-import Field from '../../shared/ui/Field/Field';
-import RadioGroup from '../../shared/ui/RadioGroup/RadioGroup';
-import { useInput } from '../../hooks/useInput';
-import HintNavigation from '../../shared/hint-navigation/HintNavigation';
-import Title from '../../shared/ui/title/Title';
-import FormSection from '../../shared/ui/FormSection/FormSection';
-import PhoneInput from '../../shared/ui/PhoneInput/PhoneInput';
-import { useTranslations } from 'next-intl';
-import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
-
-
+import React, { useState } from "react";
+import TextAreaField from "../../shared/ui/Field/TextAreaField";
+import Field from "../../shared/ui/Field/Field";
+import RadioGroup from "../../shared/ui/RadioGroup/RadioGroup";
+import { useInput } from "../../hooks/useInput";
+import HintNavigation from "../../shared/hint-navigation/HintNavigation";
+import Title from "../../shared/ui/title/Title";
+import FormSection from "../../shared/ui/FormSection/FormSection";
+import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
+import { useTranslations } from "next-intl";
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
+import { API_URL } from "../../data/url";
 export default function InstructorsFormPage() {
   const t = useTranslations("InstructorsFormPage");
   const [socials, setSocials] = useState([]);
@@ -106,7 +105,11 @@ export default function InstructorsFormPage() {
     handleInputBlur: handleTeachingDetailBlur,
     hasError: teachingDetailError,
   } = useInput("", (v) => {
-    if (hasTeachingExperience === t("form.hasTeachingExperienceOptions.no") || hasTeachingExperience === null) return true;
+    if (
+      hasTeachingExperience === t("form.hasTeachingExperienceOptions.no") ||
+      hasTeachingExperience === null
+    )
+      return true;
     return v.trim().length > 10;
   });
   const [hasClassroom, setHasClassroom] = useState(null);
@@ -222,8 +225,12 @@ export default function InstructorsFormPage() {
       readyToLearn,
     ];
 
-    const hasEmptyText = requiredTextInputs.some((val) => !val || val.trim() === "");
-    const hasEmptyRadio = requiredRadios.some((val) => val === null || val === "");
+    const hasEmptyText = requiredTextInputs.some(
+      (val) => !val || val.trim() === ""
+    );
+    const hasEmptyRadio = requiredRadios.some(
+      (val) => val === null || val === ""
+    );
 
     const hasTextErrors =
       fullNameError ||
@@ -248,33 +255,88 @@ export default function InstructorsFormPage() {
     setError(null);
 
     const data = {
-      fullName,
-      birthDate,
+      name: fullName,
+      birth_date: birthDate,
       city,
       email,
-      phone: countryCode + phoneNumber,
+      country_code: countryCode,
+      phone: phoneNumber,
       website,
-      socials,
-      isPedicureMaster,
-      hasMedicalEducation,
-      experienceYears,
-      educationDetail,
-      currentJob,
-      techniques,
-      hasTeachingExperience,
-      teachingDetail,
-      hasClassroom,
-      studentsPerMonth,
-      knowsKART,
-      usesKARTPeriod,
-      strongSides,
-      audienceExp,
-      promotionPlatforms,
-      motivation,
-      readyToLearn,
-      comment,
+      social_links: socials,
+      role: isPedicureMaster,
+      has_medical_educatio: hasMedicalEducation,
+      experience_years: experienceYears,
+      education: educationDetail,
+      current_job: currentJob,
+      pedicure_techniques: techniques,
+      teaches: hasTeachingExperience,
+      course_description: teachingDetail,
+      has_training_place: hasClassroom,
+      students_per_month: studentsPerMonth,
+      familiar_with_kart: knowsKART,
+      kart_usage_period: usesKARTPeriod,
+      strengths: strongSides,
+      audience_experience: audienceExp,
+      promotion_channels: promotionPlatforms,
+      motivation: motivation,
+      ready_for_training: readyToLearn,
+      comments: comment,
+    };
+    const submitData = async () => {
+      const data = {
+        name: fullName,
+        birth_date: birthDate,
+        city,
+        email,
+        country_code: countryCode,
+        phone: phoneNumber,
+        website,
+        social_links: socials,
+        role: isPedicureMaster,
+        has_medical_education: hasMedicalEducation,
+        experience_years: experienceYears,
+        education: educationDetail,
+        current_job: currentJob,
+        pedicure_techniques: techniques,
+        teaches: hasTeachingExperience,
+        course_description: teachingDetail,
+        has_training_place: hasClassroom,
+        students_per_month: studentsPerMonth,
+        familiar_with_kart: knowsKART,
+        kart_usage_period: usesKARTPeriod,
+        strengths: strongSides,
+        audience_experience: audienceExp,
+        promotion_channels: promotionPlatforms,
+        motivation,
+        ready_for_training: readyToLearn,
+        comments: comment,
+      };
+
+      try {
+        const response = await fetch(
+          API_URL + "/forms/instructor-applications/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (!response.ok) {
+          const error = await response.json();
+          console.error("Ошибка:", error);
+        } else {
+          const result = await response.json();
+          console.log("Успешно отправлено:", result);
+        }
+      } catch (err) {
+        console.error("Сетевая ошибка:", err);
+      }
     };
 
+    submitData();
     console.log("Заявка на инструктора:", data);
 
     setSocials([]);
@@ -318,8 +380,13 @@ export default function InstructorsFormPage() {
       <Title color="green" className="text-center">
         {t("title")}
       </Title>
-      <p className="text-center text-[#404040]! max-w-[603px] mx-auto">{t("hint")}</p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-[830px] mx-auto w-full">
+      <p className="text-center text-[#404040]! max-w-[603px] mx-auto">
+        {t("hint")}
+      </p>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 max-w-[830px] mx-auto w-full"
+      >
         <FormSection>
           <Title>{t("form.personalInfo")}</Title>
           <div className="flex flex-wrap gap-4 sm:gap-6">
@@ -548,13 +615,13 @@ export default function InstructorsFormPage() {
 
         {error && <p className="text-red-500">{error}</p>}
         <div className="mx-auto">
-          <ButtonWithCircleLink buttonText={t("form.submit")} type="submit" className="px-4 py-2 text-white rounded" />
+          <ButtonWithCircleLink
+            buttonText={t("form.submit")}
+            type="submit"
+            className="px-4 py-2 text-white rounded"
+          />
         </div>
       </form>
     </section>
   );
 }
-
-
-
-

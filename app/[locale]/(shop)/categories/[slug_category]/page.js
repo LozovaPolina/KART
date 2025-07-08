@@ -23,7 +23,9 @@ function Page() {
 
   useEffect(() => {
     if (slug_category && locale) {
-      dispatch(fetchProductsByCategory({ categoryId: slug_category, locale }));
+      dispatch(
+        fetchProductsByCategory({ categorySlug: slug_category, locale })
+      );
     }
   }, [slug_category, locale]);
 

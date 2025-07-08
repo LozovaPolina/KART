@@ -17,7 +17,7 @@ export default function ProductLinks() {
       {categories.map((category) => (
         <NavLink
           key={category.id}
-          href={`/categories/${category.id}`}
+          href={`/categories/${category.slug}`}
           label={category.name}
         />
       ))}
@@ -38,7 +38,7 @@ export function ProductLinksMobile({ onClose }) {
         categories.map((category) => (
           <NavLink
             key={category.id}
-            href={`/products/categories/${category.id}`}
+            href={`/products/categories/${category.slug}`}
             label={category.name}
             onClick={onClose}
             styles="border-b border-[#EDEDED] pb-4 text-sm!"

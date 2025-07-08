@@ -87,7 +87,7 @@ export default function Page() {
       <div className="flex gap-3 flex-wrap mb-[40px] h-full lg:flex-nowrap  w-full">
         <div className="relative w-full lg:w-1/2 aspect-[4/3] rounded-2xl ">
           <Image
-            src={productImage}
+            src={product.image}
             alt={product.name}
             fill
             className="object-cover  p-8"

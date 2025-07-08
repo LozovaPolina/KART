@@ -30,16 +30,16 @@ function ShopItem({ product }) {
 
   const formattedPrice = useFormattedPrice(product.price);
   const formattedDiscountedPrice = useFormattedPrice(product.stock);
-
+  console.log("Product:", product);
   return (
     <div
       key={product.id}
       className="flex flex-col gap-4 p-4 rounded-2xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)] w-full h-full"
     >
-      <Link href={`/categories/${slug_category}/${product.id}`}>
+      <Link href={`/categories/${slug_category}/${product.slug}`}>
         <Image
           className="w-full object-cover rounded-2xl"
-          src={productImg}
+          src={product.image}
           alt={product.name}
           width={340}
           height={200}
@@ -60,7 +60,7 @@ function ShopItem({ product }) {
 
       <ButtonWithCircleLink
         buttonOnClick={() => dispatch(addToCart({ id: product.id }))}
-        circleHref={`/categories/${slug_category}/${product.id}`}
+        circleHref={`/categories/${slug_category}/${product.slug}`}
         circleClassName="bg-gradient-to-b from-black/10 to-[#49BA4A]"
         buttonText="В корзину"
         buttonClassName="w-full bg-[#49BA4A] bg-gradient-to-b from-black/10 to-[#49BA4A]"
