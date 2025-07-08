@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { MapPin, Phone, Send } from "lucide-react";
@@ -10,8 +10,11 @@ import Field from "../../shared/ui/Field/Field";
 import { useInput } from "../../hooks/useInput";
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 
+import { API_URL } from "../../data/url";
+
 export default function ContactPage() {
   const t = useTranslations("ContactPage");
+  const formRef = useRef(null);
 
   // Using your useInput hook for all fields with validation
   const {
@@ -19,7 +22,6 @@ export default function ContactPage() {
     handleInputChange: handleNameChange,
     handleInputBlur: handleNameBlur,
     hasError: nameError,
-
   } = useInput("", (value) => value.trim() !== "");
 
   const {
@@ -29,14 +31,13 @@ export default function ContactPage() {
     hasError: emailError,
   } = useInput("", (value) => /\S+@\S+\.\S+/.test(value));
 
-  const [countryCode, setCountryCode] = useState('+380');
+  const [countryCode, setCountryCode] = useState("+380");
   const {
     value: phoneNumberValue,
     handleInputChange: handlePhoneNumberChange,
     handleInputBlur: handlePhoneNumberBlur,
     hasError: phoneError,
-  } = useInput('', (val) => /^\d{6,14}$/.test(val));
-
+  } = useInput("", (val) => /^\d{6,14}$/.test(val));
 
   const {
     value: messageValue,
@@ -47,7 +48,7 @@ export default function ContactPage() {
 
   const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError("");
 
@@ -77,11 +78,27 @@ export default function ContactPage() {
     const data = {
       name: nameValue,
       email: emailValue,
-      phone: countryCode + phoneNumberValue,
-      messageValue: messageValue,
+      phone_number: countryCode + phoneNumberValue,
+      message: messageValue,
     };
-    console.log(data)
 
+    const res = await fetch(`${API_URL}/forms/application/`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("Response status:", res.status);
+
+    if (res.status == 201) {
+      console.log("Form submitted successfully");
+      handleNameChange({ target: { value: "" } });
+      handleEmailChange({ target: { value: "" } });
+      handlePhoneNumberChange({ target: { value: "" } });
+      handleMessageChange({ target: { value: "" } });
+    }
   };
 
   return (
@@ -99,6 +116,7 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-8 rounded-xl">
           {/* Form */}
           <form
+            ref={formRef}
             onSubmit={handleSubmit}
             className="order-1 md:order-2 space-y-4 bg-[#FFFFFF] p-4 sm:p-6 rounded-xl"
             noValidate
@@ -128,8 +146,6 @@ export default function ContactPage() {
               labelBgColor="bg-white"
             />
 
-
-
             <PhoneInput
               className="w-full col-span-2"
               countryCode={countryCode}
@@ -154,9 +170,13 @@ export default function ContactPage() {
                 value={messageValue}
                 onChange={handleMessageChange}
                 onBlur={handleMessageBlur}
-                placeholder={t("fields.messagePlaceholder") || "Напишите ваше сообщение здесь..."}
-                className={`w-full border-2 border-[#E2E2E2]  rounded-md px-4 py-2 mt-2 h-24 resize-none focus:outline-none  ${messageError ? "border-red-500" : " focus:border-black  "
-                  }`}
+                placeholder={
+                  t("fields.messagePlaceholder") ||
+                  "Напишите ваше сообщение здесь..."
+                }
+                className={`w-full border-2 border-[#E2E2E2]  rounded-md px-4 py-2 mt-2 h-24 resize-none focus:outline-none  ${
+                  messageError ? "border-red-500" : " focus:border-black  "
+                }`}
               />
               {messageError && (
                 <p className="text-red-500 text-xs mt-1">
@@ -176,35 +196,44 @@ export default function ContactPage() {
             />
           </form>
 
-
           {/* Contact Info */}
           <div className="order-2 md:order-1">
             <h2 className="text-2xl mb-1">
-              <span className="font-semibold">{t("contactForm.titlePart1")}</span>{" "}
+              <span className="font-semibold">
+                {t("contactForm.titlePart1")}
+              </span>{" "}
               {t("contactForm.titlePart2")}
             </h2>
             <h3 className="text-xl mb-4">{t("contactForm.subtitle")}</h3>
-            <p className="text-[#848484] mb-6">{t("contactForm.description")}</p>
+            <p className="text-[#848484] mb-6">
+              {t("contactForm.description")}
+            </p>
 
             <div className="space-y-4 text-sm">
               <div className="flex gap-2 items-center">
                 <MapPin className="text-[#96B87D] mt-1" />
                 <div>
-                  <p className="font-sm text-[#848484]">{t("contactForm.addressLabel")}</p>
+                  <p className="font-sm text-[#848484]">
+                    {t("contactForm.addressLabel")}
+                  </p>
                   <p>{t("contactForm.address")}</p>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
                 <Phone className="text-[#96B87D]" />
                 <div>
-                  <p className="font-sm text-[#848484]">{t("contactForm.phoneLabel")}</p>
+                  <p className="font-sm text-[#848484]">
+                    {t("contactForm.phoneLabel")}
+                  </p>
                   <p>{t("contactForm.phone")}</p>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
                 <Send className="text-[#96B87D]" />
                 <div>
-                  <p className="font-sm text-[#848484]">{t("contactForm.messengerLabel")}</p>
+                  <p className="font-sm text-[#848484]">
+                    {t("contactForm.messengerLabel")}
+                  </p>
                   <p>{t("contactForm.messengerPhones")}</p>
                 </div>
               </div>
@@ -227,4 +256,3 @@ export default function ContactPage() {
     </>
   );
 }
-
