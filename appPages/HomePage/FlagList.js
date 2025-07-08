@@ -1,11 +1,14 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation'
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
 
-import { dealersData } from "../../data/flagsDilers"
-import { useTranslations } from 'next-intl';
+import { dealersData } from "../../data/flagsDilers";
+import { useTranslations } from "next-intl";
 
+import { API_URL } from "../../data/url";
 
 const FlagItem = ({ imageSrc, countryName, onClick }) => {
   return (
@@ -20,21 +23,57 @@ const FlagItem = ({ imageSrc, countryName, onClick }) => {
         height={50}
         className="rounded  "
       />
-      <span className="mt-2  text-[11px] sm:text-[15px]
-          md:text-[20px] font-[400] text-center font-fira-sans">{countryName}</span>
+      <span
+        className="mt-2  text-[11px] sm:text-[15px]
+          md:text-[20px] font-[400] text-center font-fira-sans"
+      >
+        {countryName}
+      </span>
     </div>
   );
 };
 
 export default function FlagList() {
-  const router = useRouter()
+  const router = useRouter();
   const t = useTranslations("HomePage");
+
+  const locale = useLocale();
+  const [dealers, setDealers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFlagList = async () => {
+      setLoading(true);
+
+      try {
+        const res = await fetch(`${API_URL}/dealers/`, {
+          headers: {
+            "Accept-Language": locale,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await res.json();
+        setDealers(data);
+      } catch (error) {
+        console.error(error);
+        setDealers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFlagList();
+  }, [locale]);
+
   return (
     <div className=" bg-flag-img w-full h-fit p-8">
       <h2 className="text-[33px] text-center font-[400] uppercase text-black font-fira-sans mb-6">
-        {t('dealers.title')}
+        {t("dealers.title")}
       </h2>
-
 
       <div
         className="
@@ -49,10 +88,10 @@ export default function FlagList() {
           mx-auto
         "
       >
-        {dealersData.map((item) => (
+        {dealers.map((item) => (
           <FlagItem
             key={item.country}
-            imageSrc={item.flag}
+            imageSrc={item.image}
             countryName={item.country}
             onClick={() => router.push(`/dealers`)}
           />

@@ -1,22 +1,28 @@
-import Text from '../../shared/ui/text/Text';
-import Title from '../../shared/ui/title/Title';
-import Image from 'next/image';
-import React from 'react';
-import blogIMG from '../../public/assets/image/blog/blog-inst-boxes.png'
-import blogFootIMG from '../../public/assets/image/blog/blog-inst-foot.png'
-import blogMaterialsIMG from '../../public/assets/image/blog/blog-inst-materials.png'
-import Swiper from '../../shared/swiper/Swiper';
+"use client";
 
+import Text from "../../shared/ui/text/Text";
+import Title from "../../shared/ui/title/Title";
+import Image from "next/image";
+import React from "react";
+import blogIMG from "../../public/assets/image/blog/blog-inst-boxes.png";
+import blogFootIMG from "../../public/assets/image/blog/blog-inst-foot.png";
+import blogMaterialsIMG from "../../public/assets/image/blog/blog-inst-materials.png";
+import Swiper from "../../shared/swiper/Swiper";
 
+import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
+
+import { API_URL } from "../../data/url";
 
 const blogContent = [
-
-  { text: 'Секреты ухода за ногами', imageSrc: blogFootIMG },
-  { text: 'Доступ к полезным материалам:', imageSrc: blogIMG },
-  { text: 'Какие инструменты требуются для работы?', imageSrc: blogMaterialsIMG },
-  { text: 'Доступ к полезным материалам:', imageSrc: blogIMG },
-
-]
+  { text: "Секреты ухода за ногами", imageSrc: blogFootIMG },
+  { text: "Доступ к полезным материалам:", imageSrc: blogIMG },
+  {
+    text: "Какие инструменты требуются для работы?",
+    imageSrc: blogMaterialsIMG,
+  },
+  { text: "Доступ к полезным материалам:", imageSrc: blogIMG },
+];
 function CardFooter({ text }) {
   return (
     <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center px-4 py-3 text-white">
@@ -42,32 +48,74 @@ function CardFooter({ text }) {
     </div>
   );
 }
-function Card({ imageSrc, text }) {
+function Card({ link, title, previewImage }) {
   return (
-    <div className="relative bg-[#A9BD9B] w-[21.125rem] h-[25.75rem] p-6 rounded-[1.3rem] shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
-
-
+    <a
+      href={link}
+      className="relative block bg-[#A9BD9B] w-[21.125rem] h-[25.75rem] p-6 rounded-[1.3rem] shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+    >
       <Image
-        src={imageSrc}
-        alt={'blog image'}
+        src={previewImage}
+        alt={"blog image"}
         fill
         className="object-cover z-0"
         priority
       />
 
-      <CardFooter text={text}>
-
-      </CardFooter>
-    </div>
+      <CardFooter text={title}></CardFooter>
+    </a>
   );
 }
 
-
-
 function BlogList() {
+  const locale = useLocale();
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchblogPosts = async () => {
+      setLoading(true);
+
+      try {
+        const res = await fetch(`${API_URL}/posts/`, {
+          headers: {
+            "Accept-Language": locale,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await res.json();
+        setBlogPosts(data);
+      } catch (error) {
+        console.error(error);
+        setBlogPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchblogPosts();
+  }, [locale]);
+
   return (
-    <div className='p-1'>
-      <Swiper controlBlock={false} autoScroll={false} itemsLength={2} widthPercent={'21.375rem'} items={blogContent.map((item, i) => <Card key={i} {...item}></Card>)} />
+    <div className="p-1">
+      <Swiper
+        controlBlock={false}
+        autoScroll={false}
+        itemsLength={2}
+        widthPercent={"21.375rem"}
+        items={blogPosts.map((item, i) => (
+          <Card
+            key={i}
+            previewImage={item.preview_image}
+            title={item.title}
+            link={item.link}
+          />
+        ))}
+      />
     </div>
   );
 }

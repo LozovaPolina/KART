@@ -14,7 +14,9 @@ import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 
-function InstructorsItem(firstName, lastName, position) {
+import { API_URL } from "../../data/url";
+
+function InstructorsItem({ firstName, lastName, position }) {
   return (
     <div className="max-w-[270px] flex flex-col gap-1 shadow-xl p-2">
       <div className="flex justify-between items-center">
@@ -45,31 +47,18 @@ function InstructorsList() {
       setLoading(true);
 
       try {
-        const res = await fetch(
-          "http://localhost:8000/api/users/filter/?is_instructor=true",
-          {
-            headers: {
-              "Accept-Language": locale,
-            },
-          }
-        );
+        const res = await fetch(`${API_URL}/users/filter/?is_instructor=true`, {
+          headers: {
+            "Accept-Language": locale,
+          },
+        });
 
         if (!res.ok) {
           throw new Error("Failed to fetch products");
         }
 
         const data = await res.json();
-        const formattedInstructors = [];
-        data.map((instructor) => {
-          formattedInstructors.push(
-            InstructorsItem(
-              instructor.first_name,
-              instructor.last_name,
-              instructor.position
-            )
-          );
-        });
-        setIsntructors(formattedInstructors);
+        setIsntructors(data);
       } catch (error) {
         console.error(error);
         setIsntructors([]);
@@ -92,7 +81,14 @@ function InstructorsList() {
         autoScroll={false}
         controlBlock={false}
         itemsLength={2}
-        items={instructors}
+        items={instructors.map((instructor) => (
+          <InstructorsItem
+            key={instructor.id}
+            firstName={instructor.first_name}
+            lastName={instructor.last_name}
+            position={instructor.position}
+          />
+        ))}
       />
       <div className="flex gap-2">
         <Link href="/instructors" passHref>
