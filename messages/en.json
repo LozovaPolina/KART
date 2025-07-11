@@ -544,7 +544,7 @@
   "LoginForm": {
     "title": "Log in to your account",
     "subtitle": "To continue, please log in or create an account.",
-    "username": "Username",
+    "email": "Email",
     "password": "Password",
     "login": "Log in",
     "noAccount": "No account?",
@@ -556,7 +556,8 @@
     "title": "Registration",
     "subtitle": "Fill out the form to get the best offer",
     "fields": {
-      "name": "Name",
+      "name": "Fist Name",
+      "lastName": "Last Name",
       "email": "Email",
       "password": "Password",
       "country": "Country",

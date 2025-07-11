@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ import FormSection from "../../shared/ui/FormSection/FormSection";
 import { useTranslations } from "next-intl";
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
-
+import { API_URL } from "../../data/url";
 
 export default function DilersFormPage() {
   const t = useTranslations("DilersFormPage");
@@ -63,8 +63,6 @@ export default function DilersFormPage() {
     hasError: contactNameError,
   } = useInput("", (v) => v.trim().length > 1);
 
-
-
   const {
     value: nameCompanyValue,
     handleInputChange: handleNameCompanyChange,
@@ -78,8 +76,6 @@ export default function DilersFormPage() {
     handleInputBlur: jobTitleBlur,
     hasError: jobTitleError,
   } = useInput("", (v) => v.trim().length >= 3);
-
-
 
   const {
     value: emailValue,
@@ -95,8 +91,6 @@ export default function DilersFormPage() {
     hasError: adressError,
   } = useInput("", (v) => v.trim().length >= 3);
 
-
-
   const {
     value: websiteValue,
     handleInputChange: handleWebsiteChange,
@@ -110,8 +104,6 @@ export default function DilersFormPage() {
     handleInputBlur: handleInstagramBlur,
     hasError: instagramError,
   } = useInput("", (v) => v.length >= 5);
-
-
 
   const {
     value: regionValue,
@@ -149,9 +141,7 @@ export default function DilersFormPage() {
   const [physicalPresence, setPhysicalPresence] = useState("");
   const [storageAndDelivery, setStorageAndDelivery] = useState("");
 
-
   const [brandAgreement, setBrandAgreement] = useState("");
-
 
   const [mainActivity, setMainActivity] = useState([]);
   const [promotionChannels, setPromotionChannels] = useState([]);
@@ -166,16 +156,32 @@ export default function DilersFormPage() {
     handleInputBlur: handlePhoneNumberBlur,
     hasError: phoneNumberError,
   } = useInput("", (v) => v.trim() !== "");
+  async function submitDealerApplication(data) {
+    try {
+      const response = await fetch(API_URL + "/forms/dealer-applications/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-  const handleSubmit = (e) => {
+      if (!response.ok) {
+        const errorData = await response.json();
+        return {
+          success: false,
+          error: errorData.message || "Ошибка при отправке формы",
+        };
+      }
+
+      const json = await response.json();
+      return { success: true, data: json };
+    } catch (error) {
+      return { success: false, error: error.message || "Сетевая ошибка" };
+    }
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const required = [
-      contactNameValue,
-      emailValue,
-      adressValue,
-      phoneNumber,
-    ];
+    const required = [contactNameValue, emailValue, adressValue, phoneNumber];
 
     const radioRequired = [
       experience,
@@ -191,38 +197,57 @@ export default function DilersFormPage() {
     ];
 
     const hasTextErrors =
-      contactNameError || emailError || adressError || websiteError || phoneNumberError;
+      contactNameError ||
+      emailError ||
+      adressError ||
+      websiteError ||
+      phoneNumberError;
 
     const hasRadioErrors = radioRequired.some((val) => val.trim() === "");
 
-    if (hasTextErrors || hasRadioErrors || required.some((val) => !val.trim())) {
+    if (
+      hasTextErrors ||
+      hasRadioErrors ||
+      required.some((val) => !val.trim())
+    ) {
       setError(t("errors.fillAllRequired"));
       return;
     }
 
     const data = {
-      name: contactNameValue,
-      email: emailValue,
+      company_name: nameCompanyValue,
+      address: adressValue,
+      full_name: contactNameValue,
+      position: jobTitleValue,
       phone: countryCode + phoneNumber,
-      adress: adressValue,
-      postalCode: websiteValue,
-      socials,
-      experience,
-      license,
-      training,
-      classroom,
-      seats,
-      teachers,
-      physicalPresence,
-      storageAndDelivery,
-      brandAgreement,
-      clientBaseSize,
-      mainActivity,
-      promotionChannels,
-      distributionMethods,
-      // add other data fields as needed
+      email: emailValue,
+      website: websiteValue,
+      instagram: instagramValue,
+      other_socials: socials.join(", "),
+      experience_years: experience,
+      main_activity: mainActivity.join(", "),
+      license_status: license,
+      trains_masters: training,
+      has_training_center: classroom,
+      seats_count: seats,
+      certified_trainers: teachers,
+      has_office: physicalPresence,
+      distribution_method: distributionMethods.join(", "),
+      can_store_products: storageAndDelivery,
+      marketing_channels: promotionChannels.join(", "),
+      use_brand_materials: brandAgreement,
+      client_base: clientBaseSize.join(", "),
+      target_region: regionValue,
+      current_brands: brandsValue,
+      cooperation_reason: interestValue,
+      comments: commentsValue,
     };
+    const result = await submitDealerApplication(data);
 
+    if (!result.success) {
+      setError(result.error);
+      return;
+    }
     console.log("Форма отправлена:", data);
     setError(null);
 
@@ -259,10 +284,9 @@ export default function DilersFormPage() {
     setDistributionMethods([]);
   };
 
-
   return (
     <section className="flex flex-col gap-6">
-      <div className='flex justify-center'>
+      <div className="flex justify-center">
         <HintNavigation
           links={[
             { label: t("navigation.home"), href: "/" },
@@ -270,7 +294,9 @@ export default function DilersFormPage() {
           ]}
         />
       </div>
-      <Title color="green" className="text-center">{t("title")}</Title>
+      <Title color="green" className="text-center">
+        {t("title")}
+      </Title>
       <form
         className="flex flex-col gap-4 max-w-[830px] mx-auto w-full"
         onSubmit={handleSubmit}
@@ -470,9 +496,7 @@ export default function DilersFormPage() {
           />
           <MultiSelect
             label={t("fields.distributionMethods")}
-            options={distributionMethodsArray
-
-            }
+            options={distributionMethodsArray}
             selected={distributionMethods}
             setSelected={setDistributionMethods}
           />
@@ -565,15 +589,9 @@ export default function DilersFormPage() {
             type="submit"
             buttonText={t("buttons.save")}
             className="bg-[#49BA4A] text-white px-6 py-2 rounded-md hover:bg-[#3ba83c] transition"
-          >
-
-          </ButtonWithCircleLink>
-
+          ></ButtonWithCircleLink>
         </div>
-
       </form>
     </section>
   );
 }
-
-

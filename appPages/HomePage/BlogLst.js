@@ -77,7 +77,7 @@ function BlogList() {
       setLoading(true);
 
       try {
-        const res = await fetch(`${API_URL}/posts/`, {
+        const res = await fetch(`${API_URL}/posts/blog-posts/`, {
           headers: {
             "Accept-Language": locale,
           },

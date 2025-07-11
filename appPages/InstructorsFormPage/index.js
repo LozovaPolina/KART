@@ -12,6 +12,7 @@ import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 import { useTranslations } from "next-intl";
 import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
 import { API_URL } from "../../data/url";
+import { parseBirthDate } from "../../util/parseBirthDate";
 export default function InstructorsFormPage() {
   const t = useTranslations("InstructorsFormPage");
   const [socials, setSocials] = useState([]);
@@ -282,20 +283,25 @@ export default function InstructorsFormPage() {
       ready_for_training: readyToLearn,
       comments: comment,
     };
+
     const submitData = async () => {
       const data = {
-        name: fullName,
-        birth_date: birthDate,
+        full_name: fullName,
+        birth_date: birthDate
+          ? new Date(parseBirthDate(birthDate)).toISOString().split("T")[0]
+          : "",
         city,
         email,
         country_code: countryCode,
-        phone: phoneNumber,
+        phone_number: phoneNumber,
         website,
-        social_links: socials,
+        social_links: Array.isArray(socials)
+          ? socials.join(", ")
+          : socials || "",
         role: isPedicureMaster,
+        education: educationDetail,
         has_medical_education: hasMedicalEducation,
         experience_years: experienceYears,
-        education: educationDetail,
         current_job: currentJob,
         pedicure_techniques: techniques,
         teaches: hasTeachingExperience,

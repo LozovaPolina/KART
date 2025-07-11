@@ -87,7 +87,11 @@ function GalerySection() {
     const fetchGallery = async () => {
       setLoading(true);
       try {
-        const res = await fetch(API_URL + "/posts/", {
+        const url = showPhotos
+          ? API_URL + "/posts/gallery-photo-posts/"
+          : API_URL + "/posts/gallery-video-posts/";
+
+        const res = await fetch(url, {
           headers: {
             "Accept-Language": locale,
           },
@@ -97,11 +101,11 @@ function GalerySection() {
 
         const data = await res.json();
 
-        const photos = data.filter((item) => item.type === "photo");
-        const videos = data.filter((item) => item.type === "video");
-
-        setPhotosData(photos);
-        setVideosData(videos);
+        if (showPhotos) {
+          setPhotosData(data);
+        } else {
+          setVideosData(data);
+        }
       } catch (error) {
         console.error("Error loading gallery:", error);
       } finally {
@@ -110,7 +114,7 @@ function GalerySection() {
     };
 
     fetchGallery();
-  }, [locale]);
+  }, [locale, showPhotos]);
 
   const galleryItems = showPhotos ? photosData : videosData;
 
@@ -141,7 +145,7 @@ function GalerySection() {
       </div>
 
       {/* Loader */}
-      {loading && <p className="text-center text-gray-500">loading</p>}
+      {loading && <p className="text-center text-gray-500">Loading...</p>}
 
       {/* Gallery Items */}
       {!loading && (

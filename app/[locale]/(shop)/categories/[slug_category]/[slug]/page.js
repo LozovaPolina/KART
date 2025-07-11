@@ -13,6 +13,7 @@ import Title from "../../../../../../shared/ui/title/Title";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
+import { API_URL } from "../../../../../../data/url";
 export default function Page() {
   const t = useTranslations("ProductDescription");
   const { slug_category, slug } = useParams();
@@ -33,7 +34,7 @@ export default function Page() {
     setError(null);
 
     if (!byCategory?.[slug_category]) {
-      fetch(`http://localhost:8000/api/products/${slug}`, {
+      fetch(`${API_URL}/products/items/${slug}`, {
         headers: { "Accept-Language": locale },
       })
         .then((res) => {
@@ -52,7 +53,7 @@ export default function Page() {
       setProduct(foundProduct);
       setLoading(false);
     } else {
-      fetch(`http://localhost:8000/api/products/${slug}`, {
+      fetch(`${API_URL}/products/items/${slug}`, {
         headers: { "Accept-Language": locale },
       })
         .then((res) => {

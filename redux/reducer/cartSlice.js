@@ -22,7 +22,7 @@ export const fetchProductsByCategory = createAsyncThunk(
 
     try {
       const res = await fetch(
-        `${API_URL}/products?category__slug=${categorySlug}`,
+        `${API_URL}/products/items?category__slug=${categorySlug}`,
         {
           headers: {
             "Accept-Language": locale,

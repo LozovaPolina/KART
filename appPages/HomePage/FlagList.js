@@ -46,7 +46,7 @@ export default function FlagList() {
       setLoading(true);
 
       try {
-        const res = await fetch(`${API_URL}/dealers/`, {
+        const res = await fetch(`${API_URL}/partners/dealers/`, {
           headers: {
             "Accept-Language": locale,
           },

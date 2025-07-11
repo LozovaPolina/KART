@@ -30,7 +30,7 @@ export default function InstructorsPage() {
       setLoading(true);
 
       try {
-        const res = await fetch(`${API_URL}/users/filter/?is_instructor=true`, {
+        const res = await fetch(`${API_URL}/partners/instructors/`, {
           headers: {
             "Accept-Language": locale,
           },
