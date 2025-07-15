@@ -9,6 +9,7 @@ import { dealersData } from "../../data/flagsDilers";
 import { useTranslations } from "next-intl";
 
 import { API_URL } from "../../data/url";
+import Title from "../../shared/ui/title/Title";
 
 const FlagItem = ({ imageSrc, countryName, onClick }) => {
   return (
@@ -24,8 +25,8 @@ const FlagItem = ({ imageSrc, countryName, onClick }) => {
         className="rounded  "
       />
       <span
-        className="mt-2  text-[11px] sm:text-[15px]
-          md:text-[20px] font-[400] text-center font-fira-sans"
+        className="mt-2 text-[11px] sm:text-[15px]
+          md:text-[20px] font-[400] text-[#666666] text-center font-fira-sans"
       >
         {countryName}
       </span>
@@ -71,9 +72,9 @@ export default function FlagList() {
 
   return (
     <div className=" bg-flag-img w-full h-fit p-8">
-      <h2 className="text-[33px] text-center font-[400] uppercase text-black font-fira-sans mb-6">
+      <Title className="text-[33px] text-center font-[400] uppercase font-fira-sans mb-6">
         {t("dealers.title")}
-      </h2>
+      </Title>
 
       <div
         className="

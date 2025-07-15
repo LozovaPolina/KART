@@ -28,11 +28,13 @@ export default function InstructorCard({
           className="object-cover rounded-xl w-[5.625rem] h-[5.625rem] sm:w-[6.25rem] sm:h-[6.25rem]"
         />
 
-        <div className="flex-1 flex flex-col gap-2 justify-between text-[#000000] min-h-[100px]">
+        <div className="flex-1 flex flex-col gap-2 justify-between text-[#666666] min-h-[100px]">
           <div>
-            <p className="font-semibold">{firstName + " " + lastName}</p>
-            <p className="text-sm text-gray-500">{position}</p>
-            <p className="text-xs text-gray-600">{country}</p>
+            <p className="font-semibold text-[#666666]">
+              {firstName + " " + lastName}
+            </p>
+            <p className="text-sm text-[#666666]">{position}</p>
+            <p className="text-xs text-[#666666]">{country}</p>
           </div>
 
           <div className="flex gap-2 justify-between items-center">

@@ -21,8 +21,10 @@ function InstructorsItem({ firstName, lastName, position }) {
     <div className="max-w-[270px] flex flex-col gap-1 shadow-xl p-2">
       <div className="flex justify-between items-center">
         <div className="flex flex-col ">
-          <h4 className="text-[20px]">{firstName + " " + lastName}</h4>
-          <h5 className="text-[11px]">{position}</h5>
+          <h4 className="text-[20px] text-[#666666]">
+            {firstName + " " + lastName}
+          </h4>
+          <h5 className="text-[11px] text-[#666666]">{position}</h5>
         </div>
         <CircleLink href="/instructors" />
       </div>

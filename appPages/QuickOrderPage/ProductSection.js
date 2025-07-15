@@ -8,18 +8,23 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect } from "react";
+import { getDeliveryDetailsAction } from "../../redux/reducer/authSlice";
 export default function ProductSection({ theme, slug, id }) {
   const locale = useLocale();
   const dispatch = useDispatch();
   const t = useTranslations("QuickProductSection");
+
   const { byCategory, loading, error } = useSelector((state) => ({
     byCategory: state.cart.byCategory,
     loading: state.cart.loading,
     error: state.cart.error,
   }));
+
   const categoryData = byCategory ? byCategory[slug] : undefined;
   const products = categoryData?.products || [];
+
   console.log("Products in category:", products);
+
   useEffect(() => {
     if (slug && locale) {
       dispatch(fetchProductsByCategory({ categorySlug: slug, locale }));

@@ -1,4 +1,6 @@
-
+// fetchWithAuth.js
+import Cookies from "js-cookie";
+import { API_URL } from "../data/url";
 
 let isRefreshing = false;
 let refreshSubscribers = [];
@@ -7,42 +9,41 @@ const subscribeTokenRefresh = (callback) => {
   refreshSubscribers.push(callback);
 };
 
-const onRefreshed = () => {
-  refreshSubscribers.forEach((callback) => callback());
+const onRefreshed = (newAccessToken) => {
+  refreshSubscribers.forEach((callback) => callback(newAccessToken));
   refreshSubscribers = [];
 };
 
-/**
- * A fetch wrapper that automatically handles 401 Unauthorized by
- * trying to refresh the token using a refresh endpoint.
- *
- * @param {string} url - API endpoint URL
- * @param {object} options - fetch options (headers, method, body, etc)
- * @param {function} updateTokens - optional callback to update access token in app state
- * @param {function} forceLogout - callback to force logout user on refresh failure
- *
- * @returns {Promise<Response>} - fetch Response object
- */
 const fetchWithAuth = async (url, options = {}, updateTokens, forceLogout) => {
-  const fetchOptions = {
+  const access = Cookies.get("access");
+  const refresh = Cookies.get("refresh");
+
+  const stringifiedBody =
+    options.body && typeof options.body !== "string"
+      ? JSON.stringify(options.body)
+      : options.body;
+
+  const applyToken = (token) => ({
     ...options,
+    method: options.method || "GET",
+    body: stringifiedBody,
     headers: {
-      'Content-Type': 'application/json',
+      ...(stringifiedBody ? { "Content-Type": "application/json" } : {}),
       ...options.headers,
+      Authorization: `Bearer ${token}`,
     },
-    credentials: 'include', // VERY IMPORTANT: send cookies automatically
+  });
+
+  const retryRequest = async (token) => {
+    return await fetch(url, applyToken(token));
   };
 
-  // First attempt with current cookies
-  let response = await fetch(url, fetchOptions);
-  if (response.status !== 401) return response;
-
-  // If 401 and already refreshing, wait for the new token and retry
+  // ⏳ Если кто-то уже обновляет токен — ждем
   if (isRefreshing) {
     return new Promise((resolve, reject) => {
-      subscribeTokenRefresh(async () => {
+      subscribeTokenRefresh(async (newAccessToken) => {
         try {
-          const retryResponse = await fetch(url, fetchOptions);
+          const retryResponse = await retryRequest(newAccessToken);
           resolve(retryResponse);
         } catch (err) {
           reject(err);
@@ -51,13 +52,27 @@ const fetchWithAuth = async (url, options = {}, updateTokens, forceLogout) => {
     });
   }
 
-  // Not refreshing yet: start refresh process
+  // 🟡 Попробуем access токен
+  let response;
+  if (access) {
+    response = await retryRequest(access);
+    if (response.status !== 401) return response;
+  }
+
+  // ❌ Если refresh токена нет
+  if (!refresh) {
+    forceLogout?.();
+    throw new Error("Unauthorized: No refresh token");
+  }
+
+  // 🔄 Обновление токена
   isRefreshing = true;
+
   try {
-    const refreshResponse = await fetch("/api/auth/token/refresh/", {
+    const refreshResponse = await fetch(API_URL + "/users/token/refresh/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      credentials: 'include', // send cookies for refresh
+      body: JSON.stringify({ refresh }),
     });
 
     if (!refreshResponse.ok) {
@@ -65,19 +80,20 @@ const fetchWithAuth = async (url, options = {}, updateTokens, forceLogout) => {
       throw new Error("Token refresh failed");
     }
 
-    const data = await refreshResponse.json();
+    const { access: newAccessToken } = await refreshResponse.json();
 
-    // If backend returns new access token in JSON (optional),
-    // update app state with it
-    if (updateTokens && data.access) {
-      await updateTokens(data.access);
+    if (!newAccessToken) {
+      forceLogout?.();
+      throw new Error("No new access token returned");
     }
 
-    // Notify all waiting requests
-    onRefreshed();
+    Cookies.set("access", newAccessToken);
+    updateTokens?.(newAccessToken);
 
-    // Retry original request
-    return await fetch(url, fetchOptions);
+    onRefreshed(newAccessToken);
+
+    // ✅ Только теперь делаем retry
+    return await retryRequest(newAccessToken);
   } catch (err) {
     forceLogout?.();
     throw err;

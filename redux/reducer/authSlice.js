@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import { API_URL } from "../../data/url";
+import fetchWithAuth from "../../util/fetchWithAuth";
 
 // Register user action (using cookies, no manual token handling)
 export const registerUserAction = createAsyncThunk(
@@ -30,8 +31,64 @@ export const registerUserAction = createAsyncThunk(
     }
   }
 );
+export const getPersonalProfileAction = createAsyncThunk(
+  "profile/getPersonal",
+  async (locale, { getState, dispatch, rejectWithValue }) => {
+    try {
+      const res = await fetchWithAuth(
+        `${API_URL}/users/personal-details/`,
+        {
+          method: "GET",
+          headers: {
+            "Accept-Language": locale,
+          },
+        },
+        (newAccess) => dispatch(setTokens({ access: newAccess })),
+        () => dispatch(logout())
+      );
 
-// Login user action (using cookies, no manual token handling)
+      if (!res.ok) {
+        const errorData = await res.json();
+        return rejectWithValue(errorData);
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message || "Network error");
+    }
+  }
+);
+
+export const getDeliveryDetailsAction = createAsyncThunk(
+  "profile/getDeliveryDetails",
+  async (locale, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await fetchWithAuth(
+        `${API_URL}/users/delivery-details/`,
+        {
+          method: "GET",
+          headers: {
+            "Accept-Language": locale,
+          },
+        },
+        (newAccess) => dispatch(setTokens({ access: newAccess })),
+        () => dispatch(logout())
+      );
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        return rejectWithValue(errorData);
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message || "Network error");
+    }
+  }
+);
+
 export const loginUserAction = createAsyncThunk(
   "user/login",
   async (payload, { rejectWithValue }) => {
@@ -41,7 +98,7 @@ export const loginUserAction = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // important to include cookies
+        credentials: "include",
         body: JSON.stringify(payload),
       };
 
@@ -68,6 +125,8 @@ const initialState = {
   error: null,
   isRegistered: false,
   isAuthenticated: !!Cookies.get("access"),
+  data: null,
+  deliveryData: null,
 };
 
 const authSlice = createSlice({
@@ -139,10 +198,35 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
       })
+
       .addCase(loginUserAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Login failed";
         state.isAuthenticated = false;
+      })
+      .addCase(getPersonalProfileAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getPersonalProfileAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(getPersonalProfileAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message;
+      })
+      .addCase(getDeliveryDetailsAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getDeliveryDetailsAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.deliveryData = action.payload;
+      })
+      .addCase(getDeliveryDetailsAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message;
       });
   },
 });

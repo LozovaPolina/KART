@@ -4,7 +4,6 @@ import { API_URL } from "../../data/url";
 
 const initialState = {
   cartItems: [],
-  items: products,
   isSettingsOpen: false,
   byCategory: {},
   loading: false,
@@ -52,8 +51,7 @@ const cartSlice = createSlice({
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].quantity++;
       } else {
-        const item = state.items.find((item) => item.id === id);
-        const newItem = { ...item, quantity: 1 };
+        const newItem = { id, quantity: 1 };
         state.cartItems.push(newItem);
       }
     },
@@ -67,12 +65,8 @@ const cartSlice = createSlice({
         // Item already in cart → increase quantity
         state.cartItems[itemIndex].quantity += quantity;
       } else {
-        // New item → add to cart with specified quantity
-        const item = state.items.find((item) => item.id === id);
-        if (item) {
-          const newItem = { ...item, quantity };
-          state.cartItems.push(newItem);
-        }
+        const newItem = { id, quantity };
+        state.cartItems.push(newItem);
       }
     },
     removeFromCart(state, action) {

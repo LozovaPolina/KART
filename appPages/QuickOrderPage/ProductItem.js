@@ -1,24 +1,32 @@
-"use client"
-import React, { useState } from 'react';
-import productImg from '../../public/assets/image/product.png'
-import { Check, Minus, Plus, ShoppingCart } from 'lucide-react';
-import Button from '../../shared/ui/button/Button';
-import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFormattedPrice } from '../../hooks/useFormattedPrice';
-import { addToCart, addToCartQuick, deleteFromCart, selectCartItems } from '../../redux/reducer/cartSlice';
-import { useTranslations } from 'next-intl';
+"use client";
+import React, { useState } from "react";
+import productImg from "../../public/assets/image/product.png";
+import { Check, Minus, Plus, ShoppingCart } from "lucide-react";
+import Button from "../../shared/ui/button/Button";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormattedPrice } from "../../hooks/useFormattedPrice";
+import {
+  addToCart,
+  addToCartQuick,
+  deleteFromCart,
+  selectCartItems,
+} from "../../redux/reducer/cartSlice";
+import { useTranslations } from "next-intl";
 
 function ProductItem({ product }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const [quantity, setQuantity] = useState(0);
-  const t = useTranslations('QuickProductSection')
+  const t = useTranslations("QuickProductSection");
   const formattedPrice = useFormattedPrice(product?.price);
   const [addedToCart, setAddedToCart] = useState(false);
-  const quantityInCart = cartItems.find(item => item.id === product.id)?.quantity || 0;
+  const quantityInCart =
+    cartItems.find((item) => item.id === product.id)?.quantity || 0;
 
   const handleAddToCart = () => {
+    console.log("Adding to cart:", product.id, quantity);
+
     if (quantity > 0) {
       dispatch(addToCartQuick({ id: product.id, quantity }));
       setQuantity(0);
@@ -42,7 +50,9 @@ function ProductItem({ product }) {
               className="object-contain"
             />
           </div>
-          <span className="text-sm sm:text-lg text-[#848484]">{product?.title}</span>
+          <span className="text-sm sm:text-lg text-[#848484]">
+            {product?.title}
+          </span>
         </div>
         <div className="text-lg text-[#848484] text-center">#{product?.id}</div>
       </div>
@@ -55,14 +65,14 @@ function ProductItem({ product }) {
         <div className="flex gap-6">
           <div className="flex items-center text-[#848484] gap-2 justify-center">
             <button
-              onClick={() => setQuantity(p => Math.max(p - 1, 0))}
+              onClick={() => setQuantity((p) => Math.max(p - 1, 0))}
               className="text-[15px] p-2 cursor-pointer"
             >
               <Minus size={16} />
             </button>
             <span className="text-lg font-bold">{quantity}</span>
             <button
-              onClick={() => setQuantity(p => p + 1)}
+              onClick={() => setQuantity((p) => p + 1)}
               className="text-[15px] p-2 cursor-pointer"
             >
               <Plus size={16} />
@@ -80,7 +90,7 @@ function ProductItem({ product }) {
                 <span className="text-green-600 flex items-center gap-1">
                   <Check size={20} />
                   <span className="hidden lg:inline text-[#848484]">
-                    {t('added')}
+                    {t("added")}
                   </span>
                 </span>
               ) : (
@@ -89,7 +99,7 @@ function ProductItem({ product }) {
                     <ShoppingCart size={20} color="#000000" />
                   </span>
                   <span className="hidden lg:inline text-[#848484]">
-                    {t('addToCart')}
+                    {t("addToCart")}
                   </span>
                 </>
               )}
