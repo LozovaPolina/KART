@@ -149,7 +149,7 @@ function HomePage() {
       </section>
       <div className="line container"></div>
       <section className="post">
-        <div className="wrap container">
+        <div className="wrap container  flex flex-col xl:flex-row gap-8 items-center justify-between">
           <div className="post__info">
             <Title className="post__info-title text-center">
               {t("postInfoTitle")}
@@ -157,26 +157,29 @@ function HomePage() {
             <p className="post__info-subtitle  text-center">
               {t("postInfoSubtitle")}
             </p>
-            <ButtonWithCircleLink
-              href="/about"
-              buttonText={t("postButtonText")}
-              circleBg="green"
-            />
+            <div className="mx-auto">
+              <ButtonWithCircleLink
+                href="/about"
+                buttonText={t("postButtonText")}
+                wrapClass={"justify-center"}
+                circleBg="green"
+              />
+            </div>
           </div>
           <Image
             src={kartProfessionalImg}
             alt={t("postInfoTitle")}
-            className="post__img"
+            className="post__img max-w-[706px]"
           />
         </div>
       </section>
       <section className="flex flex-col md:flex-row gap-4 mb-24 justify-center items-center">
         <Image
-          className="w-full md:w-[60%] h-[353px]"
+          className="w-full md:w-[60%]  h-[353px]"
           src={magnifyingGlasImg}
           alt={t("kartMoreThanPedicureTitle")}
         />
-        <div className="w-full md:w-[40%] flex flex-col gap-4 justify-between">
+        <div className="w-full md:w-[50%] flex flex-col gap-4 justify-between">
           <Title className="leading-normal pl-6 text-center">
             {t("kartMoreThanPedicureTitle")}
           </Title>
@@ -189,7 +192,7 @@ function HomePage() {
             href="/about"
             circleClassName="bg-[#5EAC41] "
             buttonText={t("kartMoreThanPedicureButtonText")}
-            buttonClassName="w-[90%]  bg-[#5EAC41] "
+            buttonClassName="w-[95%]  bg-[#5EAC41] "
           />
         </div>
       </section>
@@ -214,7 +217,7 @@ function HomePage() {
             </div>
             <ButtonWithCircleLink
               href="/about"
-              buttonClassName="w-[90%]"
+              buttonClassName="w-[95%]"
               buttonText={t("academyButtonText")}
               circleBg="green"
             />
@@ -249,15 +252,15 @@ function HomePage() {
               <Text className="font-bold">
                 {t("certificateMainAdvantages")}
               </Text>
-              <ul className="flex gap-2 flex-col sm:gap-8   items-start sm:flex-row  md:gap-12 lg:gap-14 xl:gap-16 w-full">
-                <li className="flex gap-2 items-center max-w-[248px] w-full">
+              <ul className="flex gap-2 flex-col    items-start sm:flex-row  w-full">
+                <li className="flex gap-2 items-center  w-full flex-2">
                   <BadgePercent
                     color="#96B87D"
                     className="w-[1.5625rem] h-[1.5625rem]"
                   />
                   <Text>{t("certificateAdvantageDiscount")}</Text>
                 </li>
-                <li className="flex gap-2 items-center">
+                <li className="flex gap-2 items-center flex-3 ">
                   <ShoppingBag
                     color="#96B87D"
                     className="w-[1.5625rem] h-[1.5625rem] shrink-0"
@@ -269,8 +272,8 @@ function HomePage() {
               <Text className="font-bold">
                 {t("certificateAccessToMaterials")}
               </Text>
-              <div className="flex flex-col  gap-2 sm:gap-8  sm:flex-row md:gap-12 lg:gap-14  xl:gap-16 w-full items-start">
-                <ul className="flex flex-col gap-2">
+              <div className="flex flex-col  gap-2  sm:flex-row  w-full items-start">
+                <ul className="flex flex-col gap-2 flex-2">
                   <li className="flex gap-2 items-center">
                     <FileText color="#96B87D" />
                     <Text>{t("certificateMaterialPosters")}</Text>
@@ -297,7 +300,7 @@ function HomePage() {
                   </li>
                 </ul>
 
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-2 flex-3">
                   <li className="flex gap-2 items-center">
                     <Image
                       className="w-[1.5625rem] h-[1.5625rem]"

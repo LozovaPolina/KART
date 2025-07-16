@@ -43,6 +43,7 @@ function OrderСonditionsList() {
           href="/conditions"
           buttonText={t("orderConditions.button")}
           circleBg="green"
+          buttonClassName="w-[90%]"
         />
       </div>
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import HeaderNav from "./HeaderNav";
 import logotype from "../../public/assets/svg/logotype.svg"; // Adjust the path as needed
@@ -9,15 +9,12 @@ import { Search, ShoppingBag } from "lucide-react";
 import ProfileIcon from "./ProfIleIcon";
 import CurrencySelector from "../currency-selector/CurrencySelector";
 
-
-
 import { useState } from "react";
 
 import MobileNav from "./MobileNav";
 import LangSwitcher from "../lang-switcher/LangSwitcher";
 import { navLinks } from "../../data/navLinks";
 import { useTranslations } from "next-intl";
-
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,33 +49,54 @@ export default function Header() {
           </div>
           <div className="flex gap-6">
             <div className="hidden xl:flex items-center gap-[15px]">
-              <LangSwitcher classes='hidden xl:flex' />
+              <LangSwitcher classes="hidden xl:flex" />
               <CurrencySelector />
-              <Link href="#" className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#A4D49D] shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+              <Link
+                href="#"
+                className="hidden xl:flex items-center px-[11px] py-[10px] rounded-full bg-[#5EAC41] shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+              >
                 <p className="text-white font-normal">{t("onlineEducation")}</p>
               </Link>
             </div>
             <div className="flex items-center gap-2">
-              <Link href={'/cart'} className="text-lg! text-[#323232]"><ShoppingBag size={20} color="#323232" /></Link>
+              <Link href={"/cart"} className="text-lg! text-[#323232]">
+                <ShoppingBag size={20} color="#323232" />
+              </Link>
               <ProfileIcon />
-              <button onClick={() => setMobileMenuOpen(true)} className="block xl:hidden" aria-label="Open mobile menu">
-                <svg className="w-[25px] h-[25px] cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
-                  <path d="M7.2915 6.25H17.7082..." stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="block xl:hidden"
+                aria-label="Open mobile menu"
+              >
+                <svg
+                  className="w-[25px] h-[25px] cursor-pointer"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                >
+                  <path
+                    d="M7.2915 6.25H17.7082..."
+                    stroke="#262626"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             </div>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="max-w-[1450px] mx-auto px-[15px]">
         <ProductLinks />
       </div>
 
-      <MobileNav navLinks={navLinks} isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileNav
+        navLinks={navLinks}
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
     </header>
   );
 }
