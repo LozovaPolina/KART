@@ -3,7 +3,6 @@
 @import "../css/styles.css";
 @theme {
   --primary: #666666;
-  --color-primary-text: var(--primary);
 }
 body {
   font-family: var(--font-fira-sans), sans-serif;

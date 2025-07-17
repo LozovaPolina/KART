@@ -9,11 +9,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 export default function ProductItem({ product }) {
-  const formattedDiscountedPrice = useFormattedPrice(+product.discountedPrice);
+  // const formattedDiscountedPrice = useFormattedPrice(+product.discountedPrice);
   const formattedPrice = useFormattedPrice(product.price);
-  const formattedTotal = useFormattedPrice(
-    +product.discountedPrice * product.quantity
-  );
+  // const formattedTotal = useFormattedPrice(
+  //   +product.discountedPrice * product.quantity
+  // );
+  const formattedTotal = useFormattedPrice(+product.price * product.quantity);
   console.log(product);
   const dispatch = useDispatch();
 
@@ -28,9 +29,10 @@ export default function ProductItem({ product }) {
         </div>
         <div className="flex items-center justify-center gap-5">
           <div className="flex gap-1">
-            <div className="text-[15px] line-through ">{formattedPrice}</div>
+            {/* <div className="text-[15px] line-through ">{formattedPrice}</div> */}
             <div className="text-[15px] text-[#848484] font-semibold">
-              {formattedDiscountedPrice}
+              {/* {formattedDiscountedPrice} */}
+              {formattedPrice}
             </div>
           </div>
           <div className="p-1 shadow flex gap-[6px] items-center justify-center rounded-2xl">

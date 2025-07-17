@@ -8,6 +8,7 @@ import { routing } from "../../i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import LocaleRedirector from "../../shared/redirector/LocaleRedirector";
+import CartStorageSync from "../../shared/CartStorageSync";
 
 const firaSans = Fira_Sans({
   variable: "--font-fira-sans",
@@ -41,6 +42,8 @@ export default async function RootLayout({ children, params }) {
               {children}
             </main>
             <div id="modal" />
+
+            <CartStorageSync />
           </NextIntlClientProvider>
           <Footer />
         </AppProvider>

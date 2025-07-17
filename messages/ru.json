@@ -540,7 +540,20 @@
   },
   "AuthGuard": {
     "alreadyHaveAccount": "Уже есть аккаунт?",
-    "login": "Войти"
+    "login": "Войти",
+    "forgotPassword": "Забыли пароль?",
+    "backToLogin": "Вернуться к входу"
+  },
+  "ResetPasswordForm": {
+    "title": "Сброс пароля",
+
+    "newPassword": "Новый пароль",
+    "repeatPassword": "Повторите новый пароль",
+    "resetPassword": "Сбросить пароль",
+    "loading": "Сбрасываем...",
+    "successMessage": "Пароль успешно сброшен!",
+    "passwordLengthError": "Пароль должен содержать не менее 5 символов.",
+    "passwordsDoNotMatch": "Пароли не совпадают."
   },
   "LoginForm": {
     "title": "Войдите в аккаунт",
@@ -551,7 +564,8 @@
     "noAccount": "Нет аккаунта?",
     "rememberMe": "Запомнить меня",
     "loading": "Загрузка...",
-    "success": "Успешный вход!"
+    "success": "Успешный вход!",
+    "forgotPassword": "Забыли пароль?"
   },
   "RegisterForm": {
     "title": "Регистрация",
@@ -643,5 +657,15 @@
     "quantity": "Количество",
     "addToCart": "В корзину",
     "added": "Добавлено"
+  },
+  "ForgotPassword": {
+    "forgotPasswordTitle": "Восстановление пароля",
+    "email": "Email",
+    "invalidEmail": "Пожалуйста, введите корректный email.",
+    "emailSent": "Письмо с инструкциями отправлено на вашу почту.",
+    "sendError": "Не удалось отправить письмо. Попробуйте позже.",
+    "backToLogin": "Вернуться к входу",
+    "loading": "Отправка...",
+    "send": "Отправить"
   }
 }

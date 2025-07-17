@@ -201,7 +201,7 @@ const RegisterForm = ({ toggleAuthMode }) => {
       {reduxError &&
         !isRegistered &&
         Object.entries(reduxError).map(([field, messages]) =>
-          messages.map((msg, i) => (
+          (Array.isArray(messages) ? messages : [messages]).map((msg, i) => (
             <p
               key={`${field}-${i}`}
               className="text-red-500 text-sm text-center"

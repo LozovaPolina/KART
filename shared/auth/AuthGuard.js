@@ -6,37 +6,30 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import Modal from "../ui/modal/Modal";
 import { useSelector } from "react-redux";
+import ForgotPassword from "./ForgotPassword";
+import { useRouter } from "next/navigation";
 
 export default function AuthGuard({ children, onClickIfAuthorized }) {
   const t = useTranslations("AuthGuard");
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const modalRef = useRef(null);
   const [pendingAction, setPendingAction] = useState(null);
-  const [authMode, setAuthMode] = useState("login");
-
-  // Открываем модалку, если не авторизован при первом рендере или при изменении статуса
-  useEffect(() => {
-    if (!isAuthenticated) {
-      modalRef.current?.open?.();
-    } else {
-      modalRef.current?.close?.();
-    }
-  }, [isAuthenticated]);
+  const [authMode, setAuthMode] = useState("login"); // 'login', 'register', 'forgotPassword'
+  const router = useRouter();
+  const [previousPath, setPreviousPath] = useState(null);
 
   const handleClick = (event) => {
     if (!isAuthenticated) {
       event.preventDefault();
-
+      setPreviousPath(window.location.pathname);
       setPendingAction(() => () => {
         if (onClickIfAuthorized) {
           onClickIfAuthorized(event);
         }
       });
-
       modalRef.current?.open?.();
       return;
     }
-
     onClickIfAuthorized?.(event);
   };
 
@@ -48,8 +41,14 @@ export default function AuthGuard({ children, onClickIfAuthorized }) {
     }
   }, [isAuthenticated, pendingAction]);
 
-  const toggleAuthMode = () => {
-    setAuthMode((prev) => (prev === "login" ? "register" : "login"));
+  const handleModalClose = () => {
+    if (!isAuthenticated && previousPath) {
+      router.replace(previousPath);
+    }
+  };
+
+  const toggleAuthMode = (mode) => {
+    setAuthMode(mode);
   };
 
   if (!React.isValidElement(children)) {
@@ -57,52 +56,44 @@ export default function AuthGuard({ children, onClickIfAuthorized }) {
     return children;
   }
 
-  if (!isAuthenticated) {
-    return (
-      <>
-        <Modal ref={modalRef}>
-          <div className="p-4">
-            {authMode === "login" ? (
-              <LoginForm toggleAuthMode={toggleAuthMode} />
-            ) : (
-              <RegisterForm toggleAuthMode={toggleAuthMode} />
-            )}
-
-            {authMode !== "login" && (
-              <p className="text-sm text-center mt-2">
-                {t("alreadyHaveAccount")}{" "}
-                <button
-                  className="text-[#49BA4A] underline cursor-pointer"
-                  onClick={toggleAuthMode}
-                >
-                  {t("login")}
-                </button>
-              </p>
-            )}
-          </div>
-        </Modal>
-      </>
-    );
-  }
-
   return (
     <>
-      <Modal ref={modalRef}>
+      <Modal ref={modalRef} onClose={handleModalClose}>
         <div className="p-4">
-          {authMode === "login" ? (
-            <LoginForm toggleAuthMode={toggleAuthMode} />
-          ) : (
-            <RegisterForm toggleAuthMode={toggleAuthMode} />
+          {authMode === "login" && (
+            <LoginForm
+              toggleAuthMode={(mode = "register") => toggleAuthMode(mode)}
+              openForgotPassword={() => toggleAuthMode("forgotPassword")}
+            />
           )}
 
-          {authMode !== "login" && (
+          {authMode === "register" && (
+            <RegisterForm toggleAuthMode={() => toggleAuthMode("login")} />
+          )}
+
+          {authMode === "forgotPassword" && (
+            <ForgotPassword toggleAuthMode={() => toggleAuthMode("login")} />
+          )}
+
+          {authMode !== "login" && authMode !== "forgotPassword" && (
             <p className="text-sm text-center mt-2">
               {t("alreadyHaveAccount")}{" "}
               <button
                 className="text-[#49BA4A] underline cursor-pointer"
-                onClick={toggleAuthMode}
+                onClick={() => toggleAuthMode("login")}
               >
                 {t("login")}
+              </button>
+            </p>
+          )}
+
+          {authMode === "forgotPassword" && (
+            <p className="text-sm text-center mt-2">
+              <button
+                className="text-[#49BA4A] underline cursor-pointer"
+                onClick={() => toggleAuthMode("login")}
+              >
+                {t("backToLogin")}
               </button>
             </p>
           )}

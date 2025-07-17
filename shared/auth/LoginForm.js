@@ -11,8 +11,9 @@ import Text from "../ui/text/Text";
 import Field from "../ui/Field/Field";
 
 import { useTranslations } from "next-intl";
+import { Link } from "../../i18n/navigation";
 
-const LoginForm = ({ toggleAuthMode }) => {
+const LoginForm = ({ toggleAuthMode, openForgotPassword }) => {
   const t = useTranslations("LoginForm");
   const dispatch = useDispatch();
   const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
@@ -50,6 +51,9 @@ const LoginForm = ({ toggleAuthMode }) => {
         password: passwordValue,
       })
     );
+
+    handleEmailChange({ target: { value: "" } });
+    handlePasswordChange({ target: { value: "" } });
   };
 
   return (
@@ -81,7 +85,14 @@ const LoginForm = ({ toggleAuthMode }) => {
         error={passwordError}
         name="password"
       />
-
+      <div className="text-center mt-2">
+        <button
+          onClick={openForgotPassword}
+          className="text-primary cursor-pointer text-sm"
+        >
+          {t("forgotPassword")}
+        </button>
+      </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
       {isLoggedIn && <p className="text-green-500 text-sm">{t("success")}</p>}
 
@@ -94,7 +105,7 @@ const LoginForm = ({ toggleAuthMode }) => {
           {loading ? t("loading") : t("login")}
         </button>
         <button
-          onClick={toggleAuthMode}
+          onClick={() => toggleAuthMode("register")}
           type="button"
           disabled={loading}
           className="w-full border border-[#49BA4A] text-[#49BA4A] py-2 rounded"

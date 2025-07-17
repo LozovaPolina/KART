@@ -93,24 +93,22 @@ export const loginUserAction = createAsyncThunk(
   "user/login",
   async (payload, { rejectWithValue }) => {
     try {
-      const config = {
+      const res = await fetch(API_URL + "/users/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
         body: JSON.stringify(payload),
-      };
-
-      const res = await fetch(API_URL + "/users/login/", config);
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        return rejectWithValue(errorData);
-      }
+      });
 
       const data = await res.json();
-      return data; // user info or success message; tokens are in cookies
+
+      if (!res.ok) {
+        return rejectWithValue(data?.detail || "Unknown server error");
+      }
+
+      return data;
     } catch (error) {
       return rejectWithValue(error.message || "Network error");
     }

@@ -540,7 +540,9 @@
   },
   "AuthGuard": {
     "alreadyHaveAccount": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "forgotPassword": "Forgot Password",
+    "backToLogin": "Back to Login"
   },
   "LoginForm": {
     "title": "Log in to your account",
@@ -551,7 +553,8 @@
     "noAccount": "No account?",
     "rememberMe": "Remember me",
     "loading": "Loading...",
-    "success": "Successfully logged in!"
+    "success": "Successfully logged in!",
+    "forgotPassword": "Forgot Password"
   },
   "RegisterForm": {
     "title": "Registration",
@@ -584,7 +587,17 @@
     "submit": "Register",
     "loading": "Loading...",
     "success": "Successfully registered!",
-    "note": "To access professional KART pedicure products and get a 40% discount, you need a KART master certificate. For more information, visit the {academy}KART Academy{/academy} section."
+    "note": "To access professional KART pedicure products and get a 40% discount, you need a KART master certificate. For more information, visit the <academy>KART Academy</academy> section."
+  },
+  "ResetPasswordForm": {
+    "title": "Reset Your Password",
+    "newPassword": "New Password",
+    "repeatPassword": "Repeat New Password",
+    "resetPassword": "Reset Password",
+    "loading": "Resetting...",
+    "successMessage": "Password has been reset successfully!",
+    "passwordLengthError": "Password must be at least 5 characters.",
+    "passwordsDoNotMatch": "Passwords do not match."
   },
   "ContactPage": {
     "navigation": {
@@ -643,5 +656,15 @@
     "quantity": "Quantity",
     "addToCart": "Add to Cart",
     "added": "Added"
+  },
+  "ForgotPassword": {
+    "forgotPasswordTitle": "Password Recovery",
+    "email": "Email",
+    "invalidEmail": "Please enter a valid email address.",
+    "emailSent": "Instructions have been sent to your email.",
+    "sendError": "Failed to send email. Please try again later.",
+    "backToLogin": "Back to Login",
+    "loading": "Sending...",
+    "send": "Send"
   }
 }
