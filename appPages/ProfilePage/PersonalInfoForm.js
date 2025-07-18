@@ -7,15 +7,20 @@ import { use, useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { SquarePen } from "lucide-react";
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
-import { API_URL } from "../../data/url";
-import fetchWithAuеth from "../../util/fetchWithAuth";
 import { useDispatch, useSelector } from "react-redux";
-import { getPersonalProfileAction } from "../../redux/reducer/authSlice";
+import {
+  getPersonalProfileAction,
+  patchPersonalProfileAction,
+} from "../../redux/reducer/authSlice";
+import updatePersonalDetails from "../../util/updatePersonalDetails";
+
 export default function PersonalInfoForm() {
   const t = useTranslations("PersonalInfoForm");
 
   const locale = useLocale();
   const [error, setError] = useState();
+  const [successMessage, setSuccessMessage] = useState("");
+
   const {
     data: profileData,
     loading,
@@ -63,33 +68,53 @@ export default function PersonalInfoForm() {
     setInputState: setEmailValue,
   } = useInput("", (v) => /\S+@\S+\.\S+/.test(v));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
+    const payload = {};
+
+    if (nameValue.trim() && nameValue !== profileData?.first_name) {
+      payload.first_name = nameValue.trim();
+    }
+
+    if (surnameValue.trim() && surnameValue !== profileData?.last_name) {
+      payload.last_name = surnameValue.trim();
+    }
+
+    if (nicknameValue.trim() && nicknameValue !== profileData?.display_name) {
+      payload.display_name = nicknameValue.trim();
+    }
 
     if (
-      nameError ||
-      !nameValue.trim() ||
-      surnameError ||
-      !surnameValue.trim() ||
-      nicknameError ||
-      !nicknameValue.trim() ||
-      emailError ||
-      !emailValue.trim() ||
-      !passwordValue.trim() ||
-      phoneError ||
-      !phoneValue.trim()
+      phoneNumberValue.trim() &&
+      phoneNumberValue !== profileData?.phone_number
     ) {
-      setError(t("error"));
+      payload.phone_number = phoneNumberValue.trim();
+    }
+
+    if (countryCode !== profileData?.country_code) {
+      payload.country_code = countryCode;
+    }
+
+    if (Object.keys(payload).length === 0) {
+      setError(t("nothingToUpdate"));
       return;
     }
 
-    console.log({
-      name: nameValue,
-      surname: surnameValue,
-      nickname: nicknameValue,
-      phone: phoneNumberValue,
-      email: emailValue,
-    });
+    try {
+      const resultAction = await dispatch(
+        patchPersonalProfileAction({ locale, payload })
+      );
+
+      if (patchPersonalProfileAction.rejected.match(resultAction)) {
+        setError(resultAction.payload || resultAction.error.message);
+      } else {
+        setSuccessMessage(t("successMessage"));
+      }
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   useEffect(() => {
@@ -145,7 +170,7 @@ export default function PersonalInfoForm() {
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl text-color  p-4 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
         <h3 className="text-lg font-semibold col-span-2">{t("title")}</h3>
 
         <Field
@@ -210,7 +235,7 @@ export default function PersonalInfoForm() {
           </button>
         </div>
       </div>
-
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
       {error ||
         (reduxError && <p className="text-red-500">{error || reduxError}</p>)}
       <Button type="submit">{t("save")}</Button>

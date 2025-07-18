@@ -8,7 +8,7 @@ function Title({ level = "h3", color = "black", className = "", children }) {
       ? "text-[#3EB64A]"
       : color === "white"
       ? "text-white"
-      : "text-primary-text";
+      : "text-color ";
 
   // Base styles
   const baseClasses =

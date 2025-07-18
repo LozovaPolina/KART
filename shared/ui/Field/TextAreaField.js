@@ -25,7 +25,7 @@ function TextAreaField({
     <div className={`relative w-full mt-4 ${className}`}>
       <label
         htmlFor={name}
-        className="sm:absolute left-2 top-0 -translate-y-1/2 sm:px-1 bg-[#F5F5F5] text-xs text-[#272727] max-w-[90%] "
+        className="sm:absolute left-2 top-0 -translate-y-1/2 sm:px-1 bg-[#F5F5F5] text-xs text-color  max-w-[90%] "
       >
         {label}
       </label>
@@ -36,7 +36,7 @@ function TextAreaField({
         onChange={handleInputChange}
         onBlur={onBlur}
         className={clsx(
-          "w-full p-2 pt-5 border rounded outline-none transition text-sm resize-none",
+          "w-full p-2 pt-5 border text-color  rounded outline-none transition text-sm resize-none",
           error ? "border-red-500" : "border-[#E2E2E2] focus:border-[#272727]"
         )}
         style={{ height: "48px", overflow: "hidden" }}

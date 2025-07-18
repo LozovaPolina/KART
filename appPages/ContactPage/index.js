@@ -11,6 +11,7 @@ import { useInput } from "../../hooks/useInput";
 import PhoneInput from "../../shared/ui/PhoneInput/PhoneInput";
 
 import { API_URL } from "../../data/url";
+import Text from "../../shared/ui/text/Text";
 
 export default function ContactPage() {
   const t = useTranslations("ContactPage");
@@ -113,7 +114,7 @@ export default function ContactPage() {
       </div>
 
       <section className=" py-10 px-4 md:px-10">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-8 rounded-xl">
+        <div className="max-w-6xl mx-auto grid text-color  md:grid-cols-2 gap-8 shadow-[0px_2px_10px_rgba(0,0,0,0.1)] p-8 rounded-xl">
           {/* Form */}
           <form
             ref={formRef}
@@ -147,7 +148,7 @@ export default function ContactPage() {
             />
 
             <PhoneInput
-              className="w-full col-span-2"
+              className="w-full col-span-2 text-color"
               countryCode={countryCode}
               setCountryCode={setCountryCode}
               phoneNumber={phoneNumberValue}
@@ -157,10 +158,10 @@ export default function ContactPage() {
               styles="col-span-2"
               labelBgStyle="bg-white"
             />
-            <div className="relative w-full">
+            <div className="relative w-full text-color">
               <label
                 htmlFor="message"
-                className="absolute -top-1 left-2 bg-white px-1 text-sm text-[#272727]"
+                className="absolute -top-1 left-2 bg-white px-1 text-sm text-color "
               >
                 {t("fields.message") + " *"}
               </label>
@@ -179,14 +180,16 @@ export default function ContactPage() {
                 }`}
               />
               {messageError && (
-                <p className="text-red-500 text-xs mt-1">
+                <Text className="text-red-500 text-xs mt-1">
                   {t("errors.messageRequired")}
-                </p>
+                </Text>
               )}
             </div>
 
             {submitError && (
-              <p className="text-red-500 text-sm text-center">{submitError}</p>
+              <Text className="text-red-500 text-sm text-center">
+                {submitError}
+              </Text>
             )}
 
             <ButtonWithCircleLink
@@ -205,36 +208,36 @@ export default function ContactPage() {
               {t("contactForm.titlePart2")}
             </h2>
             <h3 className="text-xl mb-4">{t("contactForm.subtitle")}</h3>
-            <p className="text-[#848484] mb-6">
+            <Text className="text-[#848484] mb-6">
               {t("contactForm.description")}
-            </p>
+            </Text>
 
             <div className="space-y-4 text-sm">
               <div className="flex gap-2 items-center">
                 <MapPin className="text-[#96B87D] mt-1" />
                 <div>
-                  <p className="font-sm text-[#848484]">
+                  <Text className="font-sm text-color ">
                     {t("contactForm.addressLabel")}
-                  </p>
-                  <p>{t("contactForm.address")}</p>
+                  </Text>
+                  <Text>{t("contactForm.address")}</Text>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
                 <Phone className="text-[#96B87D]" />
                 <div>
-                  <p className="font-sm text-[#848484]">
+                  <Text className="font-sm text-color ">
                     {t("contactForm.phoneLabel")}
-                  </p>
-                  <p>{t("contactForm.phone")}</p>
+                  </Text>
+                  <Text>{t("contactForm.phone")}</Text>
                 </div>
               </div>
               <div className="flex gap-2 items-center">
                 <Send className="text-[#96B87D]" />
                 <div>
-                  <p className="font-sm text-[#848484]">
+                  <Text className="font-sm text-color ">
                     {t("contactForm.messengerLabel")}
-                  </p>
-                  <p>{t("contactForm.messengerPhones")}</p>
+                  </Text>
+                  <Text>{t("contactForm.messengerPhones")}</Text>
                 </div>
               </div>
             </div>

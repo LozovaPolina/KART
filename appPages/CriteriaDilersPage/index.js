@@ -1,59 +1,54 @@
-import { ButtonWithCircleLink } from '../../shared/ui/button/ButtonWithCircleLink';
-import React from 'react';
+import { ButtonWithCircleLink } from "../../shared/ui/button/ButtonWithCircleLink";
+import React from "react";
 
-
-
-import { criteriaDilers } from "../../data/criteriaDilers"
-import { useTranslations } from 'next-intl';
-import Title from '../../shared/ui/title/Title';
-import Text from '../../shared/ui/text/Text';
-import HintNavigation from '../../shared/hint-navigation/HintNavigation';
+import { criteriaDilers } from "../../data/criteriaDilers";
+import { useTranslations } from "next-intl";
+import Title from "../../shared/ui/title/Title";
+import Text from "../../shared/ui/text/Text";
+import HintNavigation from "../../shared/hint-navigation/HintNavigation";
 
 export default function CriteriaDilersPage() {
-  const t = useTranslations('CriteriaDilersPage');
+  const t = useTranslations("CriteriaDilersPage");
 
   return (
-    <section className='flex flex-col gap-10 items-center'>
+    <section className="flex flex-col gap-10 items-center text-color ">
       <div className="flex flex-col items-center gap-4 max-w-[603px] ">
         <HintNavigation
           links={[
-            { label: 'Главная', href: '../' },
-            { label: 'Критерии', href: '/criteria-instructors' },
+            { label: "Главная", href: "../" },
+            { label: "Критерии", href: "/criteria-instructors" },
           ]}
         />
-        <Title color='green'>{t("title")}</Title>
-        <Text className='text-[#404040]! text-center'>{t("text")}</Text>
+        <Title color="green">{t("title")}</Title>
+        <Text className="text-[#404040]! text-center">{t("text")}</Text>
       </div>
-      <div className='flex flex-wrap justify-center sm:gap-x-6 gap-y-12 sm:gap-y-18 h-fit md:p-6 rounded-2xl'>
+      <div className="flex flex-wrap justify-center sm:gap-x-6 gap-y-12 sm:gap-y-18 h-fit md:p-6 rounded-2xl">
         {criteriaDilers(t).map((item, index) => (
           <div
             key={index}
-            className='flex flex-col gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'
+            className="flex flex-col gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
-            <div className='flex flex-col justify-between rounded-2xl space-y-2 shadow-[0_2px_10px_rgba(0,0,0,0.1)] relative'>
-              <div className='flex flex-col flex-1 justify-between rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.1)] px-4 py-6 w-full bg-white relative text-center'>
-                <div className='flex items-center gap-2 w-full text-center '>
-                  <h3 className='text-2xl w-full'>{item.title}</h3>
+            <div className="flex flex-col justify-between rounded-2xl space-y-2 shadow-[0_2px_10px_rgba(0,0,0,0.1)] relative">
+              <div className="flex flex-col flex-1 justify-between rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.1)] px-4 py-6 w-full bg-white relative text-center">
+                <div className="flex items-center gap-2 w-full text-center ">
+                  <h3 className="text-2xl w-full">{item.title}</h3>
                 </div>
-                <div className='w-8 h-8 bg-[#43B549] text-white rounded-full flex items-center justify-center font-bold absolute -top-4 left-1/2 -translate-x-1/2'>
+                <div className="w-8 h-8 bg-[#43B549] text-white rounded-full flex items-center justify-center font-bold absolute -top-4 left-1/2 -translate-x-1/2">
                   {item.number}
                 </div>
               </div>
             </div>
 
-            <div className='shadow-[0_2px_10px_rgba(0,0,0,0.1)] text-center p-4  rounded-2xl bg-[#F5F5F580] h-full'>
-              <p className='text-[#404040] text-sm h-full flex items-center'>{item.content}</p>
+            <div className="shadow-[0_2px_10px_rgba(0,0,0,0.1)] text-center p-4  rounded-2xl bg-[#F5F5F580] h-full">
+              <p className="text-color text-sm h-full flex items-center">
+                {item.content}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
-      <ButtonWithCircleLink
-        href='/dilers-form'
-        buttonText={t('sendRequest')}
-
-      />
+      <ButtonWithCircleLink href="/dilers-form" buttonText={t("sendRequest")} />
     </section>
   );
 }
-

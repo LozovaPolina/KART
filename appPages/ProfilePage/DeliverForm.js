@@ -262,7 +262,7 @@ function DeliverForm() {
   };
 
   return (
-    <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-2 text-color " onSubmit={handleSubmit}>
       <div className="bg-[#F5F5F5] p-4 rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)]">
         <Title className="text-lg font-semibold mb-5">{t("title")}</Title>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

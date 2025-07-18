@@ -71,7 +71,7 @@ export default function Page() {
   if (!product) return <div>Product not found</div>;
 
   return (
-    <section className=" w-full ">
+    <section className=" w-full text-color ">
       <div className="flex  justify-center items-center mb-[44px]">
         <HintNavigation
           links={[
@@ -95,14 +95,14 @@ export default function Page() {
           />
         </div>
 
-        <div className="flex flex-col w-full gap-4  text-[#404040]">
+        <div className="flex flex-col w-full gap-4  text-color">
           <div className=" flex gap-4 items-center">
             <div className="flex flex-col justify-center  w-[95%] ">
               <h2 className="text-[20px] lg:text-xl ">{product.fullName}</h2>
-              <h3 className="text-lg text-gray-500 ">{product.name}</h3>
+              <h3 className="text-lg text-color ">{product.name}</h3>
             </div>
 
-            <div className="text-sm text-right min-w-[80px] shrink-0 text-gray-400">
+            <div className="text-sm text-right min-w-[80px] shrink-0 text-color">
               {t("code")}: {product.id}
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Page() {
           <div className="w-full bg-[#EDEDED] h-[1px]"></div>
 
           <div className="">
-            <p className="text-[13px] lg:text-sm mb-6 text-[#404040]">
+            <p className="text-[13px] lg:text-sm mb-6 text-color">
               {product.description}
             </p>
           </div>
@@ -124,15 +124,15 @@ export default function Page() {
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center  rounded px-2 py-1">
                 <button>
-                  <Minus className="w-8 h-8 p-2 cursor-pointer text-[#848484]" />
+                  <Minus className="w-8 h-8 p-2 cursor-pointer text-color" />
                 </button>
-                <span className="px-1 lg:px-3 text-[#848484]">0</span>
+                <span className="px-1 lg:px-3 text-color">0</span>
                 <button>
-                  <Plus className="w-8 h-8 p-2 cursor-pointer text-[#848484]" />
+                  <Plus className="w-8 h-8 p-2 cursor-pointer text-color" />
                 </button>
               </div>
-              <button className="flex items-center text-[#848484] gap-2 shadow-sm w-fit cursor-pointer text-[15px] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
-                <ShoppingCart className="w-4 h-4 text-black" />
+              <button className="flex items-center text-color gap-2 shadow-sm w-fit cursor-pointer text-[15px] lg:text-sm px-4 py-2 rounded-md hover:bg-gray-200">
+                <ShoppingCart className="w-4 h-4 text-color" />
                 <span className="hidden lg:block">{t("addToCart")}</span>
               </button>
             </div>
@@ -142,8 +142,8 @@ export default function Page() {
             <button
               className={`py-2 text-sm ${
                 tab === "usage"
-                  ? "border-b-2 text-[#404040] border-[#404040]"
-                  : "text-gray-500"
+                  ? "border-b-2 text-color border-[#404040]"
+                  : "text-color"
               }`}
               onClick={() => setTab("usage")}
             >
@@ -152,8 +152,8 @@ export default function Page() {
             <button
               className={`py-2 text-sm ${
                 tab === "ingredients"
-                  ? "border-b-2 text-[#404040] border-[#404040]"
-                  : "text-gray-500"
+                  ? "border-b-2 text-color border-[#404040]"
+                  : "text-color"
               }`}
               onClick={() => setTab("ingredients")}
             >
@@ -161,7 +161,7 @@ export default function Page() {
             </button>
           </div>
 
-          <div className="text-sm leading-relaxed w-full text-[#404040]">
+          <div className="text-sm leading-relaxed w-full text-color">
             {tab === "usage" ? (
               <p>{product.how_to_use}</p>
             ) : (
@@ -172,7 +172,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Title className="text-start text-black mb-4">
+      <Title className="text-start text-color mb-4">
         {t("popularProducts")}
       </Title>
       {/* <Swiper

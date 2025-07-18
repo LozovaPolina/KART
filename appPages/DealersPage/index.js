@@ -77,8 +77,10 @@ export default function DealersPage() {
                     className="rounded-lg max-w-[110px] max-h-[80px] w-full h-full object-cover"
                   />
                   <div className="flex flex-col w-full">
-                    <h4 className="w-full max-w-[142px]">{dealer.country}</h4>
-                    <p className="w-full max-w-[150px] truncate">
+                    <h4 className="w-full max-w-[142px] text-color ">
+                      {dealer.country}
+                    </h4>
+                    <p className="w-full max-w-[150px] truncate text-color ">
                       {dealer.company_name}
                     </p>
                     <Link
@@ -98,7 +100,7 @@ export default function DealersPage() {
                       href={dealer.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
+                      className="flex justify-center text-color  items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
                     >
                       <Image
                         width={25}
@@ -115,7 +117,7 @@ export default function DealersPage() {
                       href={dealer.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
+                      className="flex justify-center  text-color  items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
                     >
                       <Image
                         width={25}
@@ -132,7 +134,7 @@ export default function DealersPage() {
                       href="#"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
+                      className="flex justify-center text-color  items-center rounded-lg p-1 shadow-[0px_2px_10px_rgba(0,0,0,0.1)]"
                     >
                       <Image
                         width={25}
@@ -147,7 +149,7 @@ export default function DealersPage() {
               </div>
             </div>
 
-            <div className="shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-lg bg-[#F5F5F580] flex flex-col gap-1 p-2">
+            <div className="shadow-[0px_2px_10px_rgba(0,0,0,0.1)]  text-color  rounded-lg bg-[#F5F5F580] flex flex-col gap-1 p-2">
               <p className="flex items-center gap-2 text-sm">
                 <MapPin size={18} /> <span>{dealer.adress}</span>
               </p>

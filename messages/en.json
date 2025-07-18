@@ -454,7 +454,9 @@
     "email": "Email",
     "password": "Password",
     "save": "Save",
-    "error": "Please fill out all fields correctly.",
+    "nothingToUpdate": "Nothing to update. Please change at least one field.",
+    "successMessage": "Your profile was successfully updated!",
+    "error": "Please fill out the required fields correctly.",
     "placeholders": {
       "surname": "Smith",
       "name": "John",

@@ -1,9 +1,16 @@
 import clsx from "clsx";
 
-export default function RadioGroup({ label, name, options, value, onChange, wrapStyles = '' }) {
+export default function RadioGroup({
+  label,
+  name,
+  options,
+  value,
+  onChange,
+  wrapStyles = "",
+}) {
   return (
     <div className={clsx("flex flex-col gap-2", wrapStyles)}>
-      <p className="font-medium text-sm text-black">{label}</p>
+      <p className="font-medium text-sm text-color ">{label}</p>
       <div className="flex gap-4 flex-wrap">
         {options.map((opt) => (
           <label
@@ -20,13 +27,14 @@ export default function RadioGroup({ label, name, options, value, onChange, wrap
             />
             <div className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#49BA4A] transition-all duration-200 peer-checked:border-[#49BA4A]">
               <div
-                className={`w-3 h-3 rounded-full transition-transform duration-200 ${value === opt ? "bg-[#49BA4A]" : "bg-transparent"
-                  }`}
+                className={`w-3 h-3 rounded-full transition-transform duration-200 ${
+                  value === opt ? "bg-[#49BA4A]" : "bg-transparent"
+                }`}
               />
             </div>
 
             {/* Label */}
-            <span className="text-sm text-black">{opt}</span>
+            <span className="text-sm text-color ">{opt}</span>
           </label>
         ))}
       </div>

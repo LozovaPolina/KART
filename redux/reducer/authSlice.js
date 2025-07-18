@@ -31,6 +31,37 @@ export const registerUserAction = createAsyncThunk(
     }
   }
 );
+
+export const patchPersonalProfileAction = createAsyncThunk(
+  "profile/patchPersonal",
+  async ({ locale, payload }, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await fetchWithAuth(
+        `${API_URL}/users/personal-details/`,
+        {
+          method: "PATCH",
+          headers: {
+            "Accept-Language": locale,
+          },
+          body: payload,
+        },
+        (newAccess) => dispatch(setTokens({ access: newAccess })),
+        () => dispatch(logout())
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return rejectWithValue(data?.detail || "Unknown server error");
+      }
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message || "Network error");
+    }
+  }
+);
+
 export const getPersonalProfileAction = createAsyncThunk(
   "profile/getPersonal",
   async (locale, { getState, dispatch, rejectWithValue }) => {

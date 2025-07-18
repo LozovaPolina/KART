@@ -49,9 +49,9 @@ const ProfilePage = () => {
             ]}
           />
 
-          <div className="flex flex-wrap gap-8 items-start rounded-xl  w-full">
+          <div className="flex flex-wrap gap-8 items-start rounded-xl text-color   w-full">
             <aside className="w-full md:w-64 sm:h-[504px] shadow-[0px_2px_10px_rgba(0,0,0,0.1)] bg-[#F5F5F5] rounded-xl py-6 flex flex-col gap-1">
-              <h2 className="text-lg font-semibold mb-2 text-[#1e1e1e] px-6">
+              <h2 className="text-lg font-semibold mb-2 text-color  px-6">
                 {t("title")}
               </h2>
 

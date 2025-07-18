@@ -121,7 +121,7 @@ function GalerySection() {
   return (
     <section className="w-full flex flex-col items-center mt-[30px]">
       {/* Buttons */}
-      <div className="flex justify-center gap-4 mb-6">
+      <div className="flex justify-center gap-4 text-color  mb-6">
         <button
           onClick={() => setShowPhotos(true)}
           className={`px-4 py-2 rounded-2xl ${
@@ -134,7 +134,7 @@ function GalerySection() {
         </button>
         <button
           onClick={() => setShowPhotos(false)}
-          className={`px-4 py-2 rounded-2xl ${
+          className={`px-4 py-2 rounded-2xl text-color  ${
             !showPhotos
               ? "bg-[#A0C287] text-white"
               : "bg-[#F5F5F5] border border-[#A0C287]"
@@ -145,11 +145,11 @@ function GalerySection() {
       </div>
 
       {/* Loader */}
-      {loading && <p className="text-center text-gray-500">Loading...</p>}
+      {loading && <p className="text-center text-color ">Loading...</p>}
 
       {/* Gallery Items */}
       {!loading && (
-        <div className="flex flex-wrap justify-center gap-4 mt-[30px]">
+        <div className="flex flex-wrap text-color  justify-center gap-4 mt-[30px]">
           {galleryItems.map(({ src, text, href, btnText }, idx) => (
             <GaleryItem
               key={idx}

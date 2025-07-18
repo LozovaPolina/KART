@@ -1,15 +1,16 @@
-import HintNavigation from '../../shared/hint-navigation/HintNavigation';
-import Title from '../../shared/ui/title/Title';
-import React from 'react';
-import GalerySection from './GalerySection';
-import { useTranslations } from 'next-intl';
+import HintNavigation from "../../shared/hint-navigation/HintNavigation";
+import Title from "../../shared/ui/title/Title";
+import React from "react";
+import GalerySection from "./GalerySection";
+import { useTranslations } from "next-intl";
+import Text from "../../shared/ui/text/Text";
 
 function GaleryPage() {
   const t = useTranslations("GaleryPage");
 
   return (
     <>
-      <div className='flex justify-center'>
+      <div className="flex justify-center">
         <HintNavigation
           links={[
             { label: t("navigation.home"), href: "/" },
@@ -17,10 +18,10 @@ function GaleryPage() {
           ]}
         />
       </div>
-      <section className='w-full mt-[30px]'>
+      <section className="w-full mt-[30px]">
         <div className="flex flex-col text-center items-center gap-4 max-w-[534px] mx-auto">
           <Title>{t("title")}</Title>
-          <p>{t("description")}</p>
+          <Text>{t("description")}</Text>
         </div>
 
         <GalerySection />

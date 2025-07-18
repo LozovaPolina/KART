@@ -151,7 +151,7 @@ function HomePage() {
       <section className="post">
         <div className="wrap container  flex flex-col xl:flex-row gap-8 items-center justify-between">
           <div className="post__info">
-            <Title className="post__info-title text-center">
+            <Title className="post__info-title  text-color  text-center">
               {t("postInfoTitle")}
             </Title>
             <p className="post__info-subtitle  text-center">
